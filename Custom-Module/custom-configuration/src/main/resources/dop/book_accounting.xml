@@ -9,4 +9,40 @@
         </fields>
     </domain-object-type>
 
+    <!-- Автор -->
+    <domain-object-type name="Lib_Author">
+        <fields>
+            <string name="Name" length="100" not-null="true"></string>
+            <string name="Description" length="253"></string>
+        </fields>
+    </domain-object-type>
+
+    <!-- Книга -->
+    <domain-object-type name="Lib_Book">
+        <fields>
+            <string name="Name" length="100" not-null="true"></string>
+            <string name="Description" length="1024"></string>
+            <reference name="Author" type="Lib_Author" not-null="true"></reference>
+        </fields>
+    </domain-object-type>
+
+    <!-- Классификации книги -->
+    <domain-object-type name="Lib_Book_Qualifier">
+        <fields>
+            <reference name="Book" type="Lib_Book" not-null="true"></reference>
+            <reference name="Qualifier" type="Lib_Qualifier" not-null="true"></reference>
+        </fields>
+    </domain-object-type>
+
+    <!-- Формуляр книги -->
+    <domain-object-type name="Lib_LogBook">
+        <fields>
+            <reference name="Book" type="Lib_Book" not-null="true"></reference>
+            <long name="Log_Number" not-null="true"></long>
+            <timelessDate name="Published"></timelessDate>
+            <string name="Location" length="100"></string>
+            <reference name="Status" type="Status"></reference>
+        </fields>
+    </domain-object-type>
+
 </configuration>
