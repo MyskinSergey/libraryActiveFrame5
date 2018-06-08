@@ -15,12 +15,20 @@
                         <custom name="report.upload.plugin"/>
                     </plugin>
                 </link>
+                <link name="Test_form" display-text="Тестовая форма">
+                    <plugin>
+                        <domain-object-surfer domain-object-type-to-create="a1">
+                            <collection-viewer>
+                                <collection-ref name="a1_collection" />
+                                <default-sort-criteria column-field="a_name1" order="ASC"/>
+                            </collection-viewer>
+                        </domain-object-surfer>
+                    </plugin>
+                </link>
             </child-links>
         </link>
-
-
-
     </navigation>
+
     <navigation-panel-mappings name="nav-panel-map1">
         <navigation-panel-mapping name="default-panel">
             <users>
