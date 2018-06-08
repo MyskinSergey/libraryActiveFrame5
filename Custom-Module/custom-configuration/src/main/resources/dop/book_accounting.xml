@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Классификатор -->
+    <domain-object-type name="Lib_Qualifier">
+        <fields>
+            <string name="Title" length="100" not-null="true"/>
+            <string name="Description" length="253"/>
+        </fields>
+    </domain-object-type>
+
 </configuration>
