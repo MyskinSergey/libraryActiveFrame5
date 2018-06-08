@@ -5,21 +5,27 @@
     <depends>
         <depend>core</depend>
     </depends>
+
     <extension-points-packages>
-        <extension-points-package>ru/intertrust/custommodule</extension-points-package>
+        <extension-points-package>ru/intertrust/custommodule/extensions</extension-points-package>
     </extension-points-packages>
+
     <gui-components-packages>
         <gui-components-package>ru/intertrust/custommodule</gui-components-package>
     </gui-components-packages>
+
     <server-components-packages>
         <server-components-package>ru.intertrust.cm</server-components-package>
     </server-components-packages>
     <configuration-schema-path>configuration/custom-configuration.xsd</configuration-schema-path>
+
     <configuration-paths>
+        <configuration-path>configuration/action/actions.xml</configuration-path>
         <configuration-path>configuration/navigation-panel.xml</configuration-path>
         <configuration-path>configuration/global.xml</configuration-path>
         <configuration-path>configuration/form-mechanism-1.xml</configuration-path>
     </configuration-paths>
+
     <import-files rewrite="true">
         <import-file>importdata/f1.csv</import-file>
         <import-file>importdata/d1.csv</import-file>
@@ -29,4 +35,5 @@
         <import-file>importdata/e1.csv</import-file>
         <import-file>importdata/a1_f1.csv</import-file>
     </import-files>
+
 </module>

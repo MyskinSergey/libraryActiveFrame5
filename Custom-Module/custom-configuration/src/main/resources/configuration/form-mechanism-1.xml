@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration xmlns="https://cm5.intertrust.ru/config"
-        >
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
     <!-- Test 1 - direct references 1:1 -->
     <domain-object-type name="a1">
         <fields>
@@ -100,6 +99,10 @@
     </domain-object-type>
 
     <form name="a1_form" domain-object-type="a1" is-default="true">
+        <act:tool-bar useDefault="true">
+            <act:action-ref name-ref="a1ServerAction"/>
+        </act:tool-bar>
+
         <markup>
             <header>
                 <table>

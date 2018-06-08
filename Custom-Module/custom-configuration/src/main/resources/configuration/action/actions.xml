@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+
+    <act:simple-action name="a1ServerAction" componentName="simple.action"
+                       action-handler="a1.server.action"
+                       text="Серверный экшен" tooltip="Выполнить серверный экшен" order="710"
+                       dirtySensitivity="true" merged="true">
+        <act:before-execution>
+            <act:confirmation-message text="Серверный экшен будет выполнен. Продолжить?"/>
+            <act:save-context value="false"/>
+        </act:before-execution>
+        <act:after-execution>
+            <act:on-success-message text="Серверный экшен выполнен!"/>
+        </act:after-execution>
+    </act:simple-action>
+
+</configuration>
