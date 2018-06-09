@@ -27,10 +27,18 @@
                 </link>
             </child-links>
         </link>
-        <link name="Card_file" display-text="Картотека" image="">
+
+        <link name="Card_file" display-text="Картотека" image="images/calendar.png">
             <child-links>
                 <link name="Books" display-text="Книги (Тест)">
-
+                    <plugin>
+                        <domain-object-surfer domain-object-type-to-create="Lib_book">
+                            <collection-viewer>
+                                <collection-ref name="book_collection" />
+                                <default-sort-criteria column-field="book_name1" order="ASC"/>
+                            </collection-viewer>
+                        </domain-object-surfer>
+                    </plugin>
                 </link>
             </child-links>
         </link>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
+<!-- Todo: комментирование полей-->
+
     <!-- Классификатор -->
     <domain-object-type name="Lib_Qualifier">
         <fields>
