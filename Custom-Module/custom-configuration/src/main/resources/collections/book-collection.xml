@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="book_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select Lib_Book.id, Lib_Book.Name Lib_Book_Name, Lib_Book.Description Lib_Book_Description
+                from Lib_Book
+
+                where
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+    </collection>
+
+    <collection-view name="book_collection_default_view" collection="book_collection">
+        <display>
+            <column field="id" name="id" type="integer" sortable="false" max-width="250px" text-break-style="cut"/>
+            <column field="Lib_Book_Name" name="Lib_Book_Name" type="string" editable="false" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="Lib_Book_Description" name="Lib_Book_Description" type="string" editable="false" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+        </display>
+    </collection-view>
+
+</configuration>
