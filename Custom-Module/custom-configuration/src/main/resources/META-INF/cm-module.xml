@@ -24,6 +24,7 @@
         <configuration-path>configuration/navigation-panel.xml</configuration-path>
         <configuration-path>configuration/global.xml</configuration-path>
         <configuration-path>configuration/form-mechanism-1.xml</configuration-path>
+        <configuration-path>collections/book-collection.xml</configuration-path>
         
         <configuration-path>dop/book_accounting.xml</configuration-path>
     </configuration-paths>
