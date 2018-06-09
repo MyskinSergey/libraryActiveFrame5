@@ -30,12 +30,12 @@
 
         <link name="Card_file" display-text="Картотека" image="images/calendar.png">
             <child-links>
-                <link name="Books" display-text="Книги (Тест)">
+                <link name="Authors" display-text="Авторы (Тест)">
                     <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_book">
+                        <domain-object-surfer domain-object-type-to-create="Lib_author">
                             <collection-viewer>
-                                <collection-ref name="book_collection" />
-                                <default-sort-criteria column-field="Lib_Book_Name" order="ASC"/>
+                                <collection-ref name="book_collection"/>
+                                <default-sort-criteria column-field="Lib_Author_Name" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>
