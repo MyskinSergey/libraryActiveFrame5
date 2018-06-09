@@ -32,10 +32,10 @@
             <child-links>
                 <link name="Authors" display-text="Авторы">
                     <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_author">
+                        <domain-object-surfer domain-object-type-to-create="Lib_Author">
                             <collection-viewer>
                                 <collection-ref name="author_collection"/>
-                                <!--<default-sort-criteria column-field="Lib_Author_Name" order="ASC"/>-->
+                                <default-sort-criteria column-field="Lib_Author_Name" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>
