@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <collection name="author _collection" idField="id">
+    <collection name="author_collection" idField="id">
         <prototype>
             <![CDATA[
-                select Lib_Author.id, Lib_Author.Name Lib_Author_Name, Lib_Author.Description Lib_Author_Description
-                from Lib_Book
-
-                where
+                SELECT
+                  Lib_Author.id,
+                  Lib_Author.Name        lib_author_name,
+                  Lib_Author.Description lib_author_description
+                FROM lib_author
+                WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
     </collection>
 
-    <collection-view name="author_collection_default_view" collection="author_collection">
+    <collection-view name="author_collection_default_view" collection="author_collection" is-default="true">
         <display>
             <column field="id" name="id" type="integer" sortable="false" max-width="250px" text-break-style="cut"/>
             <column field="Lib_Author_Name" name="Lib_Author_Name" type="string" editable="false" sortable="true"
