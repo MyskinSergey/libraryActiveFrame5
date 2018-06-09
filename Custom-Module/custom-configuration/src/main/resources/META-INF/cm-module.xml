@@ -31,6 +31,9 @@
 
         <!-- Доменные объекты -->
         <configuration-path>dop/book_accounting.xml</configuration-path>
+
+        <!-- Формы -->
+        <configuration-path>forms/author-form.xml</configuration-path>
     </configuration-paths>
 
     <import-files rewrite="true">

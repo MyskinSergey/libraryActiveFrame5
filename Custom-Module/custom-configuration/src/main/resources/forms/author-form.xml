@@ -1,50 +1,55 @@
-<form name="author_form" domain-object-type="author_collection" is-default="true">
-    <markup>
-        <header>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
 
-        </header>
-        <body display-single-tab="false">
-            <tab name="Главная">
-                <single-entry-group>
-                    <tab-group>
-                        <table>
-                            <tr>
-                                <td h-align="right">
-                                    <widget id="author_name_label"/>
-                                </td>
-                                <td h-align="left">
-                                    <widget id="author_name"/>
-                                </td>
-                            </tr>
+    <form name="author_form" domain-object-type="Lib_Author" is-default="true">
+        <markup>
+            <header>
 
-                            <tr>
-                                <td h-align="right">
-                                    <widget id="author_description_label"/>
-                                </td>
-                                <td h-align="left">
-                                    <widget id="author_description"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </tab-group>
-                </single-entry-group>
-            </tab>
-        </body>
-    </markup>
-    <widget-config>
-        <label id="author_name_label">
-            <field-path/>
-            <text>Author Name</text>
-        </label>
-        <text-box id="author_name">
-            <field-path value="Lib_Author.name"/>
-        </text-box>
-        <label id="author_description_label">
-            <field-path/>
-            <text>Author Description</text>
-        </label>
-        <text-box id="author_description">
-            <field-path value="Lib_Author.description"/>
-        </text-box>
-    </widget-config>
-</form>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Главная">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="author_name_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="author_name"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="author_description_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="author_description"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="author_name_label">
+                <field-path/>
+                <text>Author Name</text>
+            </label>
+            <text-box id="author_name">
+                <field-path value="name"/>
+            </text-box>
+            <label id="author_description_label">
+                <field-path/>
+                <text>Author Description</text>
+            </label>
+            <text-box id="author_description">
+                <field-path value="description"/>
+            </text-box>
+        </widget-config>
+    </form>
+
+</configuration>
