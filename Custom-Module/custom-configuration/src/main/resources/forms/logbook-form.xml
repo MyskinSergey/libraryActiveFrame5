@@ -44,31 +44,31 @@
             </body>
         </markup>
         <widget-config>
-<!--
-            <label id="logbook_book_label">
-                <field-path/>
-                <text>book</text>
-            </label>
-            <text-box id="logbook_book">
-                <field-path value="number"/>
-            </text-box>
--->
+
+            <!--<label id="logbook_book">-->
+                <!--<field-path/>-->
+                <!--<text>book</text>-->
+            <!--</label>-->
+            <!--<suggest-box id="logbook_book">-->
+                <!--<field-path value="book"/>-->
+            <!--</suggest-box>-->
 
             <label id="logbook_log_number_label">
                 <field-path/>
                 <text>Logbook number</text>
             </label>
-            <text-box id="logbook_log_number">
-                <field-path value="number"/>
-            </text-box>
+            <integer-box id="logbook_log_number">
+                <field-path value="log_number"/>
+            </integer-box>
 
             <label id="logbook_published_label">
                 <field-path/>
                 <text>Published </text>
             </label>
-            <text-box id="logbook_published">
+            <date-box id="logbook_published">
                 <field-path value="published"/>
-            </text-box>
+            </date-box>
+
 
             <label id="logbook_location_label">
                 <field-path/>
