@@ -34,7 +34,7 @@
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="Lib_Author">
                             <collection-viewer>
-                                <collection-ref name="author_collection"/>
+                                <collection-ref name="author_co  llection"/>
                                 <default-sort-criteria column-field="Lib_Author_Name" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
