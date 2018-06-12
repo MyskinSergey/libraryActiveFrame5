@@ -4,10 +4,12 @@
     <collection name="book_collection" idField="id">
         <prototype>
             <![CDATA[
-                select Lib_Book.id, Lib_Book.Name Lib_Book_Name, Lib_Book.Description Lib_Book_Description
-                from Lib_Book
-
-                where
+                SELECT
+                  id,
+                  name        lib_book_name,
+                  description lib_book_description
+                FROM lib_book
+                WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
@@ -15,10 +17,9 @@
 
     <collection-view name="book_collection_default_view" collection="book_collection" is-default="true">
         <display>
-            <column field="id" name="id" type="integer" sortable="false" max-width="250px" text-break-style="cut"/>
-            <column field="Lib_Book_Name" name="Lib_Book_Name" type="string" editable="false" sortable="true"
+            <column field="Lib_Book_Name" name="Название книги" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_Book_Description" name="Lib_Book_Description" type="string" editable="false"
+            <column field="Lib_Book_Description" name="Описание книги" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>

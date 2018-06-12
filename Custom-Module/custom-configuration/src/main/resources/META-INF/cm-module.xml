@@ -36,6 +36,7 @@
         <!-- Формы -->
         <configuration-path>forms/author-form.xml</configuration-path>
         <configuration-path>forms/qualifier-form.xml</configuration-path>
+        <configuration-path>forms/book-form.xml</configuration-path>
     </configuration-paths>
 
     <import-files rewrite="true">
