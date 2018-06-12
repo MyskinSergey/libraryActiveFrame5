@@ -34,8 +34,19 @@
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="Lib_Author">
                             <collection-viewer>
-                                <collection-ref name="author_co  llection"/>
+                                <collection-ref name="author_collection"/>
                                 <default-sort-criteria column-field="Lib_Author_Name" order="ASC"/>
+                            </collection-viewer>
+                        </domain-object-surfer>
+                    </plugin>
+                </link>
+
+                <link name="Qualifier" display-text="Классификатор">
+                    <plugin>
+                        <domain-object-surfer domain-object-type-to-create="Lib_Qualifier">
+                            <collection-viewer>
+                                <collection-ref name="qualifier_collection"/>
+                                <default-sort-criteria column-field="Qualifier_Title" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>

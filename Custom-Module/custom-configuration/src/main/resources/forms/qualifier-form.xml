@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <form name="qualifier_form" domain-object-type="Lib_Qualifier" is-default="true">
+        <markup>
+            <header>
+
+            </header>
+            <body display-single-tab="false">
+                <tab name="Главная страница">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="qualifier_title_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="qualifier_title"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="qualifier_description_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="qualifier_description"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+
+            <label id="qualifier_title_label">
+                <field-path/>
+                <text>Qualifier Title</text>
+            </label>
+            <text-box id="qualifier_title">
+                <field-path value="title"/>
+            </text-box>
+
+            <label id="qualifier_description_label">
+                <field-path/>
+                <text>Qualifier Description</text>
+            </label>
+            <text-box id="qualifier_description">
+                <field-path value="description"/>
+            </text-box>
+
+        </widget-config>
+    </form>
+</configuration>

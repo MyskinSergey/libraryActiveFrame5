@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
-    
-    <collection name="qualifier-collection" idField="id">
+
+    <collection name="qualifier_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
                   id,
-                  title       qualifier_title ,
+                  title       qualifier_title,
                   description qualifier_description
                 FROM Lib_Qualifier
                 WHERE
@@ -19,7 +19,8 @@
         <display>
             <column field="Qualifier_Title" name="Qualifier_Title" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Qualifier_Description" name="Qualifier_Description" type="string" editable="false" sortable="true"
+            <column field="Qualifier_Description" name="Qualifier_Description" type="string" editable="false"
+                    sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>

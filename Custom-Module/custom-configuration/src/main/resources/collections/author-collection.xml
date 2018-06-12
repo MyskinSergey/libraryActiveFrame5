@@ -20,7 +20,8 @@
             <!--<column field="id" name="id" type="integer" sortable="false" max-width="250px" text-break-style="cut"/>-->
             <column field="Lib_Author_Name" name="Lib_Author_Name" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_Author_Description" name="Lib_Author_Description" type="string" editable="false" sortable="true"
+            <column field="Lib_Author_Description" name="Lib_Author_Description" type="string" editable="false"
+                    sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>

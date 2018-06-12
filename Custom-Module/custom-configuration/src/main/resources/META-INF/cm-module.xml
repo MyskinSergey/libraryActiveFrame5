@@ -28,12 +28,14 @@
         <!-- Коллекции -->
         <configuration-path>collections/book-collection.xml</configuration-path>
         <configuration-path>collections/author-collection.xml</configuration-path>
+        <configuration-path>collections/qualifier-collection.xml</configuration-path>
 
         <!-- Доменные объекты -->
         <configuration-path>dop/book_accounting.xml</configuration-path>
 
         <!-- Формы -->
         <configuration-path>forms/author-form.xml</configuration-path>
+        <configuration-path>forms/qualifier-form.xml</configuration-path>
     </configuration-paths>
 
     <import-files rewrite="true">
