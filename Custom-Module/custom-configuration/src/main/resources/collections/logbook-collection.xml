@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="logbook_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select Lib_LogBook.id, Lib_LogBook.Book Lib_LogBook_Book, Lib_LogBook.Log_Number Lib_LogBook_Log_Number,
+                Lib_LogBook.Published Lib_LogBook_Published, Lib_LogBook.Location Lib_LogBook_Location
+                from Lib_LogBook
+
+                where
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+    </collection>
+
+    <collection-view name="logbook_collection_default_view" collection="logbook_collection" is-default="true">
+        <display>
+            <column field="id" name="id" type="integer" sortable="false" max-width="250px" text-break-style="cut"/>
+            <column field="Lib_LogBook_Book" name="Lib_LogBook_Book" type="string" editable="true" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="Lib_LogBook_Log_Number" name="Lib_LogBook_Log_Number" type="integer" editable="true" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="Lib_LogBook_Published" name="Lib_LogBook_Published" type="datetime" editable="true"
+                    sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="Lib_LogBook_Location" name="Lib_LogBook_Description" type="string" editable="true"
+                    sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+
+
+        </display>
+    </collection-view>
+
+
+</configuration>

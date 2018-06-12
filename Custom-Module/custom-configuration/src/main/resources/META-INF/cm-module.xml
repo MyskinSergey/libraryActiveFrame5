@@ -29,6 +29,7 @@
         <configuration-path>collections/book-collection.xml</configuration-path>
         <configuration-path>collections/author-collection.xml</configuration-path>
         <configuration-path>collections/qualifier-collection.xml</configuration-path>
+        <configuration-path>collections/logbook-collection.xml</configuration-path>
 
         <!-- Доменные объекты -->
         <configuration-path>dop/book_accounting.xml</configuration-path>
