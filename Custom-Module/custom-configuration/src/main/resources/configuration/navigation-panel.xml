@@ -2,34 +2,26 @@
 <configuration xmlns="https://cm5.intertrust.ru/config">
     <navigation name="default-panel" is-default="true">
 
-        <link name="Configuration" display-text="Загрузка конфигураций" image="images/cases.png"
-              child-to-open="Configuration_upload">
+        <link name="Card_file" display-text="Картотека" image="images/docs.png">
             <child-links>
-                <link name="Configuration_upload" display-text="Загрузка конфигурации">
+
+                <link name="Books" display-text="Книги">
                     <plugin>
-                        <custom name="configuration.deployer.plugin"/>
-                    </plugin>
-                </link>
-                <link name="Report_upload" display-text="Загрузка шаблонов отчетов">
-                    <plugin>
-                        <custom name="report.upload.plugin"/>
-                    </plugin>
-                </link>
-                <link name="Test_form" display-text="Тестовая форма">
-                    <plugin>
-                        <domain-object-surfer domain-object-type-to-create="a1">
+                        <domain-object-surfer domain-object-type-to-create="Lib_Book">
                             <collection-viewer>
-                                <collection-ref name="a1_collection" />
-                                <default-sort-criteria column-field="a_name1" order="ASC"/>
+                                <collection-ref name="book_collection"/>
+                                <default-sort-criteria column-field="Lib_Book_Name" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>
                 </link>
+
             </child-links>
         </link>
 
-        <link name="Card_file" display-text="Картотека" image="images/calendar.png">
+        <link name="References" display-text="Справочники" image="images/helpers.png">
             <child-links>
+
                 <link name="Authors" display-text="Авторы">
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="Lib_Author">
@@ -51,18 +43,10 @@
                         </domain-object-surfer>
                     </plugin>
                 </link>
-                <link name="LogBook" display-text="Формуляр">
-                    <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_LogBook">
-                            <collection-viewer>
-                                <collection-ref name="logbook_collection"/>
-                                <default-sort-criteria column-field="Lib_LogBook_Published" order="ASC"/>
-                            </collection-viewer>
-                        </domain-object-surfer>
-                    </plugin>
-                </link>
+
             </child-links>
         </link>
+
     </navigation>
 
     <navigation-panel-mappings name="nav-panel-map1">

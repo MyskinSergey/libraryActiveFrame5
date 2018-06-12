@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Todo: добавить в форму третью колонку с ссылкой на Автора -->
+
+    <form name="book_form" domain-object-type="Lib_Book" is-default="true">
+        <markup>
+            <header></header>
+            <body display-single-tab="false">
+                <tab name="Test">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="book_name_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="book_name"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="book_description_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="book_description"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+
+        <widget-config>
+
+            <label id="book_name_label">
+                <field-path/>
+                <text>Book Name</text>
+            </label>
+            <text-box id="book_name">
+                <field-path value="name"/>
+            </text-box>
+
+            <label id="book_description_label">
+                <field-path/>
+                <text>Book Description</text>
+            </label>
+            <text-box id="book_description">
+                <field-path value="description"/>
+            </text-box>
+
+        </widget-config>
+
+    </form>
+</configuration>

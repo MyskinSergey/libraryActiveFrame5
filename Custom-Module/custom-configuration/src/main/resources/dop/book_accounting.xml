@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-<!-- Todo: комментирование полей-->
+    <!-- Todo: комментирование полей-->
+    <!-- Todo: раскоментировать reference у Lib_book -->
 
     <!-- Классификатор -->
     <domain-object-type name="Lib_Qualifier">
@@ -24,7 +25,7 @@
         <fields>
             <string name="Name" length="100" not-null="true"/>
             <string name="Description" length="1024"/>
-            <reference name="Author" type="Lib_Author" not-null="true"/>
+            <!--<reference name="Author" type="Lib_Author" not-null="true"/>-->
         </fields>
     </domain-object-type>
 
