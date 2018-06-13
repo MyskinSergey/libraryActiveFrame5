@@ -4,20 +4,26 @@
     <collection name="logbook_collection" idField="id">
         <prototype>
             <![CDATA[
-                select Lib_LogBook.id, Lib_LogBook.Book Lib_LogBook_Book, Lib_LogBook.Log_Number Lib_LogBook_Log_Number,
-                Lib_LogBook.Published Lib_LogBook_Published, Lib_LogBook.Location Lib_LogBook_Location
-                from Lib_LogBook
+                SELECT
+                    id,
+                    book        lib_logbook_book,
+                    log_number  lib_logbook_log_number,
+                    published   lib_logbook_published,
+                    location    lib_logbook_location
 
-                where
+                FROM
+                    lib_logbook
+
+                WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
+
+
     </collection>
 
     <collection-view name="logbook_collection_default_view" collection="logbook_collection" is-default="true">
         <display>
-            <!--<column field="Lib_LogBook_Book" name="Lib_LogBook_Book" type="string" editable="true" sortable="true"-->
-                    <!--min-width="50px" text-break-style="cut"/>-->
             <column field="Lib_LogBook_Log_Number" name="Lib_LogBook_Log_Number" type="long" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
             <column field="Lib_LogBook_Published" name="Lib_LogBook_Published" type="timelessDate" editable="true"
