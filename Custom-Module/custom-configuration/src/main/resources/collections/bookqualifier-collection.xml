@@ -4,14 +4,26 @@
     <collection name="bookqualifier_collection" idField="id">
         <prototype>
             <![CDATA[
-
+                SELECT
+                    bq.id   AS id,
+                    b.name  AS book_name,
+                    q.title AS qualifier_title
+                FROM lib_book_qualifier bq
+                INNER JOIN Lib_Book b ON b.id = bq.book
+                INNER JOIN Lib_Qualifier q ON q.id = bq.qualifier
+                WHERE
+                    1=1 ::where-clause
             ]]>
         </prototype>
     </collection>
-    <collection-view>
+
+    <collection-view name="bookqualifier_collection_default_view" collection="bookqualifier_collection"
+                     is-default="true">
         <display>
-            <column field="" name="" type=""></column>
-            <column field="" name="" type=""></column>
+            <column field="book_name" name="Книги" type="string" editable="false" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="qualifier_title" name="Классификаторы" type="string" editable="true" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 
