@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="bookqualifier_collection" idField="id">
+        <prototype>
+            <![CDATA[
+
+            ]]>
+        </prototype>
+    </collection>
+    <collection-view>
+        <display>
+            <column field="" name="" type=""></column>
+            <column field="" name="" type=""></column>
+        </display>
+    </collection-view>
+
+</configuration>
