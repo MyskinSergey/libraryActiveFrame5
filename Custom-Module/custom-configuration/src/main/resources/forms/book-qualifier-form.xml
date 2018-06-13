@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+
+    <form name="book_qualifier_form" domain-object-type="Lib_Book_Qualifier" is-default="true">
+        <markup>
+            <header></header>
+            <body display-single-tab="false">
+                <tab name="MainTab">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="book_qualifier_qualifier_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="book_qualifier_qualifier"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="book_qualifier_book_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="book_qualifier_book"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+
+        <widget-config>
+
+            <label id="book_qualifier_qualifier_label">
+                <field-path/>
+                <text>Book qualifier id</text>
+            </label>
+            <suggest-box id="book_qualifier_qualifier" >
+                <field-path value="Lib_Book_Qualifier^Qualifier.Title" on-root-delete="unlink"/>
+                <collection-ref name="QualifierCollection"/>
+                <input-text-filter name="byText"/>
+                <drop-down-pattern value="{Qualifier.Title}"/>
+                <selection-pattern value="{Qualifier.Title}"/>
+                <page-size>30</page-size>
+                <selection-style name="table"/>
+            </suggest-box>
+
+            <label id="book_qualifier_book_label">
+                <field-path/>
+                <text>Book id</text>
+            </label>
+            <suggest-box id="book_qualifier_book" >
+                <field-path value="Lib_Book_Qualifier^Book.Name" on-root-delete="unlink"/>
+                <collection-ref name="QualifierCollection"/>
+                <input-text-filter name="byText"/>
+                <drop-down-pattern value="{Book.Name}"/>
+                <selection-pattern value="{Book.Name}"/>
+                <page-size>30</page-size>
+                <selection-style name="table"/>
+            </suggest-box>
+
+        </widget-config>
+
+    </form>
+</configuration>

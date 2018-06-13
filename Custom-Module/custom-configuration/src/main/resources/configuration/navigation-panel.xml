@@ -44,7 +44,7 @@
                     </plugin>
                 </link>
 
-                <link name="LogBook" display-text="Формуляр">
+		<link name="LogBook" display-text="Формуляр">
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="Lib_LogBook">
                             <collection-viewer>
@@ -54,7 +54,20 @@
                         </domain-object-surfer>
                     </plugin>
                 </link>
-            </child-links>
+
+                <link name="BookQualifier" display-text="Классификаторы книг">
+                    <plugin>
+                        <domain-object-surfer domain-object-type-to-create="Lib_Book_Qualifier">
+                            <collection-viewer>
+                                <collection-ref name="bookqualifier_collection"/>
+                                <default-sort-criteria column-field="Qualifier_Title" order="ASC"/>
+                            </collection-viewer>
+                        </domain-object-surfer>
+                    </plugin>
+                </link>
+
+
+           </child-links>
         </link>
 
     </navigation>
