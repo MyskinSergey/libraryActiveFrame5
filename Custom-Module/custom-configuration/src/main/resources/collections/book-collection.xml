@@ -13,6 +13,14 @@
                     1=1 ::where-clause
             ]]>
         </prototype>
+
+        <filter name="byBookTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(lib_book_name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
     </collection>
 
     <collection-view name="book_collection_default_view" collection="book_collection" is-default="true">

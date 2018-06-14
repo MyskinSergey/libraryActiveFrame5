@@ -13,6 +13,15 @@
                             <table>
                                 <tr>
                                     <td h-align="right">
+                                        <widget id="logbook_book_label"/>
+                                    </td>
+
+                                    <td h-align="left">
+                                        <widget id="logbook_book"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
                                         <widget id="logbook_log_number_label"/>
                                     </td>
 
@@ -45,17 +54,23 @@
         </markup>
         <widget-config>
 
-            <!--<label id="logbook_book">-->
-                <!--<field-path/>-->
-                <!--<text>book</text>-->
-            <!--</label>-->
-            <!--<suggest-box id="logbook_book">-->
-                <!--<field-path value="book"/>-->
-            <!--</suggest-box>-->
+            <label id="logbook_book_label">
+                <field-path/>
+                <text>Книга</text>
+            </label>
+            <suggest-box id="logbook_book">
+                <field-path value="book" on-root-delete="unlink"/>
+                    <collection-ref name="book_collection"/>
+                    <input-text-filter name="byBookTitle"/>
+                    <drop-down-pattern value="{lib_book_name} ({lib_book_description})"/>
+                    <selection-pattern value="{lib_book_description}"/>
+                    <page-size>30</page-size>
+                    <selection-style name="table"/>
+            </suggest-box>
 
             <label id="logbook_log_number_label">
                 <field-path/>
-                <text>Logbook number</text>
+                <text>Регистрац.№</text>
             </label>
             <integer-box id="logbook_log_number">
                 <field-path value="log_number"/>
@@ -63,7 +78,7 @@
 
             <label id="logbook_published_label">
                 <field-path/>
-                <text>Published </text>
+                <text>Год публикации</text>
             </label>
             <date-box id="logbook_published">
                 <field-path value="published"/>
@@ -72,7 +87,7 @@
 
             <label id="logbook_location_label">
                 <field-path/>
-                <text>Location</text>
+                <text>Местонахождение</text>
             </label>
             <text-box id="logbook_location">
                 <field-path value="location"/>
