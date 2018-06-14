@@ -42,9 +42,9 @@
                 <field-path/>
                 <text>Book qualifier id</text>
             </label>
-            <suggest-box id="book_qualifier_qualifier" >
-                <field-path value="Lib_Book_Qualifier^Qualifier.Title" on-root-delete="unlink"/>
-                <collection-ref name="QualifierCollection"/>
+            <suggest-box id="book_qualifier_qualifier">
+                <field-path value="Book" on-root-delete="unlink"/>
+                <collection-ref name="book_qualifier_books_collection"/>
                 <input-text-filter name="byText"/>
                 <drop-down-pattern value="{Qualifier.Title}"/>
                 <selection-pattern value="{Qualifier.Title}"/>
@@ -57,8 +57,8 @@
                 <text>Book id</text>
             </label>
             <suggest-box id="book_qualifier_book" >
-                <field-path value="Lib_Book_Qualifier^Book.Name" on-root-delete="unlink"/>
-                <collection-ref name="QualifierCollection"/>
+                <field-path value="Qualifier" on-root-delete="unlink"/>
+                <collection-ref name="book_qualifier_qualifiers_collection"/>
                 <input-text-filter name="byText"/>
                 <drop-down-pattern value="{Book.Name}"/>
                 <selection-pattern value="{Book.Name}"/>

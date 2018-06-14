@@ -22,9 +22,11 @@
         <display>
             <column field="book_name" name="Книги" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="qualifier_title" name="Классификаторы" type="string" editable="true" sortable="true"
+            <column field="qualifier_title" name="Классификатор" type="string" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
+
+
 
 </configuration>

@@ -60,7 +60,7 @@
                         <domain-object-surfer domain-object-type-to-create="Lib_Book_Qualifier">
                             <collection-viewer>
                                 <collection-ref name="bookqualifier_collection"/>
-                                <default-sort-criteria column-field="Qualifier_Title" order="ASC"/>
+                                <default-sort-criteria column-field="qualifier_title" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>
