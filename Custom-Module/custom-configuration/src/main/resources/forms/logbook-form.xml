@@ -7,7 +7,7 @@
 
             </header>
             <body display-single-tab="false">
-                <tab name="Главная. Формуляр">
+                <tab name="Главная">
                     <single-entry-group>
                         <tab-group>
                             <table>
@@ -70,7 +70,7 @@
 
             <label id="logbook_log_number_label">
                 <field-path/>
-                <text>Регистрац.№</text>
+                <text>Регистрационный №</text>
             </label>
             <integer-box id="logbook_log_number">
                 <field-path value="log_number"/>

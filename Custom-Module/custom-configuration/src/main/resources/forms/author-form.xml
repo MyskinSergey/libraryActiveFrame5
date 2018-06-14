@@ -37,14 +37,14 @@
         <widget-config>
             <label id="author_name_label">
                 <field-path/>
-                <text>Author Name</text>
+                <text>Имя автора</text>
             </label>
             <text-box id="author_name">
                 <field-path value="name"/>
             </text-box>
             <label id="author_description_label">
                 <field-path/>
-                <text>Author Description</text>
+                <text>Биография</text>
             </label>
             <text-box id="author_description">
                 <field-path value="description"/>

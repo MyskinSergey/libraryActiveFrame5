@@ -5,10 +5,12 @@
         <prototype>
             <![CDATA[
                 SELECT
-                  id,
-                  title       qualifier_title,
-                  description qualifier_description
-                FROM Lib_Qualifier
+                  q.id           AS id,
+                  q.title        AS qualifier_title,
+                  q.description  AS qualifier_description,
+                  s.name         AS status_name
+                FROM Lib_Qualifier q
+                INNER JOIN Status s ON s.id = q.status
                 WHERE
                     1=1 ::where-clause
             ]]>
@@ -17,11 +19,12 @@
 
     <collection-view name="qualifier_collection_default_view" collection="qualifier_collection" is-default="true">
         <display>
-            <column field="Qualifier_Title" name="Qualifier_Title" type="string" editable="false" sortable="true"
+            <column field="Qualifier_Title" name="Классификатор" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Qualifier_Description" name="Qualifier_Description" type="string" editable="false"
-                    sortable="true"
-                    min-width="50px" text-break-style="cut"/>
+            <column field="Qualifier_Description" name="Описание" type="string" editable="false"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
+            <column field="status_name" name="Статус" type="string" editable="true"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 

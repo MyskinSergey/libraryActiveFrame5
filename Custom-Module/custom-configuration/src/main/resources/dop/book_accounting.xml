@@ -5,7 +5,7 @@
     <!-- Todo: раскоментировать reference у Lib_book -->
 
     <!-- Классификатор -->
-    <domain-object-type name="Lib_Qualifier">
+    <domain-object-type name="Lib_Qualifier" initial-status="Actual">
         <fields>
             <string name="Title" length="100" not-null="true"/>
             <string name="Description" length="253"/>

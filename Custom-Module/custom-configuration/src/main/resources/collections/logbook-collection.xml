@@ -5,29 +5,24 @@
         <prototype>
             <![CDATA[
                 SELECT
-                    ll.id as id,
+                    liblog.id as id,
                     b.name as book_name,
                     log_number  lib_logbook_log_number,
                     published   lib_logbook_published,
                     location    lib_logbook_location
-
-                FROM
-                    lib_logbook ll
-                    INNER JOIN lib_Book b ON b.id = ll.book
-
+                FROM lib_logbook liblog
+                INNER JOIN lib_Book b ON b.id = liblog.book
                 WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
-
-
     </collection>
 
     <collection-view name="logbook_collection_default_view" collection="logbook_collection" is-default="true">
         <display>
             <column field="book_name" name="Наименование" type="string" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Log_Number" name="Регистрац №" type="long" editable="true" sortable="true"
+            <column field="Lib_LogBook_Log_Number" name="Регистрационный №" type="long" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
             <column field="Lib_LogBook_Published" name="Год публикации" type="timelessDate" editable="true"
                     sortable="true"
@@ -35,10 +30,7 @@
             <column field="Lib_LogBook_Location" name="Местонахождение" type="string" editable="true"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
-
-
         </display>
     </collection-view>
-
 
 </configuration>
