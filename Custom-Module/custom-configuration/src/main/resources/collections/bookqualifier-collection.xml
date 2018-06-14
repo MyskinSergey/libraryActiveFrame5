@@ -27,49 +27,64 @@
         </display>
     </collection-view>
 
-    <collection name="dropdown_book_collection" idField="id">
+    <collection name="book_qualifier_books_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
                   id,
-                  name        dropdown_lib_book_name,
-                  description dropdown_lib_book_description
+                  name        book_name,
+                  description book_description
                 FROM lib_book
                 WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
+        <filter name="byBookName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
     </collection>
 
-    <collection-view name="dropdown_book_collection_default_view" collection="dropdown_book_collection" is-default="true">
+    <collection-view name="book_qualifier_books_collection_view" collection="book_qualifier_books_collection" is-default="true">
         <display>
-            <column field="Dropdown_Lib_Book_Name" name="Название книги" type="string" editable="false" sortable="true"
+            <column field="book_name" name="Название книги" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Dropdown_Lib_Book_Description" name="Описание книги" type="string" editable="false"
+            <column field="book_description" name="Описание книги" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 
-    <collection name="dropdown_qualifier_collection" idField="id">
+    <collection name="book_qualifier_qualifiers_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
                   id,
-                  title       dropdown_qualifier_title,
-                  description dropdown_qualifier_description
+                  title         AS qualifier_title,
+                  description   AS qualifier_description
                 FROM Lib_Qualifier
                 WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
+        <filter name="byQualifierTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(title) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+
     </collection>
 
-    <collection-view name="dropdown_qualifier_collection_default_view" collection="dropdown_qualifier_collection" is-default="true">
+    <collection-view name="book_qualifier_qualifiers_collection_view" collection="book_qualifier_qualifiers_collection" is-default="true">
         <display>
-            <column field="dropdown_Qualifier_Title" name="Qualifier_Title" type="string" editable="false" sortable="true"
+            <column field="qualifier_title" name="Qualifier_Title" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="dropdown_Qualifier_Description" name="Qualifier_Description" type="string" editable="false"
+            <column field="qualifier_description" name="Qualifier_Description" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>

@@ -26,10 +26,11 @@
         <configuration-path>configuration/form-mechanism-1.xml</configuration-path>
 
         <!-- Коллекции -->
-        <configuration-path>collections/book-collection.xml</configuration-path>
         <configuration-path>collections/author-collection.xml</configuration-path>
-        <configuration-path>collections/qualifier-collection.xml</configuration-path>
+        <configuration-path>collections/book-collection.xml</configuration-path>
+        <configuration-path>collections/bookqualifier-collection.xml</configuration-path>
         <configuration-path>collections/logbook-collection.xml</configuration-path>
+        <configuration-path>collections/qualifier-collection.xml</configuration-path>
 
         <!-- Доменные объекты -->
         <configuration-path>dop/book_accounting.xml</configuration-path>
