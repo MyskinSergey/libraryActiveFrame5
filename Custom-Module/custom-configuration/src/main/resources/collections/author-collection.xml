@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
+    <!--<collection name="author_collection" idField="id">-->
+    <!--<prototype>-->
+    <!--<![CDATA[-->
+    <!--SELECT-->
+    <!--id,-->
+    <!--name        lib_author_name,-->
+    <!--description lib_author_description-->
+    <!--FROM lib_author-->
+    <!--WHERE-->
+    <!--1=1 ::where-clause-->
+    <!--]]>-->
+    <!--</prototype>-->
+    <!--<filter name="byAuthorName">-->
+    <!--<criteria placeholder="where-clause">-->
+    <!--<![CDATA[-->
+    <!--LOWER(name) LIKE LOWER('%' || {0} || '%')-->
+    <!--]]>-->
+    <!--</criteria>-->
+    <!--</filter>-->
+    <!--</collection>-->
+
+    <!--<collection-view name="author_collection_default_view" collection="author_collection" is-default="true">-->
+    <!--<display>-->
+    <!--<column field="Lib_Author_Name" name="Имя" type="string" editable="false" sortable="true"-->
+    <!--min-width="50px" text-break-style="cut"/>-->
+    <!--<column field="Lib_Author_Description" name="Биография" type="string" editable="false"-->
+    <!--sortable="true" min-width="50px" text-break-style="cut"/>-->
+    <!--</display>-->
+    <!--</collection-view>-->
+
     <collection name="author_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
-                  id,
-                  name        lib_author_name,
-                  description lib_author_description
-                FROM lib_author
+                  a.id          as author_id,
+                  a.name        as lib_author_name,
+                  a.description as lib_author_description,
+                  b.name        as book_name
+                FROM lib_author a
+                  INNER JOIN lib_book b ON b.id = a.book
                 WHERE
-                    1=1 ::where-clause
+                  1 = 1 ::where-clause
             ]]>
         </prototype>
         <filter name="byAuthorName">
@@ -24,10 +56,42 @@
 
     <collection-view name="author_collection_default_view" collection="author_collection" is-default="true">
         <display>
-            <!--<column field="id" name="id" type="integer" sortable="false" max-width="250px" text-break-style="cut"/>-->
             <column field="Lib_Author_Name" name="Имя" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
             <column field="Lib_Author_Description" name="Биография" type="string" editable="false"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
+            <column field="book_name" name="Книги автора" type="string" editable="false"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
+        </display>
+    </collection-view>
+
+
+    <collection name="author_books_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  id,
+                  name        book_name,
+                  description book_description
+                FROM lib_book
+                WHERE
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byBookName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="author_books_collection_view" collection="author_books_collection" is-default="true">
+        <display>
+            <column field="book_name" name="Название книги" type="string" editable="false" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="book_description" name="Описание книги" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>

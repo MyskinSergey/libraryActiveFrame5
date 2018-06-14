@@ -17,6 +17,8 @@
         <fields>
             <string name="Name" length="100" not-null="true"/>
             <string name="Description" length="253"/>
+            <reference name="Book" type="Lib_Book"/>
+
         </fields>
     </domain-object-type>
 
