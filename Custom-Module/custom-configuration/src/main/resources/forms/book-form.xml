@@ -30,6 +30,15 @@
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="author_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="author"/>
+                                    </td>
+                                </tr>
+
                             </table>
                         </tab-group>
                     </single-entry-group>
@@ -54,6 +63,20 @@
             <text-box id="book_description">
                 <field-path value="description"/>
             </text-box>
+
+            <label id="author_label">
+                <field-path/>
+                <text>Автор</text>
+            </label>
+            <suggest-box id="author">
+                <field-path value="Author" on-root-delete="unlink"/>
+                <collection-ref name="author_collection"/>
+                <input-text-filter name="byAuthorName"/>
+                <drop-down-pattern value="{author_name} ({author_description})"/>
+                <selection-pattern value="{author_name}"/>
+                <page-size>30</page-size>
+                <selection-style name="table"/>
+            </suggest-box>
 
         </widget-config>
 

@@ -25,7 +25,7 @@
         <fields>
             <string name="Name" length="100" not-null="true"/>
             <string name="Description" length="1024"/>
-            <!--<reference name="Author" type="Lib_Author" not-null="true"/>-->
+            <reference name="Author" type="Lib_Author" not-null="true"/>
         </fields>
     </domain-object-type>
 

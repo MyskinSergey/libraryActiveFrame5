@@ -13,6 +13,13 @@
                     1=1 ::where-clause
             ]]>
         </prototype>
+        <filter name="byAuthorName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
     </collection>
 
     <collection-view name="author_collection_default_view" collection="author_collection" is-default="true">
