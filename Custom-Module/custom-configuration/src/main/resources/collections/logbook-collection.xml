@@ -5,14 +5,15 @@
         <prototype>
             <![CDATA[
                 SELECT
-                    id,
-                    book        lib_logbook_book,
+                    ll.id as id,
+                    b.name as book_name,
                     log_number  lib_logbook_log_number,
                     published   lib_logbook_published,
                     location    lib_logbook_location
 
                 FROM
-                    lib_logbook
+                    lib_logbook ll
+                    INNER JOIN lib_Book b ON b.id = ll.book
 
                 WHERE
                     1=1 ::where-clause
@@ -24,14 +25,14 @@
 
     <collection-view name="logbook_collection_default_view" collection="logbook_collection" is-default="true">
         <display>
-            <column field="Lib_LogBook_Book" name="Lib_LogBook_Book" type="integer" editable="true" sortable="true"
+            <column field="book_name" name="Наименование" type="string" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Log_Number" name="Lib_LogBook_Log_Number" type="long" editable="true" sortable="true"
+            <column field="Lib_LogBook_Log_Number" name="Регистрац №" type="long" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Published" name="Lib_LogBook_Published" type="timelessDate" editable="true"
+            <column field="Lib_LogBook_Published" name="Год публикации" type="timelessDate" editable="true"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Location" name="Lib_LogBook_Location" type="string" editable="true"
+            <column field="Lib_LogBook_Location" name="Местонахождение" type="string" editable="true"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
 
