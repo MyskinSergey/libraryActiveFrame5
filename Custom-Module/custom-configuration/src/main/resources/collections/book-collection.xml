@@ -17,7 +17,7 @@
         <filter name="byBookTitle">
             <criteria placeholder="where-clause">
                 <![CDATA[
-                    LOWER(lib_book_name) LIKE LOWER('%' || {0} || '%')
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
                 ]]>
             </criteria>
         </filter>
