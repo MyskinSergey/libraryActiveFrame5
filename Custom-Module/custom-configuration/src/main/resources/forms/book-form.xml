@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <!-- Todo: добавить в форму третью колонку с ссылкой на Автора -->
-
     <form name="book_form" domain-object-type="Lib_Book" is-default="true">
         <markup>
             <header></header>
@@ -72,8 +70,8 @@
                 <field-path value="Author" on-root-delete="unlink"/>
                 <collection-ref name="author_collection"/>
                 <input-text-filter name="byAuthorName"/>
-                <drop-down-pattern value="{author_name} ({author_description})"/>
-                <selection-pattern value="{author_name}"/>
+                <drop-down-pattern value="{lib_author_name} ({lib_author_description})"/>
+                <selection-pattern value="{lib_author_name}"/>
                 <page-size>30</page-size>
                 <selection-style name="table"/>
             </suggest-box>

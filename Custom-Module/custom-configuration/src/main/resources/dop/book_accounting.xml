@@ -40,7 +40,7 @@
     <!-- Формуляр книги -->
     <domain-object-type name="Lib_LogBook">
         <fields>
-            <!--<reference name="Book" type="Lib_Book" not-null="true"/>-->
+            <reference name="Book" type="Lib_Book" not-null="true"/>
             <long name="Log_Number" not-null="true"/>
             <timelessDate name="Published"/>
             <string name="Location" length="100"/>
