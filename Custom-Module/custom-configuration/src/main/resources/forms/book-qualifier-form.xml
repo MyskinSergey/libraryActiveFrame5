@@ -46,8 +46,8 @@
                 <field-path value="Qualifier" on-root-delete="unlink"/>
                 <collection-ref name="book_qualifier_books_collection"/>
                 <input-text-filter name="byBookName"/>
-                <drop-down-pattern value="{qualifier_title}"/>
-                <selection-pattern value="{qualifier_title} ({qualifier_description})"/>
+                <drop-down-pattern value="{book_name} ({book_description})"/>
+                <selection-pattern value="{book_name}"/>
                 <page-size>30</page-size>
                 <selection-style name="table"/>
             </suggest-box>
@@ -60,8 +60,8 @@
                 <field-path value="Book" on-root-delete="unlink"/>
                 <collection-ref name="book_qualifier_qualifiers_collection"/>
                 <input-text-filter name="byQualifierTitle"/>
-                <drop-down-pattern value="{book_name}"/>
-                <selection-pattern value="{book_name} ({book_description})"/>
+                <drop-down-pattern value="{qualifier_title} ({qualifier_description})"/>
+                <selection-pattern value="{qualifier_title}"/>
                 <page-size>30</page-size>
                 <selection-style name="table"/>
             </suggest-box>
