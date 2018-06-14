@@ -28,4 +28,24 @@
         </display>
     </collection-view>
 
+    <collection name="qualifier_status_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                    id,
+                    name status_name
+                FROM status
+                WHERE
+                id IN ('21', '22') ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byStatusName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
 </configuration>
