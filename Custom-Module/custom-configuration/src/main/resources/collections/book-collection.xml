@@ -5,12 +5,15 @@
         <prototype>
             <![CDATA[
                 SELECT
-                  id,
-                  name        lib_book_name,
-                  description lib_book_description
-                FROM lib_book
+                  b.id          AS id,
+                  b.name        AS lib_book_name,
+                  b.description AS lib_book_description,
+                  a.name        AS author_name
+
+                FROM lib_book b
+                  INNER JOIN Lib_author a ON a.id = b.author
                 WHERE
-                    1=1 ::where-clause
+                  1=1 ::where-clause
             ]]>
         </prototype>
 
@@ -30,6 +33,8 @@
             <column field="Lib_Book_Description" name="Описание книги" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
+            <column field="author_name" name="Автор" type="string" editable="false"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 

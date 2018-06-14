@@ -55,7 +55,7 @@
                     </plugin>
                 </link>
 
-                <link name="BookQualifier" display-text="Классификаторы книг">
+                <link name="BookQualifier" display-text="Классификация книги">
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="Lib_Book_Qualifier">
                             <collection-viewer>
