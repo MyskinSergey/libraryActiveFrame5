@@ -71,7 +71,7 @@
                 <text>Книги автора</text>
             </label>
             <linked-domain-objects-table id="linked_books" modal-width="500px" modal-height="300px">
-                <field-path value="Lib_Book^Lib_Author" on-root-delete="unlink"/>
+                <field-path value="Lib_Book^Author" on-root-delete="unlink"/>
                 <linked-form name="book_form" inline="true"/>
                 <summary-table>
                     <summary-table-column header="Название" widget-id="book_name">
