@@ -6,13 +6,13 @@
             <![CDATA[
                 SELECT
                   a.id,
-                  a.name    as    lib_author_name,
-                  a.description as lib_author_description,
-                  b.name as book_name
+                  a.name                    AS    lib_author_name,
+                  a.description             AS lib_author_description,
+                  string_agg(b.name, ', ')  AS books_names
                 FROM lib_author a
-                left join lib_book b ON b.author = a.id
-                WHERE
-                    1=1 ::where-clause
+                  LEFT JOIN lib_book b ON b.author = a.id
+                WHERE 1=1 ::where-clause
+                GROUP BY a.id
             ]]>
         </prototype>
         <filter name="byAuthorName">
@@ -31,7 +31,7 @@
             <column field="Lib_Author_Description" name="Биография" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="book_name" name="Имя книги" type="string" editable="false"
+            <column field="books_names" name="Имя книги" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>
