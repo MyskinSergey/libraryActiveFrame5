@@ -34,6 +34,7 @@ public class A1ServerAction extends ActionHandler<SimpleActionContext, SimpleAct
             System.out.println(formattedStr);
         }
         return new SimpleActionData();
+
     }
 
     @Override
@@ -42,3 +43,4 @@ public class A1ServerAction extends ActionHandler<SimpleActionContext, SimpleAct
     }
 
 }
+
