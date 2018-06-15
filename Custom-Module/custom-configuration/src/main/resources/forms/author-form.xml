@@ -7,7 +7,7 @@
 
             </header>
             <body display-single-tab="false">
-                <tab name="Главная">
+                <tab name="Автор">
                     <single-entry-group>
                         <tab-group>
                             <table>
@@ -32,8 +32,25 @@
                         </tab-group>
                     </single-entry-group>
                 </tab>
+                <tab name="Книги">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="linked_books_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="linked_books"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
             </body>
         </markup>
+
         <widget-config>
             <label id="author_name_label">
                 <field-path/>
@@ -49,6 +66,23 @@
             <text-box id="author_description">
                 <field-path value="description"/>
             </text-box>
+            <label id="linked_books_label">
+                <field-path/>
+                <text>Книги автора</text>
+            </label>
+            <linked-domain-objects-table id="linked_books" modal-width="500px" modal-height="300px">
+                <field-path value="Lib_Book^Lib_Author" on-root-delete="unlink"/>
+                <linked-form name="book_form" inline="true"/>
+                <summary-table>
+                    <summary-table-column header="Название" widget-id="book_name">
+                        <pattern value="{Name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Описание" widget-id="book_description">
+                        <pattern value="{Description}"/>
+                    </summary-table-column>
+                </summary-table>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
         </widget-config>
     </form>
 
