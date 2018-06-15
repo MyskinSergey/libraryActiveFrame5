@@ -31,9 +31,6 @@
             <column field="Lib_Author_Description" name="Биография" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="book_name" name="Имя книги" type="string" editable="false"
-                    sortable="true"
-                    min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 
