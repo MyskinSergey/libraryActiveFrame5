@@ -1,0 +1,8 @@
+TYPE_NAME=Lib_Book_Qualifier;KEYS=Book,Qualifier;;
+Book;Qualifier
+"name=""Стив Джобс""";"title=""Биография"""
+"name=""Государь""";"title=""Исторический"""
+"name=""Часть речи""";"title=""Поэзия"""
+"name=""Атлант расправил плечи""";"title=""Роман"""
+"name=""Финансист""";"title=""Роман"""
+"name=""Унесенные ветром""";"title=""Роман"""
