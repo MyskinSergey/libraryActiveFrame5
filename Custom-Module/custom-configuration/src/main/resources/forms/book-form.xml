@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
+    <!--Todo: исправить отображение классификатора на форме -->
+
     <form name="book_form" domain-object-type="Lib_Book" is-default="true">
         <markup>
             <header></header>
@@ -99,7 +101,7 @@
                 <text>Классификатор</text>
             </label>
             <suggest-box id="qualifier_title">
-                <field-path value="Lib_book_qualifier^Book" on-root-delete="unlink"/>
+                <field-path value="Lib_book_qualifier^Qualifier" on-root-delete="unlink"/>
                 <collection-ref name="book_qualifier_qualifiers_collection"/>
                 <input-text-filter name="byQualifierTitle"/>
                 <drop-down-pattern value="{qualifier_title} ({qualifier_description})"/>
@@ -130,6 +132,6 @@
             </linked-domain-objects-table>
 
         </widget-config>
-
     </form>
+
 </configuration>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
+    <!--Todo: исправить отображение списка книг на форме -->
+
     <form name="qualifier_form" domain-object-type="Lib_Qualifier" is-default="true">
         <markup>
             <header>
@@ -36,6 +38,33 @@
                                     </td>
                                     <td h-align="left">
                                         <widget id="qualifier_status"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="qualifier_books_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="qualifier_books"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+                <tab name="Книги по классификатору">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="qualifier_books_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="qualifier_books"/>
                                     </td>
                                 </tr>
 
@@ -77,6 +106,25 @@
                 <selection-style name="table"/>
             </suggest-box>
 
+            <label id="qualifier_books_label">
+                <field-path/>
+                <text>Книги по классификатору</text>
+            </label>
+            <linked-domain-objects-table id="qualifier_books" modal-width="500px" modal-height="300px">
+                <field-path value="Lib_Book_Qualifier^Book" on-root-delete="unlink"/>
+                <linked-form name="book_form" inline="true"/>
+                <summary-table>
+                    <summary-table-column header="Название" widget-id="book_name">
+                        <pattern value="{Name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Описание" widget-id="book_description">
+                        <pattern value="{Description}"/>
+                    </summary-table-column>
+                </summary-table>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
         </widget-config>
     </form>
+
 </configuration>

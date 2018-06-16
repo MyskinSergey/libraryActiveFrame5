@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
+    <!-- Todo: добавить агрегатную функцию -->
+
     <collection name="book_collection" idField="id">
         <prototype>
             <![CDATA[

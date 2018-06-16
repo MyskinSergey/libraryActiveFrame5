@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
+    <!-- Todo: добавить агрегатную функцию -->
+
     <collection name="qualifier_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
-                  q.id           AS id,
-                  q.title        AS qualifier_title,
-                  q.description  AS qualifier_description,
-                  s.name         AS status_name
+                  q.id          AS id,
+                  q.title       AS qualifier_title,
+                  q.description AS qualifier_description,
+                  s.name        AS status_name,
+                  bq.book       as qualifier_book_id,
+                  b.name        as book_name
+
                 FROM Lib_Qualifier q
-                INNER JOIN Status s ON s.id = q.status
+                  INNER JOIN Status s ON s.id = q.status
+                  INNER JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
+                  INNER JOIN lib_book b on bq.book = b.id
                 WHERE
                     1=1 ::where-clause
             ]]>
@@ -25,6 +32,8 @@
                     sortable="true" min-width="50px" text-break-style="cut"/>
             <column field="status_name" name="Статус" type="string" editable="true"
                     sortable="true" min-width="50px" text-break-style="cut"/>
+            <column field="book_name" name="Имя книги" type="string" editable="true"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 
@@ -36,7 +45,7 @@
                     name status_name
                 FROM status
                 WHERE
-                id IN ('21', '22') ::where-clause
+                name IN ('Actual', 'Terminate') ::where-clause
             ]]>
         </prototype>
         <filter name="byStatusName">
