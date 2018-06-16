@@ -11,6 +11,7 @@
                     <single-entry-group>
                         <tab-group>
                             <table>
+
                                 <tr>
                                     <td h-align="right">
                                         <widget id="author_name_label"/>
@@ -28,6 +29,7 @@
                                         <widget id="author_description"/>
                                     </td>
                                 </tr>
+
                             </table>
                         </tab-group>
                     </single-entry-group>
@@ -52,6 +54,7 @@
         </markup>
 
         <widget-config>
+
             <label id="author_name_label">
                 <field-path/>
                 <text>Имя автора</text>
@@ -59,6 +62,7 @@
             <text-box id="author_name">
                 <field-path value="name"/>
             </text-box>
+
             <label id="author_description_label">
                 <field-path/>
                 <text>Биография</text>
@@ -66,6 +70,7 @@
             <text-box id="author_description">
                 <field-path value="description"/>
             </text-box>
+
             <label id="linked_books_label">
                 <field-path/>
                 <text>Книги автора</text>
@@ -83,6 +88,7 @@
                 </summary-table>
                 <single-choice value="false"/>
             </linked-domain-objects-table>
+
         </widget-config>
     </form>
 

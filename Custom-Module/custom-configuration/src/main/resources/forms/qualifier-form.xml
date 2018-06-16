@@ -49,7 +49,7 @@
 
             <label id="qualifier_title_label">
                 <field-path/>
-                <text>Qualifier Title</text>
+                <text>Классификатор</text>
             </label>
             <text-box id="qualifier_title">
                 <field-path value="title"/>
@@ -57,7 +57,7 @@
 
             <label id="qualifier_description_label">
                 <field-path/>
-                <text>Qualifier Description</text>
+                <text>Описание классификатора</text>
             </label>
             <text-box id="qualifier_description">
                 <field-path value="description"/>
