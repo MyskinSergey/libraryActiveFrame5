@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Todo: Добавить к сроку возврата в заявке значение по умолчанию -->
+
+    <!-- Читатель -->
+    <domain-object-type name="lib_reader">
+        <fields>
+            <!-- Имя читатель -->
+            <string name="name" length="100" not-null="true"/>
+            <!-- Электронный почтовый адрес -->
+            <string name="e_mail" length="100"/>
+            <!-- Адрес проживания -->
+            <string name="address" length="1024"/>
+            <!-- Документ, удостоверяющий личность -->
+            <string name="document" length="1024"/>
+        </fields>
+    </domain-object-type>
+
+    <!-- Заявка -->
+    <domain-object-type name="lib_application" initial-status="Draft">
+        <fields>
+            <!-- Номер заявки -->
+            <long name="app_number" not-null="true"/>
+            <!-- Срок возврата: текущая дата + 14 дней -->
+            <timelessDate name="return_to" not-null="true"/>
+            <!-- Ссылка на сущность "Книга" -->
+            <reference name="book" type="lib_book" not-null="true"/>
+            <!-- Ссылка на сущность "Читатель" -->
+            <reference name="reader" type="lib_reader" not-null="true"/>
+            <!-- Ссылка на сущность "Автор" -->
+            <reference name="author" type="lib_author" not-null="true"/>
+        </fields>
+    </domain-object-type>
+
+    <!-- Записи формуляра, статус по умолчанию "Введение" -->
+    <domain-object-type name="lib_application" initial-status="6">
+        <fields>
+            <!-- Ссылка на сущность "Формуляр" -->
+            <reference name="logbook" type="lib_logbook" not-null="true"/>
+            <!-- Ссылка на сущность "Заявка" -->
+            <reference name="application" type="lib_application" not-null="true"/>
+        </fields>
+    </domain-object-type>
+
+</configuration>
