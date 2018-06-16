@@ -27,7 +27,7 @@
                         <domain-object-surfer domain-object-type-to-create="Lib_Author">
                             <collection-viewer>
                                 <collection-ref name="author_collection"/>
-                                <default-sort-criteria column-field="Lib_Author_Name" order="ASC"/>
+                                <default-sort-criteria column-field="author_name" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>
@@ -38,7 +38,7 @@
                         <domain-object-surfer domain-object-type-to-create="Lib_Qualifier">
                             <collection-viewer>
                                 <collection-ref name="qualifier_collection"/>
-                                <default-sort-criteria column-field="Qualifier_Title" order="ASC"/>
+                                <default-sort-criteria column-field="qualifier_title" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>
@@ -49,7 +49,7 @@
                         <domain-object-surfer domain-object-type-to-create="Lib_LogBook">
                             <collection-viewer>
                                 <collection-ref name="logbook_collection"/>
-                                <default-sort-criteria column-field="LogBook_Published" order="ASC"/>
+                                <default-sort-criteria column-field="logbook_published" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>

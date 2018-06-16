@@ -19,9 +19,9 @@
 
     <collection-view name="qualifier_collection_default_view" collection="qualifier_collection" is-default="true">
         <display>
-            <column field="Qualifier_Title" name="Классификатор" type="string" editable="false" sortable="true"
+            <column field="qualifier_title" name="Классификатор" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Qualifier_Description" name="Описание" type="string" editable="false"
+            <column field="qualifier_description" name="Описание" type="string" editable="false"
                     sortable="true" min-width="50px" text-break-style="cut"/>
             <column field="status_name" name="Статус" type="string" editable="true"
                     sortable="true" min-width="50px" text-break-style="cut"/>

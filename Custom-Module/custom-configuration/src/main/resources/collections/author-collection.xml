@@ -6,8 +6,8 @@
             <![CDATA[
                 SELECT
                   a.id,
-                  a.name                    AS    lib_author_name,
-                  a.description             AS lib_author_description,
+                  a.name                    AS author_name,
+                  a.description             AS author_description,
                   string_agg(b.name, ', ')  AS books_names
                 FROM lib_author a
                   LEFT JOIN lib_book b ON b.author = a.id
@@ -26,9 +26,9 @@
 
     <collection-view name="author_collection_default_view" collection="author_collection" is-default="true">
         <display>
-            <column field="Lib_Author_Name" name="Имя" type="string" editable="false" sortable="true"
+            <column field="author_name" name="Имя" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_Author_Description" name="Биография" type="string" editable="false"
+            <column field="author_description" name="Биография" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
             <column field="books_names" name="Имя книги" type="string" editable="false"
