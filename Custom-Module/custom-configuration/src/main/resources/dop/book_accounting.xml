@@ -2,7 +2,6 @@
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
     <!-- Todo: комментирование полей-->
-    <!-- Todo: раскоментировать reference у Lib_book -->
 
     <!-- Классификатор -->
     <domain-object-type name="Lib_Qualifier" initial-status="Actual">

@@ -5,31 +5,51 @@
         <prototype>
             <![CDATA[
                 SELECT
-                    liblog.id as id,
+                    lb.id as id,
                     b.name as book_name,
-                    log_number  lib_logbook_log_number,
-                    published   lib_logbook_published,
-                    location    lib_logbook_location
-                FROM lib_logbook liblog
-                INNER JOIN lib_Book b ON b.id = liblog.book
+                    log_number  as logbook_number,
+                    published   as logbook_published,
+                    location    as logbook_location
+                FROM lib_logbook lb
+                INNER JOIN lib_Book lb ON b.id = lb.book
                 WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
+        <filter name="byLogbookNumber">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(log_number) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byLogbookPublished">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(published) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byLogbookLocation">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(location) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
     </collection>
 
     <collection-view name="logbook_collection_default_view" collection="logbook_collection" is-default="true">
         <display>
             <column field="book_name" name="Наименование" type="string" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Log_Number" name="Регистрационный №" type="long" editable="true" sortable="true"
+            <column field="logbook_number" name="Регистрационный №" type="long" editable="true" sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Published" name="Год публикации" type="timelessDate" editable="true"
+            <column field="logbook_published" name="Год публикации" type="timelessDate" editable="true"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
-            <column field="Lib_LogBook_Location" name="Местонахождение" type="string" editable="true"
-                    sortable="true"
-                    min-width="50px" text-break-style="cut"/>
+            <column field="logbook_location" name="Местонахождение" type="string" editable="true"
+                    sortable="true" min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
 

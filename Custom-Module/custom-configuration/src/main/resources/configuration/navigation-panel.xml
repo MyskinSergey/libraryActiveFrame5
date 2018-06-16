@@ -10,7 +10,7 @@
                         <domain-object-surfer domain-object-type-to-create="Lib_Book">
                             <collection-viewer>
                                 <collection-ref name="book_collection"/>
-                                <default-sort-criteria column-field="Lib_Book_Name" order="ASC"/>
+                                <default-sort-criteria column-field="book_name" order="ASC"/>
                             </collection-viewer>
                         </domain-object-surfer>
                     </plugin>

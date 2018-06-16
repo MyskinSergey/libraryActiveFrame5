@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <form name="log_book" domain-object-type="Lib_LogBook" is-default="true">
+    <form name="logbook_form" domain-object-type="Lib_LogBook" is-default="true">
         <markup>
             <header>
 
@@ -22,11 +22,11 @@
                                 </tr>
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_log_number_label"/>
+                                        <widget id="logbook_number_label"/>
                                     </td>
 
                                     <td h-align="left">
-                                        <widget id="logbook_log_number"/>
+                                        <widget id="logbook_number"/>
                                     </td>
                                 </tr>
 
@@ -68,11 +68,11 @@
                     <selection-style name="table"/>
             </suggest-box>
 
-            <label id="logbook_log_number_label">
+            <label id="logbook_number_label">
                 <field-path/>
                 <text>Регистрационный №</text>
             </label>
-            <integer-box id="logbook_log_number">
+            <integer-box id="logbook_number">
                 <field-path value="log_number"/>
             </integer-box>
 
