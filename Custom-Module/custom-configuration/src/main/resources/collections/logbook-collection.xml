@@ -5,38 +5,17 @@
         <prototype>
             <![CDATA[
                 SELECT
-                    lb.id as id,
-                    b.name as book_name,
-                    log_number  as logbook_number,
-                    published   as logbook_published,
-                    location    as logbook_location
+                    lb.id,
+                    lb.log_number  as logbook_number,
+                    lb.published   as logbook_published,
+                    lb.location    as logbook_location,
+                    b.name as book_name
                 FROM lib_logbook lb
-                INNER JOIN lib_Book lb ON b.id = lb.book
+                INNER JOIN lib_Book b ON b.id = lb.book
                 WHERE
                     1=1 ::where-clause
             ]]>
         </prototype>
-        <filter name="byLogbookNumber">
-            <criteria placeholder="where-clause">
-                <![CDATA[
-                    LOWER(log_number) LIKE LOWER('%' || {0} || '%')
-                ]]>
-            </criteria>
-        </filter>
-        <filter name="byLogbookPublished">
-            <criteria placeholder="where-clause">
-                <![CDATA[
-                    LOWER(published) LIKE LOWER('%' || {0} || '%')
-                ]]>
-            </criteria>
-        </filter>
-        <filter name="byLogbookLocation">
-            <criteria placeholder="where-clause">
-                <![CDATA[
-                    LOWER(location) LIKE LOWER('%' || {0} || '%')
-                ]]>
-            </criteria>
-        </filter>
     </collection>
 
     <collection-view name="logbook_collection_default_view" collection="logbook_collection" is-default="true">
