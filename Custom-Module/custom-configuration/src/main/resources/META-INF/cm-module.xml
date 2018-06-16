@@ -53,8 +53,9 @@
         <import-file>importdata/a1_f1.csv</import-file>
         <import-file>importdata/lib_author.csv</import-file>
         <import-file>importdata/lib_book.csv</import-file>
-        <!--<import-file>importdata/lib_book_qualifier.csv</import-file>
-        <import-file>importdata/lib_qualifier.csv</import-file>-->
+        <import-file>importdata/lib_qualifier.csv</import-file>
+        <import-file>importdata/lib_book_qualifier.csv</import-file>
+        <import-file>importdata/lib_logbook.csv</import-file>
     </import-files>
 
 </module>
