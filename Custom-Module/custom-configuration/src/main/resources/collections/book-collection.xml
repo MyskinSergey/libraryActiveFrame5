@@ -7,7 +7,7 @@
         <prototype>
             <![CDATA[
                 SELECT
-                  b.id,
+                  b.id          AS id,
                   b.name        AS book_name,
                   b.description AS book_description,
                   a.name        AS author_name,

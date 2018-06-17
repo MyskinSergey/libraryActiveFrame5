@@ -1,0 +1,13 @@
+TYPE_NAME=Status;KEYS=name;;
+name;description
+"Actual";"Актульаный";
+"Cancelled";"Аннулирован";
+"Available";"Доступен";
+"Issued";"Выдан";
+"Reserved";"Забронирован";
+"Deleted";"Изъят";
+"Draft";"Черновик";
+"Pending";"В ожидании";
+"Performed";"Выполненена";
+"Closed";"Закрыта";
+"Published";"Опубликована";
