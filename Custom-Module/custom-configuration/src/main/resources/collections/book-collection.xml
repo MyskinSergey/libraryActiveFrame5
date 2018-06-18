@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration xmlns="https://cm5.intertrust.ru/config">
-
-    <!-- Todo: добавить агрегатную функцию -->
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
 
     <collection name="book_collection" idField="id">
         <prototype>
@@ -11,26 +9,44 @@
                   b.name        AS book_name,
                   b.description AS book_description,
                   a.name        AS author_name,
-                  q.title       as qualifier_title,
-                  q.description as qualifier_description,
-                  lb.log_number as logbook_number,
-                  lb.published  as logbook_published,
-                  lb.location   as logbook_location
+                  (SELECT COUNT(*) FROM lib_logbook WHERE b.id = book) AS LogBooks
 
                 FROM lib_book b
-                  INNER JOIN Lib_author a ON a.id = b.author
-                  INNER JOIN Lib_logbook lb ON b.id = lb.book
-                  INNER JOIN Lib_book_qualifier bq ON b.id = bq.book
-                  INNER JOIN Lib_qualifier q ON bq.qualifier = q.id
+                  INNER JOIN lib_author a ON a.id = b.author
+                  ::from-clause
                 WHERE
                   1=1 ::where-clause
             ]]>
         </prototype>
 
+        <counting-prototype>
+            SELECT COUNT(*)
+
+            FROM lib_book b
+            INNER JOIN lib_author a ON a.id = b.author
+            ::from-clause
+
+            WHERE 1=1 ::where - clause
+        </counting-prototype>
+
         <filter name="byBookTitle">
             <criteria placeholder="where-clause">
                 <![CDATA[
                     LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+
+        <!-- Фильтр для выпадающего списка книг в справочнике классификатора -->
+        <filter name="byBooks">
+            <reference placeholder="from-clause">
+                [<![CDATA[
+                   LEFT JOIN lib_book_qualifier bq ON b.id = bq.book
+                ]]>
+            </reference>
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    bq.qualifier = {0}
                 ]]>
             </criteria>
         </filter>
@@ -41,9 +57,18 @@
             <column field="book_name" name="Название книги" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
             <column field="book_description" name="Описание книги" type="string" editable="false"
-                    sortable="true" min-width="50px" text-break-style="cut"/>
+                    sortable="true" min-width="150px" text-break-style="cut"/>
             <column field="author_name" name="Автор" type="string" editable="false"
                     sortable="true" min-width="50px" text-break-style="cut"/>
+            <column field="logbooks" name="Формуляры" type="long" editable="false"
+                    sortable="true" min-width="50px" text-break-style="cut">
+                <child-collection-viewer filter="byLogbooks" domain-object-type-to-create="lib_logbook" bread-crumb="Формуляры">
+                    <collection-viewer>
+                        <collection-ref name="logbook_collection"/>
+                        <act:tool-bar useDefault="false"/>
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
         </display>
     </collection-view>
 

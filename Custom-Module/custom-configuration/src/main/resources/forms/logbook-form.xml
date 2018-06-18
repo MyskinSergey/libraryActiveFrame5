@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <form name="logbook_form" domain-object-type="Lib_LogBook" is-default="true">
+    <!-- Форма для доменного объекта "Формуляр книги" -->
+    <form name="logbook_form" domain-object-type="lib_logbook" is-default="true">
         <markup>
             <header>
 
@@ -13,37 +14,28 @@
                             <table>
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_book_label"/>
+                                        <widget id="logbookNumberLabel"/>
                                     </td>
 
                                     <td h-align="left">
-                                        <widget id="logbook_book"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td h-align="right">
-                                        <widget id="logbook_number_label"/>
-                                    </td>
-
-                                    <td h-align="left">
-                                        <widget id="logbook_number"/>
+                                        <widget id="logbookNumberValue"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_published_label"/>
+                                        <widget id="logbookPublishedLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="logbook_published"/>
+                                        <widget id="logbookPublishedValue"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_location_label"/>
+                                        <widget id="logbookLocationLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="logbook_location"/>
+                                        <widget id="logbookLocationValue"/>
                                     </td>
                                 </tr>
                             </table>
@@ -53,48 +45,32 @@
             </body>
         </markup>
         <widget-config>
-
-            <label id="logbook_book_label">
+            <!-- Номер формуляра -->
+            <label id="logbookNumberLabel">
                 <field-path/>
-                <text>Книга</text>
+                <text>№</text>
             </label>
-            <suggest-box id="logbook_book">
-                <field-path value="book" on-root-delete="unlink"/>
-                    <collection-ref name="book_collection"/>
-                    <input-text-filter name="byBookTitle"/>
-                    <drop-down-pattern value="{lib_book_name} ({lib_book_description})"/>
-                    <selection-pattern value="{lib_book_name}"/>
-                    <page-size>30</page-size>
-                    <selection-style name="table"/>
-            </suggest-box>
-
-            <label id="logbook_number_label">
-                <field-path/>
-                <text>Регистрационный №</text>
-            </label>
-            <integer-box id="logbook_number">
+            <integer-box id="logbookNumberValue">
                 <field-path value="log_number"/>
             </integer-box>
 
-            <label id="logbook_published_label">
+            <!-- Дата публикации книги -->
+            <label id="logbookPublishedLabel">
                 <field-path/>
-                <text>Год публикации</text>
+                <text>Дата публикации</text>
             </label>
-            <date-box id="logbook_published">
+            <date-box id="logbookPublishedValue">
                 <field-path value="published"/>
             </date-box>
 
-
-            <label id="logbook_location_label">
+            <!-- Местонахождение книги -->
+            <label id="logbookLocationLabel">
                 <field-path/>
                 <text>Местонахождение</text>
             </label>
-            <text-box id="logbook_location">
+            <text-box id="logbookLocationValue">
                 <field-path value="location"/>
             </text-box>
-
-
         </widget-config>
     </form>
-
 </configuration>

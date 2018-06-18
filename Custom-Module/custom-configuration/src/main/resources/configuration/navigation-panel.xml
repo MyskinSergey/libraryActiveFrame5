@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<configuration xmlns="https://cm5.intertrust.ru/config">
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
     <navigation name="default-panel" is-default="true">
 
-        <link name="Card_file" display-text="Картотека" image="images/docs.png">
+        <link name="Card_file" display-text="Картотека" image="images/docs.png" child-to-open="Books">
             <child-links>
 
                 <link name="Books" display-text="Книги">
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="Lib_Book">
                             <collection-viewer>
+                                <act:tool-bar useDefault="false">
+                                    <act:action-ref name-ref="aRefresh"/>
+                                    <act:action-separator order="50"/>
+                                    <act:action-ref name-ref="aSaveCsv"/>
+                                </act:tool-bar>
                                 <collection-ref name="book_collection"/>
                                 <default-sort-criteria column-field="book_name" order="ASC"/>
                             </collection-viewer>
+                            <form-viewer>
+                                <form-mapping domain-object-type="lib_book" form="book_from"/>
+                            </form-viewer>
                         </domain-object-surfer>
                     </plugin>
                 </link>
