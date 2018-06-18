@@ -46,6 +46,14 @@
                                         <widget id="logbook_location"/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="logbook_status_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="logbook_status"/>
+                                    </td>
+                                </tr>
                             </table>
                         </tab-group>
                     </single-entry-group>
@@ -62,8 +70,8 @@
                 <field-path value="book" on-root-delete="unlink"/>
                     <collection-ref name="book_collection"/>
                     <input-text-filter name="byBookTitle"/>
-                    <drop-down-pattern value="{lib_book_name} ({lib_book_description})"/>
-                    <selection-pattern value="{lib_book_name}"/>
+                    <drop-down-pattern value="{book_name} ({book_description})"/>
+                    <selection-pattern value="{book_name}"/>
                     <page-size>30</page-size>
                     <selection-style name="table"/>
             </suggest-box>
@@ -93,6 +101,19 @@
                 <field-path value="location"/>
             </text-box>
 
+            <label id="logbook_status_label">
+                <field-path/>
+                <text>Статус</text>
+            </label>
+            <suggest-box id="logbook_status">
+                <field-path value="Status" on-root-delete="unlink"/>
+                <collection-ref name="logbook_status_collection"/>
+                <input-text-filter name="byStatusName"/>
+                <drop-down-pattern value="{status_name}"/>
+                <selection-pattern value="{status_name}"/>
+                <page-size>30</page-size>
+                <selection-style name="table"/>
+            </suggest-box>
 
         </widget-config>
     </form>
