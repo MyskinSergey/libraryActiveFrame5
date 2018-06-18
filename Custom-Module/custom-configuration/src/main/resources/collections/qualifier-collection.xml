@@ -24,7 +24,7 @@
         </prototype>
     </collection>
 
-    <collection-view name="qualifier_collection_default_view" collection="qualifier_collection" is-default="true">
+    <collection-view name="qualifier_view" collection="qualifier_collection" is-default="true">
         <display>
             <column field="qualifier_title" name="Классификатор" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>

@@ -24,7 +24,7 @@
         </filter>
     </collection>
 
-    <collection-view name="author_collection_default_view" collection="author_collection" is-default="true">
+    <collection-view name="author_view" collection="author_collection" is-default="true">
         <display>
             <column field="author_name" name="Имя" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>

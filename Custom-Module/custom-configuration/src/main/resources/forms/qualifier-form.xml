@@ -3,7 +3,7 @@
 
     <!--Todo: исправить отображение списка книг на форме -->
 
-    <form name="qualifier_form" domain-object-type="Lib_Qualifier" is-default="true">
+    <form name="qualifier_form" domain-object-type="lib_qualifier" is-default="true">
         <markup>
             <header>
 
@@ -97,7 +97,7 @@
                 <text>Статус</text>
             </label>
             <suggest-box id="qualifier_status">
-                <field-path value="Status" on-root-delete="unlink"/>
+                <field-path value="status" on-root-delete="unlink"/>
                 <collection-ref name="qualifier_status_collection"/>
                 <input-text-filter name="byStatusName"/>
                 <drop-down-pattern value="{status_name}"/>
@@ -111,14 +111,14 @@
                 <text>Книги по классификатору</text>
             </label>
             <linked-domain-objects-table id="qualifier_books" modal-width="500px" modal-height="300px">
-                <field-path value="Lib_Book_Qualifier^Book" on-root-delete="unlink"/>
+                <field-path value="lib_book_qualifier^book" on-root-delete="unlink"/>
                 <linked-form name="book_form" inline="true"/>
                 <summary-table>
                     <summary-table-column header="Название" widget-id="book_name">
-                        <pattern value="{Name}"/>
+                        <pattern value="{name}"/>
                     </summary-table-column>
                     <summary-table-column header="Описание" widget-id="book_description">
-                        <pattern value="{Description}"/>
+                        <pattern value="{description}"/>
                     </summary-table-column>
                 </summary-table>
                 <single-choice value="false"/>
