@@ -5,7 +5,13 @@
     <form name="logbook_form" domain-object-type="lib_logbook" is-default="true">
         <markup>
             <header>
-
+                <table>
+                    <tr>
+                        <td h-align="right">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
             </header>
             <body display-single-tab="false">
                 <tab name="Главная">
@@ -45,6 +51,12 @@
             </body>
         </markup>
         <widget-config>
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
+                <field-path/>
+                <text>Формуляр</text>
+            </label>
+
             <!-- Номер формуляра -->
             <label id="logbookNumberLabel">
                 <field-path/>

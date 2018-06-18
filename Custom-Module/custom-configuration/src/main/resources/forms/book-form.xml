@@ -57,7 +57,7 @@
                     </single-entry-group>
                 </tab>
 
-                <tab name="формуляры">
+                <tab name="Формуляры">
                     <single-entry-group>
                         <tab-group>
                             <table>
@@ -74,7 +74,6 @@
         </markup>
 
         <widget-config>
-
             <!-- Заголовок формы -->
             <label id="headerLabel">
                 <field-path/>
@@ -106,7 +105,7 @@
             </label>
             <suggest-box id="bookAuthorValue">
                 <field-path value="author" on-root-delete="unlink"/>
-                <collection-ref name="author_collection"/>
+                <collection-ref name="author_collection_simple"/>
                 <input-text-filter name="byAuthorName"/>
                 <drop-down-pattern value="{author_name}"/>
                 <selection-pattern value="{author_name}"/>
@@ -114,7 +113,8 @@
                 <single-choice value="true"/>
 
                 <linked-form-mapping>
-                    <linked-form domain-object-type="lib_author" name="author_form" modal-width="350px" modal-height="250px"/>
+                    <linked-form domain-object-type="lib_author" name="author_form_simple" modal-width="350px"
+                                 modal-height="250px"/>
                 </linked-form-mapping>
                 <create-new-button text="Создать"/>
                 <created-objects>
@@ -122,27 +122,27 @@
                 </created-objects>
             </suggest-box>
 
-            <!-- Классификатор -->
+            <!-- Классификация книги -->
             <label id="bookQualifiersLabel">
                 <field-path/>
                 <text>Классификатор</text>
             </label>
-            <linked-domain-objects-table id="bookQualifiers" modal-width="150px" modal-height="250px">
+            <linked-domain-objects-table id="bookQualifiers">
                 <field-path value="lib_book_qualifier^book"/>
-                <linked-form name="book_qualifier_form" inline="true" modal-width="120px" modal-height="200px"/>
+                <linked-form name="book_qualifier_form" inline="true" modal-width="500px" modal-height="100px"/>
 
                 <summary-table>
-                    <summary-table-column header="Наименование" widget-id="qualifierSelectionTitle">
+                    <summary-table-column header="Наименование" widget-id="qualifierTitleText">
                         <pattern value="{qualifier.title}"/>
                     </summary-table-column>
-                    <summary-table-column header="Описание" widget-id="qualifierSelectionDescription">
+                    <summary-table-column header="Описание" widget-id="qualifierDescriptionText">
                         <pattern value="{qualifier.description}"/>
                     </summary-table-column>
                 </summary-table>
 
-                <selection-sort-criteria>
-                    <sort-criterion field="qualifierTitleText" order="asc"/>
-                </selection-sort-criteria>
+                <!--<selection-sort-criteria>-->
+                <!--<sort-criterion field="qualifierTitleText" order="asc"/>-->
+                <!--</selection-sort-criteria>-->
                 <single-choice value="false"/>
             </linked-domain-objects-table>
 
@@ -163,9 +163,9 @@
                     </summary-table-column>
                 </summary-table>
 
-                <selection-sort-criteria>
-                    <sort-criterion field="log_number" order="asc"/>
-                </selection-sort-criteria>
+                <!--<selection-sort-criteria>-->
+                <!--<sort-criterion field="log_number" order="asc"/>-->
+                <!--</selection-sort-criteria>-->
                 <single-choice value="false"/>
             </linked-domain-objects-table>
 

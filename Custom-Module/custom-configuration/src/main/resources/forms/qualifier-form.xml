@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <!--Todo: исправить отображение списка книг на форме -->
-
     <form name="qualifier_form" domain-object-type="lib_qualifier" is-default="true">
         <markup>
             <header>
-
+                <table>
+                    <tr>
+                        <td h-align="right">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
             </header>
             <body display-single-tab="false">
                 <tab name="Главная страница">
@@ -16,37 +20,28 @@
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="qualifier_title_label"/>
+                                        <widget id="qualifierTitleLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="qualifier_title"/>
+                                        <widget id="qualifierTitleText"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="qualifier_description_label"/>
+                                        <widget id="qualifierDescriptionLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="qualifier_description"/>
+                                        <widget id="qualifierDescriptionText"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="qualifier_status_label"/>
+                                        <widget id="qualifierStatusLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="qualifier_status"/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td h-align="right">
-                                        <widget id="qualifier_books_label"/>
-                                    </td>
-                                    <td h-align="left">
-                                        <widget id="qualifier_books"/>
+                                        <widget id="qualifierStatusValue"/>
                                     </td>
                                 </tr>
 
@@ -61,10 +56,10 @@
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="qualifier_books_label"/>
+                                        <widget id="bookQualifiersLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="qualifier_books"/>
+                                        <widget id="bookQualifiers"/>
                                     </td>
                                 </tr>
 
@@ -75,28 +70,36 @@
             </body>
         </markup>
         <widget-config>
-
-            <label id="qualifier_title_label">
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
                 <field-path/>
                 <text>Классификатор</text>
             </label>
-            <text-box id="qualifier_title">
+
+            <!-- Название классификатор -->
+            <label id="qualifierTitleLabel">
+                <field-path/>
+                <text>Классификатор</text>
+            </label>
+            <text-box id="qualifierTitleText">
                 <field-path value="title"/>
             </text-box>
 
-            <label id="qualifier_description_label">
+            <!-- Описание классификатор -->
+            <label id="qualifierDescriptionLabel">
                 <field-path/>
                 <text>Описание классификатора</text>
             </label>
-            <text-box id="qualifier_description">
+            <text-box id="qualifierDescriptionText">
                 <field-path value="description"/>
             </text-box>
 
-            <label id="qualifier_status_label">
+            <!-- Статус данного классификатора -->
+            <label id="qualifierStatusLabel">
                 <field-path/>
                 <text>Статус</text>
             </label>
-            <suggest-box id="qualifier_status">
+            <suggest-box id="qualifierStatusValue">
                 <field-path value="status" on-root-delete="unlink"/>
                 <collection-ref name="qualifier_status_collection"/>
                 <input-text-filter name="byStatusName"/>
@@ -106,24 +109,24 @@
                 <selection-style name="table"/>
             </suggest-box>
 
-            <label id="qualifier_books_label">
+            <!-- Список книг, фильтрованный по данному классификатору -->
+            <label id="bookQualifiersLabel">
                 <field-path/>
                 <text>Книги по классификатору</text>
             </label>
-            <linked-domain-objects-table id="qualifier_books" modal-width="500px" modal-height="300px">
-                <field-path value="lib_book_qualifier^book" on-root-delete="unlink"/>
-                <linked-form name="book_form" inline="true"/>
+            <linked-domain-objects-table id="bookQualifiers" modal-width="650px" modal-height="250px">
+                <field-path value="lib_book_qualifier^qualifier"/>
+                <linked-form name="book_qualifier_form" inline="true" modal-width="650px" modal-height="200px"/>
+
                 <summary-table>
-                    <summary-table-column header="Название" widget-id="book_name">
-                        <pattern value="{name}"/>
+                    <summary-table-column header="Наименование" widget-id="bookNameText">
+                        <pattern value="{book.name}"/>
                     </summary-table-column>
-                    <summary-table-column header="Описание" widget-id="book_description">
-                        <pattern value="{description}"/>
+                    <summary-table-column header="Описание" widget-id="bookDescriptionText">
+                        <pattern value="{book.description}"/>
                     </summary-table-column>
                 </summary-table>
-                <single-choice value="false"/>
             </linked-domain-objects-table>
-
         </widget-config>
     </form>
 

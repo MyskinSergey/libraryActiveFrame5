@@ -3,31 +3,28 @@
 
     <form name="book_qualifier_form" domain-object-type="lib_book_qualifier" is-default="true">
         <markup>
-            <header></header>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="right">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
             <body display-single-tab="false">
                 <tab name="MainTab">
                     <single-entry-group>
                         <tab-group>
                             <table>
-
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="book_qualifier_qualifier_label"/>
+                                        <widget id="bqQualifierLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="book_qualifier_qualifier"/>
+                                        <widget id="bqQualifierValue"/>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td h-align="right">
-                                        <widget id="book_qualifier_book_label"/>
-                                    </td>
-                                    <td h-align="left">
-                                        <widget id="book_qualifier_book"/>
-                                    </td>
-                                </tr>
-
                             </table>
                         </tab-group>
                     </single-entry-group>
@@ -36,36 +33,26 @@
         </markup>
 
         <widget-config>
-
-            <label id="book_qualifier_book_label">
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
                 <field-path/>
-                <text>Книга</text>
+                <text>Классификация книги</text>
             </label>
-            <suggest-box id="book_qualifier_book" >
-                <field-path value="Book" on-root-delete="unlink"/>
-                <collection-ref name="book_qualifier_books_collection"/>
-                <input-text-filter name="byBookName"/>
-                <drop-down-pattern value="{book_name})"/>
-                <selection-pattern value="{book_name}"/>
-                <page-size>30</page-size>
-                <selection-style name="table"/>
-            </suggest-box>
 
-            <label id="book_qualifier_qualifier_label">
+            <!-- Выпадающий список для выбора классификатора -->
+            <label id="bqQualifierLabel">
                 <field-path/>
                 <text>Классификатор</text>
             </label>
-            <suggest-box id="book_qualifier_qualifier">
+            <suggest-box id="bqQualifierValue">
                 <field-path value="qualifier" on-root-delete="unlink"/>
-                <collection-ref name="book_qualifier_qualifiers_collection"/>
+                <collection-ref name="bq_qualifiers_collection"/>
                 <input-text-filter name="byQualifierTitle"/>
                 <drop-down-pattern value="{qualifier_title}"/>
                 <selection-pattern value="{qualifier_title}"/>
                 <page-size>30</page-size>
                 <selection-style name="table"/>
             </suggest-box>
-
         </widget-config>
-
     </form>
 </configuration>
