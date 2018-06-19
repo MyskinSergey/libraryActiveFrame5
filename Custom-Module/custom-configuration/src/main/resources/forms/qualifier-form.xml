@@ -72,13 +72,12 @@
         <widget-config>
             <!-- Заголовок формы -->
             <label id="headerLabel">
-                <field-path/>
                 <text>Классификатор</text>
             </label>
 
             <!-- Название классификатор -->
             <label id="qualifierTitleLabel">
-                <field-path/>
+                <force-required-asterisk value="true"/>
                 <text>Классификатор</text>
             </label>
             <text-box id="qualifierTitleText">
