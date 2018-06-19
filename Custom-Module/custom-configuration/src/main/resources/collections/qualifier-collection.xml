@@ -12,9 +12,10 @@
 
                 FROM Lib_Qualifier q
                   LEFT JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
-                  LEFT JOIN lib_book b ON bq.book = b.id
+                  LEFT JOIN lib_book b on bq.book = b.id
                 WHERE
                   1=1 ::where-clause
+                GROUP BY q.id, q.title, q.description, books
             ]]>
         </prototype>
 
