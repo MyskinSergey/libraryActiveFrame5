@@ -36,12 +36,22 @@
                                         <widget id="logbookPublishedValue"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td h-align="right">
                                         <widget id="logbookLocationLabel"/>
                                     </td>
                                     <td h-align="left">
                                         <widget id="logbookLocationValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="logbookStatusLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="logbookStatusValue"/>
                                     </td>
                                 </tr>
                             </table>
@@ -83,6 +93,21 @@
             <text-box id="logbookLocationValue">
                 <field-path value="location"/>
             </text-box>
+
+            <!-- Статус данного формуляра -->
+            <label id="logbookStatusLabel">
+                <field-path/>
+                <text>Статус</text>
+            </label>
+            <suggest-box id="logbookStatusValue">
+                <field-path value="status" on-root-delete="unlink"/>
+                <collection-ref name="logbook_status_collection"/>
+                <input-text-filter name="byStatusDescription"/>
+                <drop-down-pattern value="{status_description}"/>
+                <selection-pattern value="{status_description}"/>
+                <page-size>30</page-size>
+                <selection-style name="table"/>
+            </suggest-box>
         </widget-config>
     </form>
 </configuration>

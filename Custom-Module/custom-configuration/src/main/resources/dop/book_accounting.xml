@@ -2,7 +2,7 @@
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
     <!-- Классификатор, задан статус по умолчанию "Актульаный" -->
-    <domain-object-type name="lib_qualifier" initial-status="Active">
+    <domain-object-type name="lib_qualifier" initial-status="Actual">
         <fields>
             <!-- Заголовок классификатора -->
             <string name="title" length="100" not-null="true"/>
