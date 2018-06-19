@@ -22,6 +22,7 @@
                 ]]>
             </criteria>
         </filter>
+
     </collection>
 
     <collection-view name="author_view" collection="author_collection" is-default="true">

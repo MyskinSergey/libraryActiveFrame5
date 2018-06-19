@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration xmlns="https://cm5.intertrust.ru/config">
-
-    <!-- Todo: добавить агрегатную функцию -->
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
 
     <collection name="qualifier_collection" idField="id">
         <prototype>
@@ -10,16 +8,24 @@
                   q.id                       AS id,
                   q.title                    AS qualifier_title,
                   q.description              AS qualifier_description,
-                  string_agg(b.name, ', ')   AS books_name
+                  (SELECT COUNT(*) FROM lib_book WHERE bq.book = b.id) AS books
 
                 FROM Lib_Qualifier q
-                  INNER JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
-                  INNER JOIN lib_book b on bq.book = b.id
+                  LEFT JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
+                  LEFT JOIN lib_book b ON bq.book = b.id
                 WHERE
                   1=1 ::where-clause
-                GROUP BY q.id
             ]]>
         </prototype>
+
+        <counting-prototype>
+            SELECT COUNT(*)
+
+            FROM lib_qualifier q
+            LEFT JOIN lib_book_qualifier bq ON q.id = bq.qualifier
+
+            WHERE 1=1 ::where - clause
+        </counting-prototype>
     </collection>
 
     <collection-view name="qualifier_ view" collection="qualifier_collection" is-default="true">
@@ -28,8 +34,16 @@
                     min-width="50px" text-break-style="cut"/>
             <column field="qualifier_description" name="Описание" type="string" editable="false"
                     sortable="true" min-width="50px" text-break-style="cut"/>
-            <column field="books_name" name="Имя книги" type="string" editable="true"
-                    sortable="true" min-width="50px" text-break-style="cut"/>
+            <column field="books" name="Карточка книги" type="long" editable="false"
+                    sortable="true" min-width="50px" text-break-style="cut">
+                <child-collection-viewer filter="byBooks" domain-object-type-to-create="lib_book"
+                                         bread-crumb="Карточка книиги">
+                    <collection-viewer>
+                        <collection-ref name="book_collection"/>
+                        <act:tool-bar useDefault="false"/>
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
         </display>
     </collection-view>
 
