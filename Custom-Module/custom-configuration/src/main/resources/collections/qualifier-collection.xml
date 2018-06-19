@@ -38,16 +38,26 @@
             <![CDATA[
                 SELECT
                     id,
-                    name status_name
+                    name status_name,
+                    description status_description
                 FROM status
                 WHERE
-                name IN ('Draft', 'Pending', 'Performed', 'Closed', 'Published', 'Reserved') ::where-clause
+                name IN ('Actual', 'Cancelled') ::where-clause
             ]]>
         </prototype>
+
         <filter name="byStatusName">
             <criteria placeholder="where-clause">
                 <![CDATA[
                     LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byStatusDescription">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(description) LIKE LOWER('%' || {0} || '%')
                 ]]>
             </criteria>
         </filter>
