@@ -6,14 +6,14 @@
             <header>
                 <table>
                     <tr>
-                        <td h-align="right">
+                        <td h-align="left">
                             <widget id="headerLabel"/>
                         </td>
                     </tr>
                 </table>
             </header>
             <body display-single-tab="false">
-                <tab name="MainTab">
+                <tab name="Главная">
                     <single-entry-group>
                         <tab-group>
                             <table>
