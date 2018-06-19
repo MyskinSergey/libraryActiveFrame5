@@ -41,7 +41,7 @@
                     name status_name
                 FROM status
                 WHERE
-                name IN ('Actual', 'Terminate') ::where-clause
+                name IN ('Draft', 'Pending', 'Performed', 'Closed', 'Published', 'Reserved') ::where-clause
             ]]>
         </prototype>
         <filter name="byStatusName">

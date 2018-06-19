@@ -13,6 +13,7 @@
                     b.name as book_name
                 FROM lib_logbook lb
                 LEFT JOIN lib_Book b ON b.id = lb.book
+
                 WHERE
                     1=1 ::where-clause
             ]]>
@@ -47,5 +48,25 @@
                     sortable="true" min-width="50px" text-break-style="cut"/>
         </display>
     </collection-view>
+
+    <collection name="logbook_status_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                    id,
+                    name status_name
+                FROM status
+                WHERE
+                name IN ('Actual', 'Terminate') ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byStatusName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
 
 </configuration>
