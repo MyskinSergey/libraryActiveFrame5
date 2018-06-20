@@ -76,13 +76,11 @@
         <widget-config>
             <!-- Заголовок формы -->
             <label id="headerLabel">
-                <field-path/>
                 <text>Книга</text>
             </label>
 
             <!-- Имя книги -->
             <label id="bookNameLabel">
-                <field-path/>
                 <text>Название книги</text>
             </label>
             <text-box id="bookNameText">
@@ -91,7 +89,6 @@
 
             <!-- Описание книги -->
             <label id="bookDescriptionLabel">
-                <field-path/>
                 <text>Описание книги</text>
             </label>
             <text-box id="bookDescriptionText">
@@ -100,7 +97,6 @@
 
             <!-- Автор -->
             <label id="bookAuthorLabel">
-                <field-path/>
                 <text>Автор</text>
             </label>
             <suggest-box id="bookAuthorValue">
@@ -124,7 +120,6 @@
 
             <!-- Классификация книги -->
             <label id="bookQualifiersLabel">
-                <field-path/>
                 <text>Классификатор</text>
             </label>
             <linked-domain-objects-table id="bookQualifiers">

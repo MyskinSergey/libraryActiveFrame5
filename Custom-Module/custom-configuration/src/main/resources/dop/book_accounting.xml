@@ -5,7 +5,12 @@
     <domain-object-type name="lib_qualifier" initial-status="Actual">
         <fields>
             <!-- Заголовок классификатора -->
-            <string name="title" length="100" not-null="true"/>
+            <string name="title" length="100" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </string>
             <!-- Описание классификатора -->
             <string name="description" length="253"/>
         </fields>
@@ -15,7 +20,12 @@
     <domain-object-type name="lib_author">
         <fields>
             <!-- Имя автора -->
-            <string name="name" length="100" not-null="true"/>
+            <string name="name" length="100" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </string>
             <!-- Биография автора -->
             <string name="description" length="253"/>
         </fields>
@@ -25,11 +35,21 @@
     <domain-object-type name="lib_book">
         <fields>
             <!-- Название книги -->
-            <string name="name" length="100" not-null="true"/>
+            <string name="name" length="100" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </string>
             <!-- Описание книги -->
             <string name="description" length="1024"/>
             <!-- Ссылка на сущность "Автор" -->
-            <reference name="author" type="lib_author" not-null="true"/>
+            <reference name="author" type="lib_author" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
         </fields>
     </domain-object-type>
 
@@ -37,9 +57,19 @@
     <domain-object-type name="lib_book_qualifier">
         <fields>
             <!-- Ссылка на сущность "Книга" -->
-            <reference name="book" type="lib_book" not-null="true"/>
+            <reference name="book" type="lib_book" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
             <!-- Ссылка на сущность "Классификатор" -->
-            <reference name="qualifier" type="lib_qualifier" not-null="true"/>
+            <reference name="qualifier" type="lib_qualifier" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
         </fields>
     </domain-object-type>
 
@@ -47,9 +77,19 @@
     <domain-object-type name="lib_logbook">
         <fields>
             <!-- Ссылка на сущность "Книга" -->
-            <reference name="book" type="lib_book" not-null="true"/>
+            <reference name="book" type="lib_book" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
             <!-- Номер формуляра -->
-            <long name="log_number" not-null="true"/>
+            <long name="log_number" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </long>
             <!-- Дата публикации книги -->
             <timelessDate name="published"/>
             <!-- Местоположение книги -->

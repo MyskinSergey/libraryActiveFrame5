@@ -86,7 +86,6 @@
 
             <!-- Описание классификатор -->
             <label id="qualifierDescriptionLabel">
-                <field-path/>
                 <text>Описание классификатора</text>
             </label>
             <text-box id="qualifierDescriptionText">

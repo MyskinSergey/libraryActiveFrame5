@@ -44,13 +44,11 @@
         <widget-config>
             <!-- Заголовок формы -->
             <label id="headerLabel">
-                <field-path/>
                 <text>Классификация книги</text>
             </label>
 
             <!-- Выпадающий список для выбора книги, отключена вомзожность редактирования -->
             <label id="bqBookLabel">
-                <field-path/>
                 <text>Книга</text>
             </label>
             <suggest-box id="bqBookValue" read-only="true">
@@ -65,7 +63,6 @@
 
             <!-- Выпадающий список для выбора классификатора -->
             <label id="bqQualifierLabel">
-                <field-path/>
                 <text>Классификатор</text>
             </label>
             <suggest-box id="bqQualifierValue">

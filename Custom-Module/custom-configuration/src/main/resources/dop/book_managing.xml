@@ -24,15 +24,40 @@
     <domain-object-type name="lib_application" initial-status="Draft">
         <fields>
             <!-- Номер заявки -->
-            <long name="app_number" not-null="true"/>
+            <long name="app_number" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </long>
             <!-- Срок возврата: текущая дата + 14 дней -->
-            <timelessDate name="return_to" not-null="true"/>
+            <timelessDate name="return_to" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </timelessDate>
             <!-- Ссылка на сущность "Книга" -->
-            <reference name="book" type="lib_book" not-null="true"/>
+            <reference name="book" type="lib_book" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
             <!-- Ссылка на сущность "Читатель" -->
-            <reference name="reader" type="lib_reader" not-null="true"/>
+            <reference name="reader" type="lib_reader" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
             <!-- Ссылка на сущность "Автор" -->
-            <reference name="author" type="lib_author" not-null="true"/>
+            <reference name="author" type="lib_author" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
         </fields>
     </domain-object-type>
 
@@ -40,9 +65,19 @@
     <domain-object-type name="lib_logbook_entry" initial-status="6">
         <fields>
             <!-- Ссылка на сущность "Формуляр" -->
-            <reference name="logbook" type="lib_logbook" not-null="true"/>
+            <reference name="logbook" type="lib_logbook" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
             <!-- Ссылка на сущность "Заявка" -->
-            <reference name="application" type="lib_application" not-null="true"/>
+            <reference name="application" type="lib_application" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
         </fields>
     </domain-object-type>
 

@@ -63,13 +63,11 @@
         <widget-config>
             <!-- Заголовок формы -->
             <label id="headerLabel">
-                <field-path/>
                 <text>Формуляр</text>
             </label>
 
             <!-- Номер формуляра -->
             <label id="logbookNumberLabel">
-                <field-path/>
                 <text>№</text>
             </label>
             <integer-box id="logbookNumberValue">
@@ -78,7 +76,6 @@
 
             <!-- Дата публикации книги -->
             <label id="logbookPublishedLabel">
-                <field-path/>
                 <text>Дата публикации</text>
             </label>
             <date-box id="logbookPublishedValue">
@@ -87,7 +84,6 @@
 
             <!-- Местонахождение книги -->
             <label id="logbookLocationLabel">
-                <field-path/>
                 <text>Местонахождение</text>
             </label>
             <text-box id="logbookLocationValue">
@@ -96,7 +92,6 @@
 
             <!-- Статус данного формуляра -->
             <label id="logbookStatusLabel">
-                <field-path/>
                 <text>Статус</text>
             </label>
             <suggest-box id="logbookStatusValue">
