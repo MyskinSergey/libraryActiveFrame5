@@ -53,6 +53,7 @@
             </reference>
 
             <!-- Ссылка на системную сущность Person - автор данной заявки -->
+            <reference name="author" type="person"/>
         </fields>
     </domain-object-type>
 

@@ -10,21 +10,16 @@
                   a.return_to                           AS application_return_to,
                   b.name                                AS book_name,
                   r.name                                AS reader_name,
-                  (SELECT firstname
-                   FROM person)                         AS person_name,
-
-                  (SELECT description
-                   FROM status
-                   WHERE
-                     name IN ('Draft', 'Pending',
-                              'Performed', 'Closed',
-                              'Published', 'Reserved')) AS status_description
+                  app_author.firstname                  AS person_name,
+                  s.description                         AS status_description
 
                 FROM lib_application a
                   INNER JOIN lib_book b ON b.id = a.book
                   INNER JOIN lib_reader r ON r.id = a.reader
+                  INNER JOIN person app_author ON app_author.id = a.author
+                  INNER JOIN status s ON s.id = a.status
 
-                                WHERE 1=1 ::where-clause
+                WHERE 1=1 ::where-clause
             ]]>
         </prototype>
     </collection>

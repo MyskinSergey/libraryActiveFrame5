@@ -109,16 +109,16 @@
             <label id="applicationAppNumberLabel">
                 <text>Номера заявки</text>
             </label>
-            <text-box id="applicationAppNumberText">
+            <integer-box id="applicationAppNumberText">
                 <field-path value="app_number"/>
-            </text-box>
+            </integer-box>
 
             <!-- Читатель -->
             <label id="applicationReaderLabel">
                 <text>Читатель</text>
             </label>
             <suggest-box id="applicationReaderValue">
-                <field-path value="lib_application^reader" on-root-delete="unlink"/>
+                <field-path value="reader" on-root-delete="unlink"/>
                 <collection-ref name="app_readers_collection"/>
                 <input-text-filter name="byReaderName"/>
                 <drop-down-pattern value="{reader_name}"/>
@@ -131,7 +131,7 @@
                 <text>Книга</text>
             </label>
             <suggest-box id="applicationBookValue">
-                <field-path value="lib_application^book" on-root-delete="unlink"/>
+                <field-path value="book" on-root-delete="unlink"/>
                 <collection-ref name="app_books_collection"/>
                 <input-text-filter name="byBookName"/>
                 <drop-down-pattern value="{book_name}"/>
@@ -160,7 +160,7 @@
                 <text>Автор заявки</text>
             </label>
             <text-box id="applicationAuthorValue" read-only="true">
-                <field-path value="lib_application^person"/>
+                <field-path value="author.firstname"/>
             </text-box>
         </widget-config>
     </form>
