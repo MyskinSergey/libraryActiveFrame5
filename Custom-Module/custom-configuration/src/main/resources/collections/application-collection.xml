@@ -84,4 +84,35 @@
             </criteria>
         </filter>
     </collection>
+
+    <collection name="app_status_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                    id,
+                    name        AS status_name,
+                    description AS status_description
+                FROM status
+                WHERE
+                name IN ('Draft', 'Pending', 'Performed', 'Closed', 'Published', 'Reserved')
+                ::where-clause
+            ]]>
+        </prototype>
+
+        <filter name="byStatusName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byStatusDescription">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(description) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
 </configuration>

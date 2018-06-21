@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <form name="book_form" domain-object-type="lib_book" is-default="true">
+    <form name="book_form" domain-object-type="lib_book" is-default="false">
         <markup>
             <header>
                 <table>
@@ -36,7 +36,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td h-align="right">
+                                    <td h-align="left">
                                         <widget id="bookAuthorLabel"/>
                                     </td>
                                     <td h-align="left">
@@ -117,6 +117,141 @@
                     <created-object domain-object-type="lib_author" text="Автор"/>
                 </created-objects>
             </suggest-box>
+
+            <!-- Классификация книги -->
+            <label id="bookQualifiersLabel">
+                <text>Классификатор</text>
+            </label>
+            <linked-domain-objects-table id="bookQualifiers">
+                <field-path value="lib_book_qualifier^book"/>
+                <linked-form name="book_qualifier_form" inline="true" modal-width="450px" modal-height="50px"/>
+
+                <summary-table>
+                    <summary-table-column header="Наименование" widget-id="qualifierTitleText">
+                        <pattern value="{qualifier.title}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Описание" widget-id="qualifierDescriptionText">
+                        <pattern value="{qualifier.description}"/>
+                    </summary-table-column>
+                </summary-table>
+
+                <!--<selection-sort-criteria>-->
+                <!--<sort-criterion field="qualifierTitleText" order="asc"/>-->
+                <!--</selection-sort-criteria>-->
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+            <!-- Формуляр -->
+            <linked-domain-objects-table id="logbookTable">
+                <field-path value="lib_logbook^book" on-root-delete="unlink"/>
+                <linked-form name="logbook_form" inline="true" modal-width="500px" modal-height="350px"/>
+
+                <summary-table>
+                    <summary-table-column header="№" widget-id="logNumberValue">
+                        <pattern value="{log_number}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Дата издания" widget-id="publishedValue">
+                        <pattern value="{published}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Местонахождение" widget-id="locationValue">
+                        <pattern value="{location}"/>
+                    </summary-table-column>
+                </summary-table>
+
+                <!--<selection-sort-criteria>-->
+                <!--<sort-criterion field="log_number" order="asc"/>-->
+                <!--</selection-sort-criteria>-->
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+        </widget-config>
+    </form>
+
+    <!-- Форма для отображения списка книг на вкладке "Авторы" -->
+    <form name="book_form_simple" domain-object-type="lib_book" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Карточка книги">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="bookNameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="bookNameText"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="bookDescriptionLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="bookDescriptionText"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="bookQualifiersLabel"/>
+                                    </td>
+                                    <td h-align="left" colspan="2">
+                                        <widget id="bookQualifiers"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="Формуляры">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left" width="100%">
+                                        <widget id="logbookTable"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+
+        <widget-config>
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
+                <text>Книга</text>
+            </label>
+
+            <!-- Имя книги -->
+            <label id="bookNameLabel">
+                <text>Название книги</text>
+            </label>
+            <text-box id="bookNameText">
+                <field-path value="name"/>
+            </text-box>
+
+            <!-- Описание книги -->
+            <label id="bookDescriptionLabel">
+                <text>Описание книги</text>
+            </label>
+            <text-box id="bookDescriptionText">
+                <field-path value="description"/>
+            </text-box>
 
             <!-- Классификация книги -->
             <label id="bookQualifiersLabel">
