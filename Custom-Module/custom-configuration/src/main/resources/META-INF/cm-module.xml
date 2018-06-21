@@ -31,6 +31,7 @@
         <configuration-path>collections/bookqualifier-collection.xml</configuration-path>
         <configuration-path>collections/logbook-collection.xml</configuration-path>
         <configuration-path>collections/qualifier-collection.xml</configuration-path>
+        <configuration-path>collections/reader-collection.xml</configuration-path>
 
         <!-- Доменные объекты -->
         <configuration-path>dop/book_accounting.xml</configuration-path>
@@ -42,6 +43,7 @@
         <configuration-path>forms/book-qualifier-form.xml</configuration-path>
         <configuration-path>forms/logbook-form.xml</configuration-path>
         <configuration-path>forms/qualifier-form.xml</configuration-path>
+        <configuration-path>forms/reader-form.xml</configuration-path>
     </configuration-paths>
 
     <import-files rewrite="true">

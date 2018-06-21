@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <collection name="reader_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  id       AS id,
+                  name     AS reader_name,
+                  email    AS reader_email,
+                  address  AS reader_address,
+                  document AS reader_document
+                FROM lib_reader
+                WHERE 1=1 ::where-clause
+            ]]>
+        </prototype>
+    </collection>
+    <collection-view name="reader_view" collection="reader_collection" is-default="true">
+        <display>
+            <column field="reader_name" name="Имя читателя" type="string" min-width="50px" text-break-style="cut"
+                    editable="true" sortable="true"/>
+            <column field="reader_email" name="E-mail" type="string" min-width="50px" text-break-style="cut"
+                    editable="true" sortable="true"/>
+            <column field="reader_address" name="Адресс" type="string" min-width="50px" text-break-style="cut"
+                    editable="true" sortable="true"/>
+            <column field="reader_document" name="Документ" type="string" min-width="50px" text-break-style="cut"
+                    editable="true" sortable="true"/>
+        </display>
+    </collection-view>
+</configuration>

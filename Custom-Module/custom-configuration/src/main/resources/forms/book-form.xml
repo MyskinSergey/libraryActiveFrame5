@@ -6,7 +6,7 @@
             <header>
                 <table>
                     <tr>
-                        <td h-align="right">
+                        <td h-align="left">
                             <widget id="headerLabel"/>
                         </td>
                     </tr>
@@ -110,7 +110,7 @@
 
                 <linked-form-mapping>
                     <linked-form domain-object-type="lib_author" name="author_form_simple" modal-width="350px"
-                                 modal-height="250px"/>
+                                 modal-height="180px"/>
                 </linked-form-mapping>
                 <create-new-button text="Создать"/>
                 <created-objects>
@@ -124,7 +124,7 @@
             </label>
             <linked-domain-objects-table id="bookQualifiers">
                 <field-path value="lib_book_qualifier^book"/>
-                <linked-form name="book_qualifier_form" inline="true" modal-width="500px" modal-height="100px"/>
+                <linked-form name="book_qualifier_form" inline="true" modal-width="350px" modal-height="50px"/>
 
                 <summary-table>
                     <summary-table-column header="Наименование" widget-id="qualifierTitleText">
@@ -144,7 +144,7 @@
             <!-- Формуляр -->
             <linked-domain-objects-table id="logbookTable">
                 <field-path value="lib_logbook^book" on-root-delete="unlink"/>
-                <linked-form name="logbook_form" inline="true" modal-width="500px" modal-height="350px"/>
+                <linked-form name="logbook_form" inline="true" modal-width="500px" modal-height="300px"/>
 
                 <summary-table>
                     <summary-table-column header="№" widget-id="logNumberValue">

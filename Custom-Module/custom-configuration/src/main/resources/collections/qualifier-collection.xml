@@ -4,32 +4,55 @@
     <collection name="qualifier_collection" idField="id">
         <prototype>
             <![CDATA[
-                SELECT
-                  q.id                       AS id,
-                  q.title                    AS qualifier_title,
-                  q.description              AS qualifier_description,
-                  (SELECT COUNT(*) FROM lib_book WHERE bq.book = b.id) AS books
+            SELECT
+              q.id                       AS id,
+              q.title                    AS qualifier_title,
+              q.description              AS qualifier_description,
+              sum(1)                     AS books
 
-                FROM Lib_Qualifier q
-                  LEFT JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
-                  LEFT JOIN lib_book b on bq.book = b.id
-                WHERE
-                  1=1 ::where-clause
-                GROUP BY q.id, q.title, q.description, books
+            FROM lib_qualifier q
+              LEFT JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
+              LEFT JOIN lib_book b on bq.book = b.id
+            WHERE
+              1=1 ::where-clause
+            GROUP BY q.id, q.title, q.description
+            ORDER BY q.id
             ]]>
         </prototype>
+
+        <!--&lt;!&ndash; Запрос в нутреннем подзапросом &ndash;&gt;-->
+        <!--<prototype>-->
+        <!--<![CDATA[-->
+        <!--SELECT-->
+        <!--q.id                       AS id,-->
+        <!--q.title                    AS qualifier_title,-->
+        <!--q.description              AS qualifier_description,-->
+        <!--sum((SELECT count(*)-->
+        <!--FROM lib_book-->
+        <!--INNER JOIN Lib_book_qualifier ON Lib_book_qualifier.book = lib_book.id-->
+        <!--WHERE b.id = lib_book.id)) AS books-->
+
+        <!--FROM lib_qualifier q-->
+        <!--LEFT JOIN Lib_book_qualifier bq ON q.id = bq.qualifier-->
+        <!--LEFT JOIN lib_book b on bq.book = b.id-->
+        <!--WHERE-->
+        <!--1=1 ::where-clause-->
+        <!--GROUP BY q.id, q.title, q.description-->
+        <!--]]>-->
+        <!--</prototype>-->
 
         <counting-prototype>
             SELECT COUNT(*)
 
             FROM lib_qualifier q
-            LEFT JOIN lib_book_qualifier bq ON q.id = bq.qualifier
+            LEFT JOIN Lib_book_qualifier bq ON q.id = bq.qualifier
+            LEFT JOIN lib_book b on bq.book = b.id
 
-            WHERE 1=1 ::where - clause
+            WHERE 1=1 ::where-clause
         </counting-prototype>
     </collection>
 
-    <collection-view name="qualifier_ view" collection="qualifier_collection" is-default="true">
+    <collection-view name="qualifier_view" collection="qualifier_collection" is-default="true">
         <display>
             <column field="qualifier_title" name="Классификатор" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>

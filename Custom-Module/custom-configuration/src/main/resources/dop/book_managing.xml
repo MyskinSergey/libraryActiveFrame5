@@ -12,7 +12,7 @@
                 </constraints>
             </string>
             <!-- Электронный почтовый адрес -->
-            <string name="e_mail" length="100"/>
+            <string name="email" length="100"/>
             <!-- Адрес проживания -->
             <string name="address" length="1024"/>
             <!-- Документ, удостоверяющий личность -->

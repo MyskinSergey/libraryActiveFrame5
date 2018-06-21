@@ -16,6 +16,7 @@
                   LEFT JOIN lib_book_qualifier bq ON b.id = bq.book
                 WHERE
                   1=1 ::where-clause
+                GROUP BY b.id, b.name, b.description, a.name, logbooks
             ]]>
         </prototype>
 

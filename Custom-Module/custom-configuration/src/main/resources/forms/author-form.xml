@@ -124,14 +124,6 @@
                     <single-entry-group>
                         <tab-group>
                             <table>
-                                <tr>
-                                    <td h-align="right">
-                                        <widget id="bookNameLabel"/>
-                                    </td>
-                                    <td h-align="left">
-                                        <widget id="bookNameValue"/>
-                                    </td>
-                                </tr>
 
 
                                 <tr>
@@ -179,20 +171,6 @@
             <text-box id="authorDescriptionText">
                 <field-path value="description"/>
             </text-box>
-
-            <!-- Выпадающий список для выбора книги, отключена вомзожность редактирования -->
-            <label id="bookNameLabel">
-                <text>Книга</text>
-            </label>
-            <suggest-box id="bookNameValue" read-only="true">
-                <field-path value="lib_book^author" on-root-delete="unlink"/>
-                <collection-ref name="bq_books_collection"/>
-                <input-text-filter name="byBookName"/>
-                <drop-down-pattern value="{book_name}"/>
-                <selection-pattern value="{book_name}"/>
-                <page-size>30</page-size>
-                <selection-style name="table"/>
-            </suggest-box>
         </widget-config>
     </form>
 

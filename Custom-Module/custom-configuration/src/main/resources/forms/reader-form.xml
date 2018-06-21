@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="reader_form" domain-object-type="lib_reader" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Главная">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <!-- Имя читателя -->
+                                    <td h-align="left">
+                                        <widget id="readerNameLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="readerNameText"/>
+                                    </td>
+
+                                    <!-- E-mail читателя -->
+                                    <td h-align="left">
+                                        <widget id="readerEmailLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="readerEmailText"/>
+                                    </td>
+
+                                    <!-- Адресс читателя -->
+                                    <td h-align="left">
+                                        <widget id="readerAddressLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="readerAddressText"/>
+                                    </td>
+
+                                    <!-- Документ читателя -->
+                                    <td h-align="left">
+                                        <widget id="readerDocumentLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="readerDocumentText"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
+                <text>Классификатор</text>
+            </label>
+            
+            <!-- Имя читателя -->
+            <label id="readerNameLabel">
+                <text>Имя читателя</text>
+            </label>
+            <text-box id="readerNameText">
+                <field-path value="name"/>
+            </text-box>
+
+            <!-- Email читателя -->
+            <label id="readerEmailLabel">
+                <text>Email</text>
+            </label>
+            <text-box id="readerEmailText">
+                <field-path value="email"/>
+            </text-box>
+
+            <!-- Адресс читателя -->
+            <label id="readerAddressLabel">
+                <text>Адресс</text>
+            </label>
+            <text-box id="readerAddressText">
+                <field-path value="address"/>
+            </text-box>
+
+            <!-- Документ читателя -->
+            <label id="readerDocumentLabel">
+                <text>Документ</text>
+            </label>
+            <text-box id="readerDocumentText">
+                <field-path value="document"/>
+            </text-box>
+        </widget-config>
+    </form>
+</configuration>

@@ -17,14 +17,14 @@
                     <single-entry-group>
                         <tab-group>
                             <table>
-                                <tr>
-                                    <td h-align="right">
-                                        <widget id="bqBookLabel"/>
-                                    </td>
-                                    <td h-align="left">
-                                        <widget id="bqBookValue"/>
-                                    </td>
-                                </tr>
+                                <!--<tr>-->
+                                <!--<td h-align="right">-->
+                                <!--<widget id="bqBookLabel"/>-->
+                                <!--</td>-->
+                                <!--<td h-align="left">-->
+                                <!--<widget id="bqBookValue"/>-->
+                                <!--</td>-->
+                                <!--</tr>-->
 
                                 <tr>
                                     <td h-align="right">
@@ -47,19 +47,19 @@
                 <text>Классификация книги</text>
             </label>
 
-            <!-- Выпадающий список для выбора книги, отключена вомзожность редактирования -->
-            <label id="bqBookLabel">
-                <text>Книга</text>
-            </label>
-            <suggest-box id="bqBookValue" read-only="true">
-                <field-path value="book" on-root-delete="unlink"/>
-                <collection-ref name="bq_books_collection"/>
-                <input-text-filter name="byBookName"/>
-                <drop-down-pattern value="{book_name}"/>
-                <selection-pattern value="{book_name}"/>
-                <page-size>30</page-size>
-                <selection-style name="table"/>
-            </suggest-box>
+            <!--&lt;!&ndash; Выпадающий список для выбора книги, отключена вомзожность редактирования &ndash;&gt;-->
+            <!--<label id="bqBookLabel">-->
+            <!--<text>Книга</text>-->
+            <!--</label>-->
+            <!--<suggest-box id="bqBookValue" read-only="true">-->
+            <!--<field-path value="book" on-root-delete="unlink"/>-->
+            <!--<collection-ref name="bq_books_collection"/>-->
+            <!--<input-text-filter name="byBookName"/>-->
+            <!--<drop-down-pattern value="{book_name}"/>-->
+            <!--<selection-pattern value="{book_name}"/>-->
+            <!--<page-size>30</page-size>-->
+            <!--<selection-style name="table"/>-->
+            <!--</suggest-box>-->
 
             <!-- Выпадающий список для выбора классификатора -->
             <label id="bqQualifierLabel">

@@ -5,6 +5,7 @@
         <link name="Card_file" display-text="Картотека" image="images/docs.png" child-to-open="Books">
             <child-links>
 
+                <!-- Ссылка "Книги" -->
                 <link name="Books" display-text="Книги">
                     <plugin>
                         <domain-object-surfer domain-object-type-to-create="lib_book">
@@ -14,6 +15,21 @@
                             </collection-viewer>
                             <form-viewer>
                                 <form-mapping domain-object-type="lib_book" form="book_form"/>
+                            </form-viewer>
+                        </domain-object-surfer>
+                    </plugin>
+                </link>
+
+                <!-- Ссылка "Читатели" -->
+                <link name="Readers" display-text="Читатели">
+                    <plugin>
+                        <domain-object-surfer domain-object-type-to-create="lib_reader">
+                            <collection-viewer>
+                                <collection-ref name="reader_collection"/>
+                                <default-sort-criteria column-field="reader_name" order="ASC"/>
+                            </collection-viewer>
+                            <form-viewer>
+                                <form-mapping domain-object-type="lib_reader" form="reader_form"/>
                             </form-viewer>
                         </domain-object-surfer>
                     </plugin>
