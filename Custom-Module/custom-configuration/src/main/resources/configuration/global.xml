@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
     <global-settings>
-        <product title="Шаблон проекта на ActiveFrame 5"/>
+        <product title="Библиотека"/>
         <product-version archive="custom-model.jar"/>
         <audit-log enable="false"/>
         <transaction-trace enable="false" minTime="100"/>
@@ -32,10 +32,10 @@
         </event-logs>
     </global-settings>
     <business-universe>
-        <login-screen display-product-version="true" display-core-version="true">
+        <login-screen display-product-version="false" display-core-version="false">
             <product-title style="text"/>
         </login-screen>
-        <logo image="images/logo.png"/>
+        <logo image="images/libLogo.png"/>
         <settings-popup>
             <themes>
                 <theme display-name="Основная тема" component-name="default-theme" default-theme="true"

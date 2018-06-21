@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <!-- Todo: комментирование полей-->
-
-    <!-- Классификатор -->
-    <domain-object-type name="Lib_Qualifier" initial-status="Actual">
+    <!-- Классификатор, задан статус по умолчанию "Актульаный" -->
+    <domain-object-type name="lib_qualifier" initial-status="Actual">
         <fields>
-            <string name="Title" length="100" not-null="true"/>
-            <string name="Description" length="253"/>
+            <!-- Заголовок классификатора -->
+            <string name="title" length="100" not-null="true"/>
+            <!-- Описание классификатора -->
+            <string name="description" length="253"/>
         </fields>
     </domain-object-type>
 
     <!-- Автор -->
-    <domain-object-type name="Lib_Author">
+    <domain-object-type name="lib_author">
         <fields>
-            <string name="Name" length="100" not-null="true"/>
-            <string name="Description" length="253"/>
+            <!-- Имя автора -->
+            <string name="name" length="100" not-null="true"/>
+            <!-- Биография автора -->
+            <string name="description" length="253"/>
         </fields>
     </domain-object-type>
 
     <!-- Книга -->
-    <domain-object-type name="Lib_Book">
+    <domain-object-type name="lib_book">
         <fields>
-            <string name="Name" length="100" not-null="true"/>
-            <string name="Description" length="1024"/>
-            <reference name="Author" type="Lib_Author" not-null="true"/>
+            <!-- Название книги -->
+            <string name="name" length="100" not-null="true"/>
+            <!-- Описание книги -->
+            <string name="description" length="1024"/>
+            <!-- Ссылка на сущность "Автор" -->
+            <reference name="author" type="lib_author" not-null="true"/>
         </fields>
     </domain-object-type>
 
     <!-- Классификации книги -->
-    <domain-object-type name="Lib_Book_Qualifier">
+    <domain-object-type name="lib_book_qualifier">
         <fields>
-            <reference name="Book" type="Lib_Book" not-null="true"/>
-            <reference name="Qualifier" type="Lib_Qualifier" not-null="true"/>
+            <!-- Ссылка на сущность "Книга" -->
+            <reference name="book" type="lib_book" not-null="true"/>
+            <!-- Ссылка на сущность "Классификатор" -->
+            <reference name="qualifier" type="lib_qualifier" not-null="true"/>
         </fields>
     </domain-object-type>
 
     <!-- Формуляр книги -->
-    <domain-object-type name="Lib_LogBook">
+    <domain-object-type name="lib_logbook">
         <fields>
-            <reference name="Book" type="Lib_Book" not-null="true"/>
-            <long name="Log_Number" not-null="true"/>
-            <timelessDate name="Published"/>
-            <string name="Location" length="100"/>
+            <!-- Ссылка на сущность "Книга" -->
+            <reference name="book" type="lib_book" not-null="true"/>
+            <!-- Номер формуляра -->
+            <long name="log_number" not-null="true"/>
+            <!-- Дата публикации книги -->
+            <timelessDate name="published"/>
+            <!-- Местоположение книги -->
+            <string name="location" length="100"/>
         </fields>
     </domain-object-type>
 

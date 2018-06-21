@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <form name="logbook_form" domain-object-type="Lib_LogBook" is-default="true">
+    <!-- Форма для доменного объекта "Формуляр книги" -->
+    <form name="logbook_form" domain-object-type="lib_logbook" is-default="true">
         <markup>
             <header>
-
+                <table>
+                    <tr>
+                        <td h-align="right">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
             </header>
             <body display-single-tab="false">
                 <tab name="Главная">
@@ -13,45 +20,38 @@
                             <table>
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_book_label"/>
+                                        <widget id="logbookNumberLabel"/>
                                     </td>
 
                                     <td h-align="left">
-                                        <widget id="logbook_book"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td h-align="right">
-                                        <widget id="logbook_number_label"/>
-                                    </td>
-
-                                    <td h-align="left">
-                                        <widget id="logbook_number"/>
+                                        <widget id="logbookNumberValue"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_published_label"/>
+                                        <widget id="logbookPublishedLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="logbook_published"/>
+                                        <widget id="logbookPublishedValue"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_location_label"/>
+                                        <widget id="logbookLocationLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="logbook_location"/>
+                                        <widget id="logbookLocationValue"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="logbook_status_label"/>
+                                        <widget id="logbookStatusLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="logbook_status"/>
+                                        <widget id="logbookStatusValue"/>
                                     </td>
                                 </tr>
                             </table>
@@ -61,61 +61,53 @@
             </body>
         </markup>
         <widget-config>
-
-            <label id="logbook_book_label">
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
                 <field-path/>
-                <text>Книга</text>
+                <text>Формуляр</text>
             </label>
-            <suggest-box id="logbook_book">
-                <field-path value="book" on-root-delete="unlink"/>
-                    <collection-ref name="book_collection"/>
-                    <input-text-filter name="byBookTitle"/>
-                    <drop-down-pattern value="{book_name} ({book_description})"/>
-                    <selection-pattern value="{book_name}"/>
-                    <page-size>30</page-size>
-                    <selection-style name="table"/>
-            </suggest-box>
 
-            <label id="logbook_number_label">
+            <!-- Номер формуляра -->
+            <label id="logbookNumberLabel">
                 <field-path/>
-                <text>Регистрационный №</text>
+                <text>№</text>
             </label>
-            <integer-box id="logbook_number">
+            <integer-box id="logbookNumberValue">
                 <field-path value="log_number"/>
             </integer-box>
 
-            <label id="logbook_published_label">
+            <!-- Дата публикации книги -->
+            <label id="logbookPublishedLabel">
                 <field-path/>
-                <text>Год публикации</text>
+                <text>Дата публикации</text>
             </label>
-            <date-box id="logbook_published">
+            <date-box id="logbookPublishedValue">
                 <field-path value="published"/>
             </date-box>
 
-
-            <label id="logbook_location_label">
+            <!-- Местонахождение книги -->
+            <label id="logbookLocationLabel">
                 <field-path/>
                 <text>Местонахождение</text>
             </label>
-            <text-box id="logbook_location">
+            <text-box id="logbookLocationValue">
                 <field-path value="location"/>
             </text-box>
 
-            <label id="logbook_status_label">
+            <!-- Статус данного формуляра -->
+            <label id="logbookStatusLabel">
                 <field-path/>
                 <text>Статус</text>
             </label>
-            <suggest-box id="logbook_status">
-                <field-path value="Status" on-root-delete="unlink"/>
+            <suggest-box id="logbookStatusValue">
+                <field-path value="status" on-root-delete="unlink"/>
                 <collection-ref name="logbook_status_collection"/>
-                <input-text-filter name="byStatusName"/>
-                <drop-down-pattern value="{status_name}"/>
-                <selection-pattern value="{status_name}"/>
+                <input-text-filter name="byStatusDescription"/>
+                <drop-down-pattern value="{status_description}"/>
+                <selection-pattern value="{status_description}"/>
                 <page-size>30</page-size>
                 <selection-style name="table"/>
             </suggest-box>
-
         </widget-config>
     </form>
-
 </configuration>

@@ -22,9 +22,10 @@
                 ]]>
             </criteria>
         </filter>
+
     </collection>
 
-    <collection-view name="author_collection_default_view" collection="author_collection" is-default="true">
+    <collection-view name="author_view" collection="author_collection" is-default="true">
         <display>
             <column field="author_name" name="Имя" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
@@ -32,6 +33,36 @@
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
             <column field="books_names" name="Имя книги" type="string" editable="false"
+                    sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+        </display>
+    </collection-view>
+
+    <collection name="author_collection_simple" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  id,
+                  name                    AS author_name,
+                  description             AS author_description
+                FROM lib_author
+                WHERE 1=1 ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byAuthorName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="author_view_simple" collection="author_collection" is-default="true">
+        <display>
+            <column field="author_name" name="Имя" type="string" editable="false" sortable="true"
+                    min-width="50px" text-break-style="cut"/>
+            <column field="author_description" name="Биография" type="string" editable="false"
                     sortable="true"
                     min-width="50px" text-break-style="cut"/>
         </display>

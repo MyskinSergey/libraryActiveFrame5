@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <form name="author_form" domain-object-type="Lib_Author" is-default="true">
+    <!-- Форма "Авторы" для отображения в меню справочники -->
+    <form name="author_form" domain-object-type="lib_author" is-default="true">
         <markup>
             <header>
-
+                <table>
+                    <tr>
+                        <td h-align="right">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
             </header>
             <body display-single-tab="false">
                 <tab name="Автор">
                     <single-entry-group>
                         <tab-group>
                             <table>
-
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="author_name_label"/>
+                                        <widget id="authorNameLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="author_name"/>
+                                        <widget id="authorNameText"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="author_description_label"/>
+                                        <widget id="authorDescriptionLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="author_description"/>
+                                        <widget id="authorDescriptionText"/>
                                     </td>
                                 </tr>
-
                             </table>
                         </tab-group>
                     </single-entry-group>
@@ -40,10 +45,10 @@
                             <table>
                                 <tr>
                                     <td h-align="right">
-                                        <widget id="linked_books_label"/>
+                                        <widget id="linkedBooksLabel"/>
                                     </td>
                                     <td h-align="left">
-                                        <widget id="linked_books"/>
+                                        <widget id="linkedBooksValue"/>
                                     </td>
                                 </tr>
                             </table>
@@ -54,41 +59,140 @@
         </markup>
 
         <widget-config>
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
+                <field-path/>
+                <text>Автор</text>
+            </label>
 
-            <label id="author_name_label">
+            <!-- Имя автора -->
+            <label id="authorNameLabel">
                 <field-path/>
                 <text>Имя автора</text>
             </label>
-            <text-box id="author_name">
+            <text-box id="authorNameText">
                 <field-path value="name"/>
             </text-box>
 
-            <label id="author_description_label">
+            <!-- Биография автора -->
+            <label id="authorDescriptionLabel">
                 <field-path/>
                 <text>Биография</text>
             </label>
-            <text-box id="author_description">
+            <text-box id="authorDescriptionText">
                 <field-path value="description"/>
             </text-box>
 
-            <label id="linked_books_label">
+            <!-- Список книг по данному автору -->
+            <label id="linkedBooksLabel">
                 <field-path/>
                 <text>Книги автора</text>
             </label>
-            <linked-domain-objects-table id="linked_books" modal-width="500px" modal-height="300px">
-                <field-path value="Lib_Book^Author" on-root-delete="unlink"/>
-                <linked-form name="book_form" inline="true"/>
+            <linked-domain-objects-table id="linkedBooksValue" modal-width="500px" modal-height="300px">
+                <field-path value="lib_book^author" on-root-delete="unlink"/>
+                <linked-form name="book_with_selected_author_form" inline="true"/>
+
                 <summary-table>
-                    <summary-table-column header="Название" widget-id="book_name">
-                        <pattern value="{Name}"/>
+                    <summary-table-column header="Название" widget-id="bookNameText">
+                        <pattern value="{name}"/>
                     </summary-table-column>
-                    <summary-table-column header="Описание" widget-id="book_description">
-                        <pattern value="{Description}"/>
+                    <summary-table-column header="Описание" widget-id="bookDescriptionText">
+                        <pattern value="{description}"/>
                     </summary-table-column>
                 </summary-table>
+
                 <single-choice value="false"/>
             </linked-domain-objects-table>
 
+        </widget-config>
+    </form>
+
+    <!-- Форма "Авторы" для отображения на карточке книги -->
+    <form name="author_form_simple" domain-object-type="lib_author" is-default="false">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="right">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Автор">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="bookNameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="bookNameValue"/>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="authorNameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="authorNameText"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="authorDescriptionLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="authorDescriptionText"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+
+        <widget-config>
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
+                <text>Автор</text>
+            </label>
+
+            <!-- Имя автора -->
+            <label id="authorNameLabel">
+                <text>Имя автора</text>
+            </label>
+            <text-box id="authorNameText">
+                <field-path value="name"/>
+            </text-box>
+
+            <!-- Биография автора -->
+            <label id="authorDescriptionLabel">
+                <text>Биография</text>
+            </label>
+            <text-box id="authorDescriptionText">
+                <field-path value="description"/>
+            </text-box>
+
+            <!-- Выпадающий список для выбора книги, отключена вомзожность редактирования -->
+            <label id="bookNameLabel">
+                <text>Книга</text>
+            </label>
+            <suggest-box id="bookNameValue" read-only="true">
+                <field-path value="lib_book^author" on-root-delete="unlink"/>
+                <collection-ref name="book_collection"/>
+                <input-text-filter name="byBookTitle"/>
+                <drop-down-pattern value="{book_name}"/>
+                <selection-pattern value="{book_name}"/>
+                <page-size>30</page-size>
+                <selection-style name="table"/>
+            </suggest-box>
         </widget-config>
     </form>
 

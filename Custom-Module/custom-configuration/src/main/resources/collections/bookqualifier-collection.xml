@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <collection name="bookqualifier_collection" idField="id">
+    <collection name="book_qualifier_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
@@ -17,7 +17,7 @@
         </prototype>
     </collection>
 
-    <collection-view name="bookqualifier_collection_default_view" collection="bookqualifier_collection"
+    <collection-view name="book_qualifier_view" collection="book_qualifier_collection"
                      is-default="true">
         <display>
             <column field="book_name" name="Книги" type="string" editable="false" sortable="true"
@@ -27,7 +27,7 @@
         </display>
     </collection-view>
 
-    <collection name="book_qualifier_books_collection" idField="id">
+    <collection name="bq_books_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
@@ -48,7 +48,7 @@
         </filter>
     </collection>
 
-    <collection-view name="book_qualifier_books_collection_view" collection="book_qualifier_books_collection" is-default="true">
+    <collection-view name="bq_books_view" collection="bq_books_collection" is-default="true">
         <display>
             <column field="book_name" name="Название книги" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>
@@ -58,7 +58,7 @@
         </display>
     </collection-view>
 
-    <collection name="book_qualifier_qualifiers_collection" idField="id">
+    <collection name="bq_qualifiers_collection" idField="id">
         <prototype>
             <![CDATA[
                 SELECT
@@ -80,7 +80,7 @@
 
     </collection>
 
-    <collection-view name="book_qualifier_qualifiers_collection_view" collection="book_qualifier_qualifiers_collection" is-default="true">
+    <collection-view name="bq_qualifiers_view" collection="bq_qualifiers_collection" is-default="true">
         <display>
             <column field="qualifier_title" name="Классификатор" type="string" editable="false" sortable="true"
                     min-width="50px" text-break-style="cut"/>

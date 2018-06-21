@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="https://cm5.intertrust.ru/config">
 
-    <!-- Todo: Добавить к сроку возврата в заявке значение по умолчанию -->
-
     <!-- Читатель -->
     <domain-object-type name="lib_reader">
         <fields>
             <!-- Имя читатель -->
-            <string name="name" length="100" not-null="true"/>
+            <string name="name" length="100" not-null="true">
+                <!-- Это ограничение влияет на валидацию на форме -->
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </string>
             <!-- Электронный почтовый адрес -->
             <string name="e_mail" length="100"/>
             <!-- Адрес проживания -->
@@ -34,7 +37,7 @@
     </domain-object-type>
 
     <!-- Записи формуляра, статус по умолчанию "Введение" -->
-    <domain-object-type name="lib_application" initial-status="6">
+    <domain-object-type name="lib_logbook_entry" initial-status="6">
         <fields>
             <!-- Ссылка на сущность "Формуляр" -->
             <reference name="logbook" type="lib_logbook" not-null="true"/>

@@ -34,6 +34,7 @@
 
         <!-- Доменные объекты -->
         <configuration-path>dop/book_accounting.xml</configuration-path>
+        <configuration-path>dop/book_managing.xml</configuration-path>
 
         <!-- Формы -->
         <configuration-path>forms/author-form.xml</configuration-path>
@@ -54,8 +55,9 @@
         <import-file>importdata/lib_author.csv</import-file>
         <import-file>importdata/lib_book.csv</import-file>
         <import-file>importdata/lib_qualifier.csv</import-file>
-        <import-file>importdata/lib_book_qualifier.csv</import-file>
+        <!--<import-file>importdata/lib_book_qualifier.csv</import-file>-->
         <import-file>importdata/lib_logbook.csv</import-file>
+        <import-file>importdata/status.csv</import-file>
     </import-files>
 
 </module>

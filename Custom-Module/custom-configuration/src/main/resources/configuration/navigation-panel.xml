@@ -2,16 +2,19 @@
 <configuration xmlns="https://cm5.intertrust.ru/config">
     <navigation name="default-panel" is-default="true">
 
-        <link name="Card_file" display-text="Картотека" image="images/docs.png">
+        <link name="Card_file" display-text="Картотека" image="images/docs.png" child-to-open="Books">
             <child-links>
 
                 <link name="Books" display-text="Книги">
                     <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_Book">
+                        <domain-object-surfer domain-object-type-to-create="lib_book">
                             <collection-viewer>
                                 <collection-ref name="book_collection"/>
                                 <default-sort-criteria column-field="book_name" order="ASC"/>
                             </collection-viewer>
+                            <form-viewer>
+                                <form-mapping domain-object-type="lib_book" form="book_form"/>
+                            </form-viewer>
                         </domain-object-surfer>
                     </plugin>
                 </link>
@@ -19,55 +22,38 @@
             </child-links>
         </link>
 
-        <link name="References" display-text="Справочники" image="images/helpers.png">
+        <link name="References" display-text="Справочники" image="images/helpers.png" child-to-open="Authors">
             <child-links>
 
                 <link name="Authors" display-text="Авторы">
                     <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_Author">
+                        <domain-object-surfer domain-object-type-to-create="lib_author">
                             <collection-viewer>
                                 <collection-ref name="author_collection"/>
                                 <default-sort-criteria column-field="author_name" order="ASC"/>
                             </collection-viewer>
+                            <form-viewer>
+                                <form-mapping domain-object-type="lib_author" form="author_form"/>
+                            </form-viewer>
                         </domain-object-surfer>
                     </plugin>
                 </link>
 
                 <link name="Qualifier" display-text="Классификатор">
                     <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_Qualifier">
+                        <domain-object-surfer domain-object-type-to-create="lib_qualifier">
                             <collection-viewer>
                                 <collection-ref name="qualifier_collection"/>
                                 <default-sort-criteria column-field="qualifier_title" order="ASC"/>
                             </collection-viewer>
-                        </domain-object-surfer>
-                    </plugin>
-                </link>
-
-		<link name="LogBook" display-text="Формуляр">
-                    <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_LogBook">
-                            <collection-viewer>
-                                <collection-ref name="logbook_collection"/>
-                                <default-sort-criteria column-field="logbook_published" order="ASC"/>
-                            </collection-viewer>
-                        </domain-object-surfer>
-                    </plugin>
-                </link>
-
-                <link name="BookQualifier" display-text="Классификация книги">
-                    <plugin>
-                        <domain-object-surfer domain-object-type-to-create="Lib_Book_Qualifier">
-                            <collection-viewer>
-                                <collection-ref name="bookqualifier_collection"/>
-                                <default-sort-criteria column-field="qualifier_title" order="ASC"/>
-                            </collection-viewer>
+                            <form-viewer>
+                                <form-mapping domain-object-type="lib_qualifier" form="qualifier_form"/>
+                            </form-viewer>
                         </domain-object-surfer>
                     </plugin>
                 </link>
            </child-links>
         </link>
-
     </navigation>
 
     <navigation-panel-mappings name="nav-panel-map1">
