@@ -7,7 +7,7 @@
             <header>
                 <table>
                     <tr>
-                        <td h-align="right">
+                        <td h-align="left">
                             <widget id="headerLabel"/>
                         </td>
                     </tr>

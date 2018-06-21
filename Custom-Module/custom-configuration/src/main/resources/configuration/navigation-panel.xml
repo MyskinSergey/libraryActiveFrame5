@@ -35,6 +35,21 @@
                     </plugin>
                 </link>
 
+                <!-- Ссылка "Заявки" -->
+                <link name="Applications" display-text="Заявки">
+                    <plugin>
+                        <domain-object-surfer domain-object-type-to-create="lib_application">
+                            <collection-viewer>
+                                <collection-ref name="application_collection"/>
+                                <default-sort-criteria column-field="created_date" order="ASC"/>
+                            </collection-viewer>
+                            <form-viewer>
+                                <form-mapping domain-object-type="lib_application" form="application_form"/>
+                            </form-viewer>
+                        </domain-object-surfer>
+                    </plugin>
+                </link>
+
             </child-links>
         </link>
 

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <collection name="application_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  a.id                                  AS id,
+                  a.created_date                        AS created_date,
+                  a.app_number                          AS application_app_number,
+                  a.return_to                           AS application_return_to,
+                  b.name                                AS book_name,
+                  r.name                                AS reader_name,
+                  (SELECT firstname
+                   FROM person)                         AS person_name,
+
+                  (SELECT description
+                   FROM status
+                   WHERE
+                     name IN ('Draft', 'Pending',
+                              'Performed', 'Closed',
+                              'Published', 'Reserved')) AS status_description
+
+                FROM lib_application a
+                  INNER JOIN lib_book b ON b.id = a.book
+                  INNER JOIN lib_reader r ON r.id = a.reader
+
+                                WHERE 1=1 ::where-clause
+            ]]>
+        </prototype>
+    </collection>
+
+    <collection-view name="application_view" collection="application_collection" is-default="true">
+        <display>
+            <column field="created_date" name="Дата регистрации" type="timelessDate" sortable="true"
+                    text-break-style="cut" min-width="50px"/>
+            <column field="application_app_number" name="№" type="long" sortable="true" text-break-style="cut"
+                    min-width="50px"/>
+            <column field="reader_name" name="Читатель" type="string" sortable="true" text-break-style="cut"
+                    min-width="50px"/>
+            <column field="book_name" name="Книга" type="string" sortable="true" text-break-style="cut"
+                    min-width="50px"/>
+            <column field="application_return_to" name="№" type="timelessDate" sortable="true" text-break-style="cut"
+                    min-width="50px"/>
+            <column field="status_description" name="Состояние" type="string" sortable="true" text-break-style="cut"
+                    min-width="50px"/>
+            <column field="person_name" name="Автор заявки" type="string" sortable="true" text-break-style="cut"
+                    min-width="50px"/>
+        </display>
+    </collection-view>
+
+    <!-- Коллекция книг для выпадающего списка "Книги" -->
+    <collection name="app_books_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  id,
+                  name        book_name,
+                  description book_description
+                FROM lib_book
+                WHERE
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byBookName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <!-- Коллекция читателей для выпадающего списка "Читатели" -->
+    <collection name="app_readers_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  id       AS id,
+                  name     AS reader_name
+                FROM lib_reader
+                WHERE 1=1 ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byReaderName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    LOWER(name) LIKE LOWER('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+</configuration>

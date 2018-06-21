@@ -51,13 +51,8 @@
                     <simple-constraint value="not-empty"/>
                 </constraints>
             </reference>
-            <!-- Ссылка на сущность "Автор" -->
-            <reference name="author" type="lib_author" not-null="true">
-                <!-- Это ограничение влияет на валидацию на форме -->
-                <constraints>
-                    <simple-constraint value="not-empty"/>
-                </constraints>
-            </reference>
+
+            <!-- Ссылка на системную сущность Person - автор данной заявки -->
         </fields>
     </domain-object-type>
 

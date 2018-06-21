@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="application_form" domain-object-type="lib_application" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Главная">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- Дата регистрации заявки -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationDataCreateLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationDataCreateValue"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Номер заявки -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationAppNumberLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationAppNumberText"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Читатель -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationReaderLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationReaderValue"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Книга -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationBookLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationBookValue"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Срок возврата -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationReturnToLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationReturnToValue"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Статус заявки -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationStatusLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationStatusValue"/>
+                                    </td>
+                                </tr>
+
+                                <!-- Автор заявки -->
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="applicationAuthorLabel"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="applicationAuthorValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <!-- Заголовок формы -->
+            <label id="headerLabel">
+                <text>Заявка</text>
+            </label>
+
+            <!-- Дата регистрации заявки -->
+            <label id="applicationDataCreateLabel">
+                <text>Дата регистрации</text>
+            </label>
+            <date-box id="applicationDataCreateValue">
+                <field-path value="created_date"/>
+            </date-box>
+
+            <!-- Номеря заявки -->
+            <label id="applicationAppNumberLabel">
+                <text>Номера заявки</text>
+            </label>
+            <text-box id="applicationAppNumberText">
+                <field-path value="app_number"/>
+            </text-box>
+
+            <!-- Читатель -->
+            <label id="applicationReaderLabel">
+                <text>Читатель</text>
+            </label>
+            <suggest-box id="applicationReaderValue">
+                <field-path value="lib_application^reader" on-root-delete="unlink"/>
+                <collection-ref name="app_readers_collection"/>
+                <input-text-filter name="byReaderName"/>
+                <drop-down-pattern value="{reader_name}"/>
+                <selection-pattern value="{reader_name}"/>
+                <page-size>30</page-size>
+            </suggest-box>
+
+            <!-- Книга -->
+            <label id="applicationBookLabel">
+                <text>Книга</text>
+            </label>
+            <suggest-box id="applicationBookValue">
+                <field-path value="lib_application^book" on-root-delete="unlink"/>
+                <collection-ref name="app_books_collection"/>
+                <input-text-filter name="byBookName"/>
+                <drop-down-pattern value="{book_name}"/>
+                <selection-pattern value="{book_name}"/>
+                <page-size>30</page-size>
+            </suggest-box>
+
+            <!-- Срок возврата -->
+            <label id="applicationReturnToLabel">
+                <text>Срок возврата</text>
+            </label>
+            <date-box id="applicationReturnToValue">
+                <field-path value="return_to"/>
+            </date-box>
+
+            <!-- Состояние -->
+            <label id="applicationStatusLabel">
+                <text>Состояние</text>
+            </label>
+            <text-box id="applicationStatusValue" read-only="true">
+                <field-path value="lib_application^status"/>
+            </text-box>
+
+            <!-- Автор заявки -->
+            <label id="applicationAuthorLabel">
+                <text>Автор заявки</text>
+            </label>
+            <text-box id="applicationAuthorValue" read-only="true">
+                <field-path value="lib_application^person"/>
+            </text-box>
+        </widget-config>
+    </form>
+</configuration>

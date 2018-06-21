@@ -24,7 +24,9 @@
                                     <td h-align="right">
                                         <widget id="readerNameText"/>
                                     </td>
+                                </tr>
 
+                                <tr>
                                     <!-- E-mail читателя -->
                                     <td h-align="left">
                                         <widget id="readerEmailLabel"/>
@@ -32,7 +34,9 @@
                                     <td h-align="right">
                                         <widget id="readerEmailText"/>
                                     </td>
+                                </tr>
 
+                                <tr>
                                     <!-- Адресс читателя -->
                                     <td h-align="left">
                                         <widget id="readerAddressLabel"/>
@@ -40,7 +44,9 @@
                                     <td h-align="right">
                                         <widget id="readerAddressText"/>
                                     </td>
+                                </tr>
 
+                                <tr>
                                     <!-- Документ читателя -->
                                     <td h-align="left">
                                         <widget id="readerDocumentLabel"/>
@@ -58,9 +64,9 @@
         <widget-config>
             <!-- Заголовок формы -->
             <label id="headerLabel">
-                <text>Классификатор</text>
+                <text>Читатель</text>
             </label>
-            
+
             <!-- Имя читателя -->
             <label id="readerNameLabel">
                 <text>Имя читателя</text>

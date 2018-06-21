@@ -58,7 +58,7 @@
                     description status_description
                 FROM status
                 WHERE
-                name IN ('Draft', 'Pending', 'Performed', 'Closed', 'Published', 'Reserved') ::where-clause
+                name IN ('Available', 'Issued', 'Reserved', 'Deleted') ::where-clause
             ]]>
         </prototype>
 
