@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="participant">
+        <fields>
+            <!-- Роль -->
+            <long name="role"/>
+            <!-- Ставка в час -->
+            <decimal name="rate"/>
+            <!-- Ссылка на персону -->
+            <reference name="person" type="person"/>
+            <!-- Ссылка на проект -->
+            <reference name="project" type="project" not-null="true"/>
+        </fields>
+
+    </domain-object-type>
+</configuration>

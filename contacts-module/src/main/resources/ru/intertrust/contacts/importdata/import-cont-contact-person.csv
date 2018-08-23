@@ -1,0 +1,7 @@
+TYPE_NAME=cont_contact_person;KEYS=surname
+surname;name;patronymic;rank;status;_ATTACHMENT_
+"Шилин";"Роман";"Евгеньевич";"title=""2-ой ранг""";"name=""Active""";ru/intertrust/contacts/importdata/content/roman_shilin.jpg
+"Михалков";"Никита";"Сергеевич";"title=""1-ый ранг""";"name=""Active""";
+"Лаврентьев";"Клим";"Анатольевич";"title=""3-ий ранг""";"name=""Active""";
+"Трещалина";"Вера";"Юрьевна";"title=""4-ый ранг""";"name=""Active""";
+"Митавский";"Денис";"Отчество";"title=""1-ый ранг""";"name=""Active""";

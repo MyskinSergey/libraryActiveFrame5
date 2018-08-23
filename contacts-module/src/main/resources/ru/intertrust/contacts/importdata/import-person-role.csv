@@ -1,0 +1,9 @@
+TYPE_NAME=person_role;KEYS=person,role
+person;role
+"login=""dpro""";"name=""Делопроизводитель"""
+"login=""sysadm""";"name=""Администратор"""
+"login=""executor""";"name=""Исполнитель"""
+"login=""recensent""";"name=""Рецензент"""
+"login=""orgmanager""";"name=""Менеджер по Орг. Структуре"""
+"login=""responser""";"name=""Ответственный руководитель"""
+"login=""printmanager""";"name=""Админ. печати"""

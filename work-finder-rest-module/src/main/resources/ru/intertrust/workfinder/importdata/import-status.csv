@@ -1,0 +1,6 @@
+TYPE_NAME=Status; KEYS=Name
+"Name";"Description"
+"reg_status_init";"Заявка"
+"reg_status_apply";"Удовлетворена"
+"reg_status_reject";"Отвергнута"
+

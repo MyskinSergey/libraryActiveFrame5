@@ -1,0 +1,9 @@
+TYPE_NAME=person;KEYS=login
+login;email;profile;lastname;firstname
+dpro;dpro@mail.ru;"name=""2""";Фамилия;Имя
+sysadm;sysadm@mail.ru;"name=""2""";Фамилия;Имя
+executor;executor@mail.ru;"name=""2""";Фамилия исполнителя;Имя исполнителя
+recensent;recensent@mail.ru;"name=""2""";Фамилия;Имя
+orgmanager;orgmanager@mail.ru;"name=""2""";Фамилия;Имя
+responser;responser@mail.ru;"name=""2""";Фамилия;Имя
+printmanager;printmanager@mail.ru;"name=""2""";Фамилия;Имя

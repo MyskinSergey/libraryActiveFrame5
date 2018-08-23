@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
+    <collection name="cm6_role_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                    SELECT
+                    id,
+                    name
+                    FROM role
+                    WHERE 1=1 ::where-clause
+                    ]]>
+        </prototype>
+        <counting-prototype>
+            SELECT
+            count(*)
+            FROM role
+            WHERE 1=1 ::where-clause
+        </counting-prototype>
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     lower(name) LIKE lower('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+</configuration>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="congratulation_newsletter" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="56" rightMargin="28" topMargin="56" bottomMargin="56" uuid="baab047f-edfe-4807-a1b0-987895779efb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter 1"/>
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="START_PERIOD" class="java.util.Date"/>
+	<parameter name="FINISH_PERIOD" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select row_number() over (order by corder, org_rank_index, fullname, cl_rank_index, title)
+, all_data.name_group
+, all_data.surname
+, all_data."name"
+, all_data.patronymic
+, all_data.fullname || ' ' || all_data.position ord_and_position
+,  birth_date
+, CASE date_part('year', age(current_birth_date, birth_date))
+	WHEN 25 THEN 'Юбилей_25'
+	WHEN 50 THEN 'Юбилей_50'
+	WHEN 60 THEN 'Юбилей_60'
+	WHEN 70 THEN 'Юбилей_70'
+	WHEN 75 THEN 'Юбилей_75'
+	WHEN 80 THEN 'Юбилей_80'
+	WHEN 90 THEN 'Юбилей_90'
+	WHEN 100 THEN 'Юбилей_100'
+	ELSE ''
+END notes
+from
+(
+	SELECT q.corder
+	, q."name" name_group
+	, co.fullname
+	,  COALESCE(crco.index_number, (select max(index_number) from cont_rank)+1) org_rank_index
+	, ccpo."position"
+	, ccp.title
+	, ccp.surname
+	, ccp."name"
+	, ccp.patronymic
+	, ccp.status
+	, COALESCE(cr.index_number, (select max(index_number) from cont_rank)+1) cl_rank_index
+	, to_date(extract(year from now()) || '-' || extract(month from ccp.birth_date) || '-' || extract(day from ccp.birth_date), 'YYYY-MM-DD') current_birth_date
+	, date_trunc('day', ccp.birth_date) birth_date
+	FROM qual_group_qualifier qgq
+	INNER JOIN qualifier q ON q.group_qualifier = qgq.id
+	INNER JOIN cont_qualifier_org cqo ON cqo.classifier = q.id
+	INNER JOIN cont_organization co ON co.id = cqo.organization
+	LEFT OUTER JOIN cont_rank crco ON co.rank = crco.id
+	INNER JOIN cont_cperson_org ccpo ON ccpo.organization=co.id
+	INNER JOIN cont_contact_person ccp ON ccp.id = ccpo.contact_person
+	LEFT OUTER JOIN cont_rank cr ON ccp.rank=cr.id
+	WHERE qgq.uid = '101'
+	and ccp.status = (select id from status where upper(trim(name))=upper(trim('Active')))
+) all_data
+where DATE(current_birth_date) between DATE($P{START_PERIOD}) and DATE($P{FINISH_PERIOD})
+order by corder, org_rank_index, fullname, cl_rank_index, title]]>
+	</queryString>
+	<field name="birth_date" class="java.sql.Timestamp"/>
+	<field name="row_number" class="java.lang.Long"/>
+	<field name="name_group" class="java.lang.String"/>
+	<field name="ord_and_position" class="java.lang.String"/>
+	<field name="notes" class="java.lang.String"/>
+	<field name="surname" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="patronymic" class="java.lang.String"/>
+	<group name="Group_name">
+		<groupExpression><![CDATA[$F{name_group}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="511" height="20" forecolor="#FF0000" uuid="87d61b05-ddfb-422e-8af6-32908c7905dd"/>
+					<box>
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="14" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{name_group}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<textField>
+				<reportElement x="0" y="64" width="511" height="30" forecolor="#000099" uuid="dde72b6c-7d91-40c3-8ed7-23b7ae25397d">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="20" isBold="false" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ПОЗДРАВИТЕЛЬНЫЙ БЮЛЛЕТЕНЬ"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="53" width="511" height="1" forecolor="#000099" uuid="b0b1070e-5051-4e00-abed-57e7114552ce"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="156" y="11" width="205" height="18" forecolor="#FF0000" uuid="47b27f05-ef9e-4db6-80e3-dd668d5026ba"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DateFormatSymbols(new Locale("ru","RU")).getMonths()[Integer.parseInt(new SimpleDateFormat("MM").format($P{START_PERIOD}))-1]+" "
+                                + new SimpleDateFormat("yyyy").format($P{START_PERIOD}) + " года"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="30" forecolor="#000099" backcolor="#FFFFFF" uuid="2ad90ae5-30cd-433e-8a16-a590ab7bde35">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[№]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="0" width="165" height="30" forecolor="#000099" backcolor="#FFFFFF" uuid="65d03b0e-f08e-4820-be0e-662acb6132ba">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Ф.И.О.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="195" y="0" width="154" height="30" forecolor="#000099" backcolor="#FFFFFF" uuid="56100044-dd43-44d9-98bc-2c8751ae63bd">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Место работы, должность]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="349" y="0" width="71" height="30" forecolor="#000099" backcolor="#FFFFFF" uuid="37958d6c-7e5e-4659-a90f-359b6480bc6f">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Дата рождения]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="0" width="91" height="30" forecolor="#000099" backcolor="#FFFFFF" uuid="4015f90c-a1fd-4b06-98a5-c2f8d18082da">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Примечание]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="30" height="32" forecolor="#000099" uuid="80874144-429c-48c3-a255-b5826b902e74">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row_number}+"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="30" y="0" width="165" height="16" forecolor="#000099" uuid="fc3d5ce6-8174-4e1d-b25e-9c8b55aa27ab"/>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="DejaVuSans-Bold.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{surname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="30" y="16" width="165" height="16" forecolor="#000099" uuid="f6b4f388-c1cb-4a2b-8f98-e2edf10f4864"/>
+				<box>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name} + " " + $F{patronymic}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="195" y="0" width="154" height="32" forecolor="#000099" uuid="23c2da9c-bf6d-4009-be08-42f163802709"/>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ord_and_position}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="349" y="0" width="71" height="32" forecolor="#000099" uuid="64fcc255-4ae6-46c0-9652-6165b60d855d"/>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{birth_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="91" height="32" forecolor="#000099" uuid="133bcf4f-65ee-4c8d-ad2c-6999419a6240"/>
+				<box>
+					<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{notes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

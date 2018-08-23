@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="languages_form" domain-object-type="languages" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Справочник языков">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="langIdLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="langIdValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="languageLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="languageValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Язык</text>
+            </label>
+
+            <label id="langIdLabel">
+                <text>Код языка</text>
+            </label>
+            <integer-box id="langIdValue">
+                <field-path value="lang_id"/>
+            </integer-box>
+
+            <label id="languageLabel">
+                <text>Язык</text>
+            </label>
+            <text-box id="languageValue">
+                <field-path value="lang_name"/>
+            </text-box>
+        </widget-config>
+    </form>
+</configuration>

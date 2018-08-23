@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="keywords">
+        <fields>
+            <string name="word" length="100"/>
+        </fields>
+        <uniqueKey>
+            <field name="word"/>
+        </uniqueKey>
+    </domain-object-type>
+</configuration>

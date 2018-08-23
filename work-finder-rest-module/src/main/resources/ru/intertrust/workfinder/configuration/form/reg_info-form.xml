@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:action="https://cm5.intertrust.ru/config/action">
+
+    <form name="reg_info_form" domain-object-type="reg_info" is-default="true">
+        <action:tool-bar>
+            <action:action componentName="reg.approve.reg.request.action" text="Утвердить регистрацию"
+                        permissions="Create,Write"
+                        imageClass="actionBar-create" merged="true">
+            </action:action>
+        </action:tool-bar>
+
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="header"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <widget id="tokenLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="tokenValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="nameLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="nameValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="fullNameLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="fullNameValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="emailLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="emailValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="phoneLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="phoneValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="INNLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="INNValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="OGRNLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="OGRNValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="resp_personLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="resp_personValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="add_info_personLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="add_info_personValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="addressLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="addressValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="account_typeLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="account_typeValue"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Регистрационная информация</text>
+            </label>
+
+            <label id="tokenLabel">
+                <text>Token</text>
+            </label>
+
+            <text-box id="tokenValue" read-only="true">
+                <field-path value="token"/>
+            </text-box>
+
+            <label id="nameLabel">
+                <text>Имя</text>
+            </label>
+
+            <text-box id="nameValue" >
+                <field-path value="name"/>
+            </text-box>
+
+            <label id="fullNameLabel">
+                <text>Полное Имя</text>
+            </label>
+
+            <text-box id="fullNameValue" >
+                <field-path value="fullName"/>
+            </text-box>
+
+
+            <label id="emailLabel">
+                <text>Email</text>
+            </label>
+
+            <text-box id="emailValue" >
+                <field-path value="email"/>
+            </text-box>
+
+
+
+            <label id="phoneLabel">
+                <text>Тел</text>
+            </label>
+
+            <text-box id="phoneValue" >
+                <field-path value="phone"/>
+            </text-box>
+
+
+
+            <label id="INNLabel">
+                <text>ИНН</text>
+            </label>
+
+            <text-box id="INNValue" >
+                <field-path value="INN"/>
+            </text-box>
+
+
+
+            <label id="OGRNLabel">
+                <text>ОГРН</text>
+            </label>
+
+            <text-box id="OGRNValue" >
+                <field-path value="OGRN"/>
+            </text-box>
+
+            <label id="resp_personLabel">
+                <text>ОГРН</text>
+            </label>
+
+            <text-box id="resp_personValue" >
+                <field-path value="resp_person"/>
+            </text-box>
+
+
+            <label id="add_info_personLabel">
+                <text>Доп Инфо.</text>
+            </label>
+
+            <text-box id="add_info_personValue" >
+                <field-path value="add_info_person"/>
+            </text-box>
+
+            <label id="addressLabel">
+                <text>Адрес</text>
+            </label>
+
+            <text-box id="addressValue" >
+                <field-path value="address"/>
+            </text-box>
+
+            <label id="account_typeLabel">
+                <text>Адрес</text>
+            </label>
+
+            <enumeration-box id="account_typeValue">
+                <field-path value="address"/>
+                <mapping>
+                    <map value="0" display-text="Юр. лицо"/>
+                    <map value="1" display-text="Физ. лицо"/>
+
+                </mapping>
+            </enumeration-box>
+
+
+        </widget-config>
+
+    </form>
+</configuration>

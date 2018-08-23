@@ -1,0 +1,4 @@
+TYPE_NAME=addr_mailing_address;KEYS=uid
+settlement;street_type;street;house;housing;building;room;postcode;addresses_assigning;uid
+"name=""МОСКВА""";"title=""ул""";"Усиевича";"3";;;;"125315";"title=""Официальное обращение""";"1"
+"name=""МОСКВА""";"title=""ул""";"Васильевская";"13";;;;"123056";"title=""Официальное обращение""";"2"

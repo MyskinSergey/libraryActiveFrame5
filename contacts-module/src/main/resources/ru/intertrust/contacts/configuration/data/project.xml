@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="project" initial-status="ProjectPlanned">
+        <fields>
+            <string name="name" length="256"/>
+            <string name="description" length="1024"/>
+            <reference name="author" type="person"/>
+            <!-- Организация владелец проекта -->
+            <reference name="organization" type="cont_organization"/>
+        </fields>
+
+    </domain-object-type>
+</configuration>

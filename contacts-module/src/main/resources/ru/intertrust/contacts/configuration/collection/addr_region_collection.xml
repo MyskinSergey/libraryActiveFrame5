@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+
+    <!-- [UI01.3.2.1] Работать со списком Стран\Регионов -->
+    <collection name="col_addr_region" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  ar.id,
+                  ar.title,
+                  ar.code,
+                  ar.name,
+                  '(' || (
+                  SELECT COUNT(*) from addr_region ar1
+                  WHERE ar1.Subordination = ar.id) || ')' as region_count,
+                  '(' || (SELECT COUNT(*) from addr_settlement adst
+                    WHERE adst.region = ar.id) || ')' as settlement_count
+                FROM
+                  addr_region ar
+                  ::from-clause
+                where
+                    ar.region_type = 1 ::where-clause
+            ]]>
+        </prototype>
+        <counting-prototype>
+            select count(*) from addr_region ar ::from-clause WHERE ar.region_type = 1 ::where-clause
+        </counting-prototype>
+
+        <filter name="byTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.title) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byCode">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.code) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.name) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="col_addr_region_view" collection="col_addr_region" is-default="true">
+        <display>
+            <column field="title" name="Заголовок" type="string" sortable="true" resizable="true" search-filter="byTitle"/>
+            <column field="code" name="Код" type="string" sortable="true" resizable="true" search-filter="byCode"/>
+            <column field="name" name="Наименование" type="string" sortable="true" resizable="true" search-filter="byName"/>
+            <column field="region_count" name="Регионы (Автономии)" type="string" sortable="true" resizable="true">
+                <child-collection-viewer filter="byRegionId" domain-object-type-to-create="addr_region" bread-crumb="Регионы (Автономии)">
+                    <collection-viewer>
+                        <act:tool-bar useDefault="false">
+                            <act:action-ref name-ref="aRefresh"/>
+                            <act:action-ref name-ref="addCountry">
+                                <act:action-params>
+                                    <act:action-param name="typeAdditions" value="group"/>
+                                    <act:action-param name="level" value="2"/>
+                                </act:action-params>
+                            </act:action-ref>
+                            <act:action-ref name-ref="addDistrict">
+                                <act:action-params>
+                                    <act:action-param name="typeAdditions" value="item"/>
+                                    <act:action-param name="level" value="2"/>
+                                </act:action-params>
+                            </act:action-ref>
+                        </act:tool-bar>
+                        <collection-ref name="col_regions"/>
+                        <collection-view-ref name="col_regions_view"/>
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
+            <column field="settlement_count" name="Населенные пункты" type="string" sortable="true" resizable="true">
+                <child-collection-viewer filter="byRegionId" domain-object-type-to-create="Addr_Settlement" bread-crumb="Населенные пункты">
+                    <collection-viewer>
+                        <collection-ref name="col_addr_settlement" />
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
+        </display>
+    </collection-view>
+
+    <!--Коллекция для отображения регионов-->
+    <collection name="col_regions" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  ar.id,
+                  ar.title,
+                  ar.code,
+                  ar.name,
+                  ar.region_type,
+                  '(' || (SELECT COUNT(*) from addr_region ar1
+                    WHERE ar1.Subordination = ar.id) || ')' as region_count,
+                  '(' || (SELECT COUNT(*) from addr_settlement adst
+                    WHERE adst.region = ar.id) || ')' as settlement_count
+                FROM
+                  addr_region ar
+                  ::from-clause
+                where
+                    1=1::where-clause
+                --ORDER BY title
+            ]]>
+        </prototype>
+        <counting-prototype>
+            select count(*) from addr_region ar ::from-clause WHERE 1=1 ::where-clause
+        </counting-prototype>
+
+        <filter name="byTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.title) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byCode">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.code) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.name) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byRegionId">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    ar.Subordination = {0}
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="col_regions_view" collection="col_regions" is-default="true">
+        <display>
+            <column field="title" name="Заголовок" type="string" sortable="true" resizable="true" search-filter="byTitle"/>
+            <column field="code" name="Код" type="string" sortable="true" resizable="true" search-filter="byCode"/>
+            <column field="name" name="Наименование" type="string" sortable="true" resizable="true" search-filter="byName"/>
+            <column field="region_count" name="Районы" type="string" sortable="true" resizable="true">
+                <child-collection-viewer filter="byRegionId" domain-object-type-to-create="addr_region" bread-crumb="Районы">
+                    <collection-viewer>
+                        <act:tool-bar useDefault="false">
+                            <act:action-ref name-ref="aRefresh"/>
+                            <act:action-ref name-ref="addCountry">
+                                <act:action-params>
+                                    <act:action-param name="typeAdditions" value="group"/>
+                                    <act:action-param name="level" value="3"/>
+                                </act:action-params>
+                            </act:action-ref>
+                            <act:action-ref name-ref="addDistrict">
+                                <act:action-params>
+                                    <act:action-param name="typeAdditions" value="item"/>
+                                    <act:action-param name="level" value="3"/>
+                                </act:action-params>
+                            </act:action-ref>
+                        </act:tool-bar>
+                        <collection-ref name="col_district"/>
+                        <collection-view-ref name="col_authonomy_view"/>
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
+            <column field="settlement_count" name="Населенные пункты" type="string" sortable="true" resizable="true">
+                <child-collection-viewer filter="byRegionId" domain-object-type-to-create="Addr_Settlement" bread-crumb="Населенные пункты">
+                    <collection-viewer>
+                        <collection-ref name="col_addr_settlement" />
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
+        </display>
+    </collection-view>
+
+    <!--Коллекция для отображения регионов-->
+    <collection name="col_district" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  ar.id,
+                  ar.title,
+                  ar.code,
+                  ar.name,
+                  ar.region_type,
+                  '(' || (SELECT COUNT(*) from addr_region ar1
+                    WHERE ar1.Subordination = ar.id) || ')' as region_count,
+                  '(' || (SELECT COUNT(*) from addr_settlement adst
+                    WHERE adst.region = ar.id) || ')' as settlement_count
+                FROM
+                  addr_region ar
+                  ::from-clause
+                where
+                    1=1::where-clause
+                --ORDER BY title
+            ]]>
+        </prototype>
+        <counting-prototype>
+            select count(*) from addr_region ar ::from-clause WHERE 1=1 ::where-clause
+        </counting-prototype>
+
+        <filter name="byTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.title) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byCode">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.code) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ar.name) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byRegionId">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    ar.Subordination = {0}
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="col_authonomy_view" collection="col_district" is-default="true">
+        <display>
+            <column field="title" name="Заголовок" type="string" sortable="true" resizable="true" search-filter="byTitle"/>
+            <column field="code" name="Код" type="string" sortable="true" resizable="true" search-filter="byCode"/>
+            <column field="name" name="Наименование" type="string" sortable="true" resizable="true" search-filter="byName"/>
+            <column field="settlement_count" name="Населенные пункты" type="string" sortable="true" resizable="true">
+                <child-collection-viewer filter="byRegionId" domain-object-type-to-create="Addr_Settlement" bread-crumb="Населенные пункты">
+                    <collection-viewer>
+                        <collection-ref name="col_addr_settlement" />
+                    </collection-viewer>
+                </child-collection-viewer>
+            </column>
+        </display>
+    </collection-view>
+
+    <collection name="col_addr_region_simple" idField="id">
+        <prototype>
+            <![CDATA[
+                    SELECT
+                      ar.id,
+                      ar.title,
+                      ar.code,
+                      ar.name
+                    FROM
+                      addr_region ar
+                      ::from-clause
+                    where
+                        1 = 1 ::where-clause
+                ]]>
+        </prototype>
+        <counting-prototype>
+            select count(*) from addr_region ar ::from-clause WHERE 1 = 1 ::where-clause
+        </counting-prototype>
+
+        <filter name="byTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                        upper(ar.title) like upper({0})
+                    ]]>
+            </criteria>
+        </filter>
+        <filter name="byCode">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                        upper(ar.code) like upper({0})
+                    ]]>
+            </criteria>
+        </filter>
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                        upper(ar.name) like upper({0})
+                    ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+</configuration>

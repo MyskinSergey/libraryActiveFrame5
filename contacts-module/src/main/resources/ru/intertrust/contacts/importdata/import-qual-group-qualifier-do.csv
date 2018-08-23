@@ -1,0 +1,7 @@
+TYPE_NAME=Qual_Group_Qualifier_DO;KEYS=Group_Qualifier,domobject
+Group_Qualifier;domobject
+"name=""Пол""";"name=""Контактные лица"""
+"name=""Тип организации""";"name=""Организации"""
+"name=""Сфера деятельности""";"name=""Организации"""
+"name=""Компетенция""";"name=""Профили"""
+"name=""Профессиональная область""";"name=""Профили"""

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
+    <collection name="competence_profile_qualifier_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                    select
+                        Q.id,
+                        Q.name,
+                        Q.uid,
+                        Q.sub_group
+                        from qualifier Q
+                        join qual_group_qualifier QG ON QG.id=Q.group_qualifier and QG.name='Компетенция'
+                        join qual_group_qualifier_do QGD ON QGD.group_qualifier=QG.id
+                        join Qual_DO_Qualifier QDQ ON QDQ.id=QGD.domobject AND QDQ.domobject='profile_base'
+                    WHERE 1=1 ::where-clause
+                    ]]>
+        </prototype>
+
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     lower(name) LIKE lower('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byGroup">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     Q.sub_group = {0}
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection name="prof_profile_qualifier_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                    select
+                        Q.id,
+                        Q.name,
+                        Q.uid
+                        from qualifier Q
+                        join qual_group_qualifier QG ON QG.id=Q.group_qualifier and QG.name='Профессиональная область'
+                        join qual_group_qualifier_do QGD ON QGD.group_qualifier=QG.id
+                        join Qual_DO_Qualifier QDQ ON QDQ.id=QGD.domobject AND QDQ.domobject='profile_base'
+                    WHERE 1=1 ::where-clause
+                    ]]>
+        </prototype>
+
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     lower(name) LIKE lower('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection name="prof_profile_qual_common_col" idField="id">
+        <prototype>
+            <![CDATA[
+                    SELECT
+                    *
+                    FROM(
+                    select
+                        Q.id,
+                        Q.name,
+                        Q.uid,
+                        QG.name||'-'||Q.name AS common_name
+                        from qualifier Q
+                        join qual_group_qualifier QG ON QG.id=Q.group_qualifier and QG.name='Профессиональная область'
+                        join qual_group_qualifier_do QGD ON QGD.group_qualifier=QG.id
+                        join Qual_DO_Qualifier QDQ ON QDQ.id=QGD.domobject AND QDQ.domobject='profile_base'
+                    WHERE 1=1 ::where-clause
+                    UNION
+                    select
+                        Q.id,
+                        Q.name,
+                        Q.uid,
+                        QG.name||'-'||Q.name AS common_name
+                        from qualifier Q
+                        join qual_group_qualifier QG ON QG.id=Q.group_qualifier and QG.name='Компетенция'
+                        join qual_group_qualifier_do QGD ON QGD.group_qualifier=QG.id
+                        join Qual_DO_Qualifier QDQ ON QDQ.id=QGD.domobject AND QDQ.domobject='profile_base'
+                    WHERE 1=1 ::where-clause
+                    ) T ORDER BY common_name
+                    ]]>
+        </prototype>
+
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     lower(name) LIKE lower('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+</configuration>

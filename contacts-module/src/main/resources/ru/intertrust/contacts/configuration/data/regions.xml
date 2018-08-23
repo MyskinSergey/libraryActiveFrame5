@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="regions">
+        <fields>
+            <long name="region_id" not-null="true"/>
+            <string name="name" length="256"/>
+        </fields>
+        <uniqueKey>
+            <field name="region_id"/>
+        </uniqueKey>
+    </domain-object-type>
+</configuration>

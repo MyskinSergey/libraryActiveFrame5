@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="https://cm5.intertrust.ru/config/module">
+    <name>custom-module</name>
+    <description>Пример модуля на основе платформы</description>
+    <depends>
+        <depend>contacts-module</depend>
+    </depends>
+    <extension-points-packages>
+        <extension-points-package>ru/intertrust/workfinder</extension-points-package>
+    </extension-points-packages>
+    <gui-components-packages>
+        <gui-components-package>ru/intertrust/workfinder</gui-components-package>
+    </gui-components-packages>
+    <server-components-packages>
+        <server-components-package>ru.intertrust.workfinder</server-components-package>
+    </server-components-packages>
+
+    <configuration-paths>
+
+        <configuration-path>ru/intertrust/workfinder/configuration/do/register-do.xml</configuration-path>
+        <configuration-path>ru/intertrust/workfinder/configuration/do/common.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/workfinder/configuration/collections/reg-info-collection.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/workfinder/configuration/form/reg_info-form.xml</configuration-path>
+
+        <!--  <configuration-path>ru/intertrust/upmanager/configuration/collections/log-collection.xml</configuration-path>
+          <configuration-path>ru/intertrust/upmanager/configuration/form/log-form.xml</configuration-path>
+  -->
+        <configuration-path>ru/intertrust/workfinder/configuration/access/context-role.xml</configuration-path>
+        <configuration-path>ru/intertrust/workfinder/configuration/access/access-matrix.xml</configuration-path>
+
+
+    </configuration-paths>
+
+    <import-files>
+        <import-file>ru/intertrust/workfinder/importdata/import-status.csv</import-file>
+        <import-file>ru/intertrust/workfinder/importdata/import-locale.csv</import-file>
+        <import-file>ru/intertrust/workfinder/importdata/import-notification-text.csv</import-file>
+<!--
+
+        <import-file>ru/intertrust/services/importdata/import-addr-object-type.csv</import-file>
+        <import-file>ru/intertrust/services/importdata/import-loader-configurations.csv</import-file>
+        <import-file>ru/intertrust/services/importdata/import-region-code.csv</import-file>
+-->
+    </import-files>
+
+</module>

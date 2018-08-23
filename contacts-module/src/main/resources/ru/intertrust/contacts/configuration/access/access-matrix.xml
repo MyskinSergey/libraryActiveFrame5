@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+  <!-- Meeting -->
+ <!-- <access-matrix type="profile_base">
+    <create>
+      <permit-group name="AllPersons"/>
+    </create>
+    <status name="*">
+      <read>
+        <permit-group name="AllPersons"/>
+      </read>
+      <write>
+        <permit-role name="profile_author"/>
+      </write>
+      <delete>
+        <permit-role name="profile_author"/>
+      </delete>
+    </status>
+  </access-matrix>-->
+
+
+  <access-matrix type="employee_profile">
+    <create>
+      <permit-group name="AllPersons"/>
+    </create>
+    <status name="*">
+      <read>
+        <permit-group name="AllPersons"/>
+      </read>
+      <write>
+        <permit-role name="profile_author"/>
+        <permit-role name="employee_profile_holder"/>
+      </write>
+      <delete>
+        <permit-role name="profile_author"/>
+        <permit-role name="employee_profile_holder"/>
+      </delete>
+    </status>
+  </access-matrix>
+
+  <access-matrix type="vacancy">
+    <create>
+      <permit-group name="AllPersons"/>
+    </create>
+    <status name="*">
+      <read>
+        <permit-group name="AllPersons"/>
+      </read>
+      <write>
+        <permit-role name="profile_author"/>
+        <permit-role name="vacancy_profile_holder"/>
+      </write>
+      <delete>
+        <permit-role name="profile_author"/>
+        <permit-role name="vacancy_profile_holder"/>
+      </delete>
+    </status>
+  </access-matrix>
+
+  <access-matrix type="keywords" read-everybody="true"/>
+  <access-matrix type="regions" read-everybody="true"/>
+  <access-matrix type="languages" read-everybody="true"/>
+
+  <access-matrix type="language_skills" read-everybody="true" matrix-reference-field="profile"/>
+  <access-matrix type="profile_qualifier" read-everybody="true" matrix-reference-field="profile"/>
+  <access-matrix type="profile_keywords" read-everybody="true" matrix-reference-field="profile"/>
+
+
+
+  <access-matrix type="cont_rank" read-everybody="true"/>
+  <access-matrix type="cont_contact_person" read-everybody="true">
+    <create>
+      <permit-group name="AllPersons"/>
+    </create>
+    <status name="*">
+      <write>
+        <permit-role name="cont_author"/>
+        <permit-role name="cont_holder"/>
+      </write>
+      <delete>
+        <permit-role name="cont_author"/>
+        <permit-role name="cont_holder"/>
+      </delete>
+    </status>
+  </access-matrix>
+
+   <access-matrix type="Addr_Other_Address" matrix-reference-field="Contact_Person"/>
+
+  <access-matrix type="cont_notes" matrix-reference-field="notes_person"/>
+  <access-matrix type="cont_type_attachments" read-everybody="true"/>
+  <!--<access-matrix type="cont_attachments" read-everybody="true"></access-matrix>-->
+  <access-matrix type="cont_attachments_person" matrix-reference-field="contact_person"/>
+
+
+  <access-matrix type="cont_organization" read-everybody="true">
+    <create>
+      <permit-group name="AllPersons"/>
+    </create>
+    <status name="*">
+      <write>
+        <permit-role name="cont_org_contacts"/>
+      </write>
+    </status>
+  </access-matrix>
+
+  <access-matrix type="cont_attachments_org" matrix-reference-field="organization"/>
+  <access-matrix type="cont_cperson_org" matrix-reference-field="organization"/>
+  <access-matrix type="cont_type_accessory" read-everybody="true"/>
+
+  <access-matrix type="Cont_Qualifier_CPerson" matrix-reference-field="contact_person"/>
+  <access-matrix type="Cont_Qualifier_Org" matrix-reference-field="organization"/>
+
+
+
+
+</configuration>

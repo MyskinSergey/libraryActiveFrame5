@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="participant_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select
+                    p.id,
+                    p.rate,
+                    CASE WHEN p.role=0 THEN 'Читатель'
+                         WHEN p.role=1 THEN 'Редактор'
+                         WHEN p.role=2 THEN 'Создатель'
+                         WHEN p.role=3 THEN 'Куратор'
+                         ELSE 'Не задана'
+                         END AS role,
+                         prs.login,
+                         prs.firstname,
+                         prs.lastname
+                    from participant p
+                    left join person prs on prs.id=p.person
+
+        ::from-clause
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+
+
+        <filter name="byProject">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    p.project = {0}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byNewProject">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    p.project = null
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(prs.firstname) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+
+    </collection>
+
+    <collection-view name="participant_collection_view" collection="participant_collection" is-default="true">
+        <display>
+            <column field="login" name="Участник" type="string" sortable="true" min-width="150px"
+                    resizable="true"/>
+            <column field="role" name="Роль в проекте" type="string" sortable="true" min-width="80px" max-width="170px"
+                    resizable="true"/>
+            <column field="rate" name="Почасовая ставка" type="decimal" sortable="true" min-width="40px" max-width="100px"
+                    resizable="true"/>
+        </display>
+    </collection-view>
+
+</configuration>

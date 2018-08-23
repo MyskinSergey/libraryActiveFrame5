@@ -1,0 +1,7 @@
+TYPE_NAME=notification_text;KEYS=notification_type,notification_part,locale,channel;;;
+notification_type;notification_part;locale;channel;notification_text
+RegistrationCompleteNotificationType;subject;"name=""RU""";InboxNotificationChannel;Подтверждение регистрации
+RegistrationCompleteNotificationType;body;"name=""RU""";InboxNotificationChannel;Ваша регистрация подтвержденна ${.now?time?string["dd.MM.yyyy HH:mm"]} Логин: ${info.get("email")} Пароль : ${info.get("password")}
+
+RegistrationCompleteNotificationType;subject;"name=""RU""";MailNotificationChannel;Подтверждение регистрации
+RegistrationCompleteNotificationType;body;"name=""RU""";MailNotificationChannel;Ваша регистрация подтвержденна ${.now?time?string["dd.MM.yyyy HH:mm"]} Логин: ${info.get("email")} Пароль : ${info.get("password")}

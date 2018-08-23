@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="ex_confirmation">
+        <fields>
+            <!-- Количество единиц времени (минут) -->
+            <long name="work_units"/>
+            <reference name="participant" type="participant"/>
+            <string name="comment" length="1024"/>
+            <reference name="execution" type="execution"/>
+        </fields>
+
+    </domain-object-type>
+</configuration>

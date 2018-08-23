@@ -1,0 +1,7 @@
+TYPE_NAME=Cont_Qualifier_CPerson;KEYS=contact_person
+contact_person;classifier
+"name=""Роман""";"name=""Группа А"""
+"name=""Никита""";"name=""Мужской"""
+"name=""Клим""";"name=""Мужской"""
+"name=""Вера""";"name=""Женский"""
+"name=""Денис""";"name=""Мужской"""

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <context-role name="profile_author">
+        <context>
+            <domain-object type="profile_base"/>
+        </context>
+        <groups>
+            <track-domain-objects type="profile_base">
+                <get-group name="PersonAndSubstitutions">
+                    <doel>created_by</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+
+    <context-role name="employee_profile_holder">
+        <context>
+            <domain-object type="employee_profile"/>
+        </context>
+        <groups>
+            <track-domain-objects type="employee_profile">
+                <get-group name="PersonAndSubstitutions">
+                    <doel>person</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+
+    <context-role name="vacancy_profile_holder">
+        <context>
+            <domain-object type="vacancy"/>
+        </context>
+        <groups>
+            <track-domain-objects type="vacancy">
+                <get-group name="PersonAndSubstitutions">
+                    <doel>person</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+
+    <context-role name="cont_author">
+        <context>
+            <domain-object type="cont_contact_person"/>
+        </context>
+        <groups>
+            <track-domain-objects type="cont_contact_person">
+                <get-group name="PersonAndSubstitutions">
+                    <doel>created_by</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+    <context-role name="cont_holder">
+        <context>
+            <domain-object type="cont_contact_person"/>
+        </context>
+        <groups>
+            <track-domain-objects type="cont_contact_person">
+                <get-group name="PersonAndSubstitutions">
+                    <doel>person</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+    <context-role name="cont_org_contacts">
+        <context>
+            <domain-object type="cont_organization"/>
+        </context>
+        <groups>
+            <track-domain-objects type="cont_cperson_org">
+                <bind-context>
+                    <doel>organization</doel>
+                </bind-context>
+                <get-group name="PersonAndSubstitutions">
+                    <doel>cont_cperson_org^organization.contact_person.person</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+</configuration>

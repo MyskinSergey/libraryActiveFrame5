@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="event_list" pageWidth="595" pageHeight="842" columnWidth="511" leftMargin="56" rightMargin="28" topMargin="56" bottomMargin="56" whenResourceMissingType="Empty" uuid="d3018c92-5d76-498e-99b7-b21a3c0003cf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter 1"/>
+	<property name="ireport.zoom" value="1.9487171000000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="START_PERIOD" class="java.util.Date">
+		<parameterDescription><![CDATA[С:]]></parameterDescription>
+	</parameter>
+	<parameter name="FINISH_PERIOD" class="java.util.Date">
+		<parameterDescription><![CDATA[По:]]></parameterDescription>
+	</parameter>
+	<parameter name="FULL_REPORT" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+                                    s.id,
+                                    DATE_PART('month', date_occasion) as month,
+                                    DATE_PART('year', date_occasion) as year,
+                                    s.date_occasion,
+                                    s."name",
+                                    s.note,
+                                    ' ' as remarks
+                                  FROM (
+                                    SELECT
+                                      occ.id,
+                                      occ.date_occasion,
+                                      occ."name",
+                                      occ.note
+                                    FROM
+                                      Occa_Occasion occ
+                                    WHERE occ.date_occasion IS NOT NULL
+                                          AND
+                                          DATE(date_occasion) between
+                                          date_trunc('MONTH',DATE($P{START_PERIOD}))
+                                          and
+                                          date_trunc('MONTH',DATE($P{FINISH_PERIOD})) + INTERVAL '1 MONTH - 1 day'
+                                  ) s
+                                  GROUP BY month, year, date_occasion, "name", note, id
+                                  ORDER BY month, year, date_occasion, "name", id]]>
+	</queryString>
+	<field name="id" class="java.lang.Object"/>
+	<field name="month" class="java.lang.String"/>
+	<field name="year" class="java.lang.String"/>
+	<field name="date_occasion" class="java.sql.Timestamp"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="note" class="java.lang.String"/>
+	<field name="remarks" class="java.lang.String"/>
+	<group name="GroupByMonth">
+		<groupExpression><![CDATA[$F{month}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="80" width="511" height="30" forecolor="#000099" uuid="a9c2cf2d-b94f-4682-8ef7-bc881a282af7">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[СПИСОК ГОСУДАРСТВЕННЫХ И]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="134" width="511" height="17" forecolor="#FF0000" uuid="f0738d00-43ba-4093-b36c-b384a7a5f932">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DateFormatSymbols(new Locale("ru","RU")).getMonths()[Integer.parseInt(new SimpleDateFormat("MM").format($P{START_PERIOD}))-1]+" "
+                                + new SimpleDateFormat("yyyy").format($P{START_PERIOD}) + " года"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="61" width="511" height="3" forecolor="#000099" uuid="5505b585-8702-4087-b1ef-f28039be9ba5"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="110" width="511" height="24" forecolor="#000099" uuid="ad74c8d7-e259-4fae-b6f2-362519fd5aef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ПРОФЕССИОНАЛЬНЫХ ПРАЗДНИКОВ"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Table_TD" x="0" y="0" width="30" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="c7d1b353-c801-4a6f-a5ce-5b771a0cdf78">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("№")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Table_TD" x="30" y="0" width="129" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="7bc513c6-1fd2-4a12-9d1f-ccfa4eb178cb">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("Дата")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Table_TD" x="159" y="0" width="153" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="697ab1d1-a9f8-43af-a1d0-627f9429459a">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("Название праздника")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Table_TD" x="312" y="0" width="199" height="20" forecolor="#000099" backcolor="#FFFFFF" uuid="9456bf5f-68a3-4886-8d7c-3d9c20ca5f4c">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new String("Примечания")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true" pattern="dd.MM.yyyy">
+				<reportElement style="Table_TD" stretchType="RelativeToTallestObject" x="30" y="0" width="129" height="20" isRemoveLineWhenBlank="true" forecolor="#000099" uuid="c323f115-6f5b-428b-8620-d1edad3ccbd5">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="25" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd").format($F{date_occasion})+ " " +
+                            new DateFormatSymbols(new Locale("ru","RU")).getMonths()[Integer.parseInt(new SimpleDateFormat("MM").format($F{date_occasion}))-1]]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Table_TD" stretchType="RelativeToTallestObject" x="159" y="0" width="153" height="20" isRemoveLineWhenBlank="true" forecolor="#000099" uuid="dd111aff-585d-4589-bf46-f34f1410ed72">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="25" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Table_TD" stretchType="RelativeToTallestObject" x="0" y="0" width="30" height="20" isRemoveLineWhenBlank="true" forecolor="#000099" uuid="d8fb7642-227c-4673-a3cd-9bb51c9a52d7">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}+"."]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement style="Table_TD" stretchType="RelativeToTallestObject" mode="Opaque" x="312" y="0" width="199" height="20" forecolor="#000099" uuid="e7ceebcd-9c0a-47a2-963b-400cf2bf5745">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="DejaVuSans.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<paragraph leftIndent="5" rightIndent="5" spacingBefore="5" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="0" width="511" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="b4ff7bf2-ef47-4183-a8fb-f619e23a3efb">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$P{FULL_REPORT}]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="EVENT_ID">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["event_list_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20"/>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="employee_profile_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select
+                    p.id,
+                    r.name as region,
+                    pb.name,
+                    pb.description,
+                    CASE WHEN pb.availability=0 THEN 'Я не знаю'
+                         WHEN pb.availability=1 THEN 'Менее 30 час\неделю'
+                         WHEN pb.availability=2 THEN 'Более 30 час\неделю'
+                         ELSE 'other'
+                         END AS availability,
+                    CASE WHEN pb.expertise_level=0 THEN 'Начальный'
+                         WHEN pb.expertise_level=1 THEN 'Средний'
+                         WHEN pb.expertise_level=2 THEN 'Эксперт'
+                         ELSE 'other'
+                         END AS expertise_level,
+                    CASE WHEN pb.employment_type=0 THEN 'Удаленно'
+                         WHEN pb.employment_type=1 THEN 'Частично удаленно'
+                         WHEN pb.employment_type=2 THEN 'В офисе'
+                         ELSE 'other'
+                         END AS employment_type,
+                    CASE WHEN pb.employment_period=0 THEN 'Менее недели'
+                         WHEN pb.employment_period=1 THEN 'Менее 1 месяца'
+                         WHEN pb.employment_period=2 THEN 'От 1 до 3 месяцев'
+                         WHEN pb.employment_period=3 THEN 'От 3 до 6 месяцев'
+                         WHEN pb.employment_period=4 THEN 'Более 6 месяцев'
+                         ELSE 'other'
+                         END AS employment_period,
+                    CASE WHEN pb.composition=0 THEN 'Вольный стрелок'
+                         WHEN pb.composition=1 THEN 'Компания'
+                         ELSE 'other'
+                         END AS composition,
+                    CASE WHEN pb.territory=0 THEN 'Город'
+                         WHEN pb.territory=1 THEN 'Регион'
+                         ELSE 'other'
+                         END AS territory,
+                    pb.publication_date,
+                    pb.cancellation_date,
+                    prs.login
+                    from employee_profile p
+                    join profile_base pb on pb.id=p.id
+                    left join regions r on r.id=pb.region
+                    left join person prs on prs.id=p.person
+        ::from-clause
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(pb.name_ like) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="employee_profile_collection_view" collection="employee_profile_collection" is-default="true">
+        <display>
+            <column field="name" name="Наименование" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true" search-filter="byName"/>
+            <column field="region" name="Регион" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="description" name="Описание" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="availability" name="Доступность" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="expertise_level" name="Уровень экспертизы" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="employment_type" name="Тип занятости" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="employment_period" name="Срок занятости" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="composition" name="Состав" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="territory" name="Территориально" type="string" sortable="true" min-width="40px" max-width="170px" resizable="true"/>
+            <column field="publication_date" name="Дата публикации" type="timelessDate" sortable="true" min-width="40px" max-width="100px" resizable="true"/>
+            <column field="cancellation_date" name="Дата снятия" type="timelessDate" sortable="true" min-width="40px" max-width="100px" resizable="true"/>
+        </display>
+    </collection-view>
+
+</configuration>

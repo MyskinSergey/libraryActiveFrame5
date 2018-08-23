@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="profile_qualifier">
+        <fields>
+            <reference name="qualifier" type="Qualifier"/>
+            <reference name="profile" type="profile_base"/>
+        </fields>
+        <uniqueKey>
+            <field name="qualifier"/>
+            <field name="profile"/>
+        </uniqueKey>
+    </domain-object-type>
+</configuration>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
+
+    <form name="contacts_notification_form" domain-object-type="notification" is-default="false">
+        <act:tool-bar useDefault="false">
+            <act:action-ref name-ref="aToggleEditOff"
+                            rendered="(toggle-edit and not preview) or preview" merged="false"/>
+
+        </act:tool-bar>
+
+
+        <markup>
+            <header>
+                <table height="50px">
+                    <tr>
+                        <td width="100px" h-align="left">
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Главная">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="subjectLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="subject"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="bodyLabel"/>
+                                    </td>
+                                    <td colspan="3" h-align="left">
+                                        <widget id="body"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Уведомление</text>
+            </label>
+            <label id="subjectLabel">
+                <text>Заголовок:</text>
+            </label>
+            <text-box id="subject">
+                <field-path value="subject"/>
+            </text-box>
+            <label id="bodyLabel">
+                <text>Сообщение:</text>
+            </label>
+            <text-area id="body">
+                <field-path value="body"/>
+            </text-area>
+
+        </widget-config>
+    </form>
+
+
+
+</configuration>

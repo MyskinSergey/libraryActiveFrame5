@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <collection name="regions_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select
+                    id,
+                    name,
+                    region_id
+                from regions
+                    ::from-clause
+                where
+                    1=1 ::where-clause
+
+            ]]>
+        </prototype>
+        <counting-prototype>
+            select count(*) from regions ::from-clause WHERE 1=1 ::where-clause
+        </counting-prototype>
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(name) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byCode">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    region_code = {0}
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="regions_collection_view" collection="regions_collection" is-default="true">
+        <display>
+            <column field="region_id" name="Код региона" type="long" sortable="true" resizable="true" search-filter="byCode" min-width="40px" max-width="100px"/>
+            <column field="name" name="Наименование" type="string" sortable="true" resizable="true" search-filter="byName" min-width="140px"/>
+        </display>
+    </collection-view>
+</configuration>

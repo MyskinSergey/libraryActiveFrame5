@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="profile_keywords">
+        <fields>
+            <reference name="keyword" type="keywords"/>
+            <reference name="profile" type="profile_base"/>
+        </fields>
+        <uniqueKey>
+            <field name="keyword"/>
+            <field name="profile"/>
+        </uniqueKey>
+    </domain-object-type>
+</configuration>

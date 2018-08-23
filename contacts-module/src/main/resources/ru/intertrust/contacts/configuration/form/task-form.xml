@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+    
+    <act:simple-action name="start-planned-task-process" componentName="simple.action"
+                text="Активировать задачу" merged="true"
+                action-handler="generic.workflow.action">
+        <act:action-params>
+            <act:action-param name="process.name" value="PlannedTaskLifecycle"/>
+            <act:action-param name="action.type" value="start.process"/>
+        </act:action-params>
+    </act:simple-action>
+    <act:action-context name="start-planned-task-process-context">
+        <act:domain-object-context>
+            <act:type>Task</act:type>
+            <act:status>Active</act:status>
+        </act:domain-object-context>
+        <act:domain-object-context>
+            <act:type>Task</act:type>
+            <act:status>TaskClosed</act:status>
+        </act:domain-object-context>
+        <act:domain-object-context>
+            <act:type>Task</act:type>
+            <act:status>TaskReturned</act:status>
+        </act:domain-object-context>
+        <act:domain-object-context>
+            <act:type>Task</act:type>
+            <act:status>TaskCancelled</act:status>
+        </act:domain-object-context>
+        <act:action name="start-planned-task-process"/>
+    </act:action-context>
+    
+    <form name="task_form" domain-object-type="task" is-default="true">
+        <default-value-setter component="task.value.setter">
+            <widget-states>
+                <all/>
+            </widget-states>
+        </default-value-setter>
+        <act:tool-bar useDefault="true"/>
+
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left" width="200px">
+                            <widget id="nameLabel"/>
+                        </td>
+                        <td h-align="left">
+                            <widget id="nameValue"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td h-align="left" width="200px">
+                            <widget id="statusLabel"/>
+                        </td>
+                        <td h-align="left">
+                            <widget id="statusValue"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Свойства задачи ">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="projectLabel"/>
+                                    </td>
+                                    <td h-align="left" colspan="3">
+                                        <widget id="projectValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="authorLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="authorValue"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="assignedLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="assignedValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="descriptionLabel"/>
+                                    </td>
+                                    <td h-align="left" colspan="3">
+                                        <widget id="descriptionValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="plannedDateLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="plannedDateValue"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="actualDateLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="actualDateValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="tagsLabel"/>
+                                    </td>
+                                    <td h-align="left" colspan="3">
+                                        <widget id="tagsValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="attachmentsLabel"/>
+                                    </td>
+                                    <td h-align="left" colspan="3">
+                                        <widget id="attachmentsValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+                <tab name="Коментарии">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="commentsValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="Связаные задачи">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="linkedTasksValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="Исполнения">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="executionsValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="nameLabel">
+                <text>Задача</text>
+            </label>
+            <text-box id="nameValue">
+                <field-path value="name"/>
+            </text-box>
+            <label id="descriptionLabel">
+                <text>Описание</text>
+            </label>
+            <text-box id="descriptionValue">
+                <field-path value="description"/>
+            </text-box>
+
+
+            <label id="authorLabel">
+                <text>Автор</text>
+            </label>
+            <suggest-box id="authorValue" read-only="true">
+                <field-path value="author"/>
+                <collection-ref name="col_sys_person"/>
+                <drop-down-pattern value="{firstname} {lastname}"/>
+                <selection-pattern value="{firstname} {lastname}"/>
+                <input-text-filter name="byFirstname"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+
+            <label id="statusLabel">
+                <text>Статус</text>
+            </label>
+            <text-box id="statusValue" read-only="true">
+                <field-path value="status.description"/>
+            </text-box>
+
+            <label id="assignedLabel">
+                <text>Исполнитель</text>
+            </label>
+            <suggest-box id="assignedValue">
+                <field-path value="executor"/>
+                <collection-ref name="participant_collection"/>
+                <drop-down-pattern value="{firstname} {lastname} {role}"/>
+                <selection-pattern value="{firstname} {lastname}"/>
+                <input-text-filter name="byName"/>
+                <collection-extra-filters>
+                    <extra-filter name="byProject" null-value-filter-name="byNewProject">
+                        <param name="0" widget-id="projectValue"/>
+                    </extra-filter>
+                </collection-extra-filters>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <label id="plannedDateLabel">
+                <text>Планируемая дата окончания</text>
+            </label>
+            <date-box id="plannedDateValue">
+                <field-path value="complete_planned_date"/>
+            </date-box>
+
+            <label id="actualDateLabel">
+                <text>Актуальная дата окончания</text>
+            </label>
+            <date-box id="actualDateValue">
+                <field-path value="complete_actual_date"/>
+            </date-box>
+
+            <label id="projectLabel">
+                <text>Проект</text>
+            </label>
+            <suggest-box id="projectValue" read-only="true">
+                <field-path value="project"/>
+                <collection-ref name="project_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <table-viewer id="commentsValue">
+                <collection-table-buttons display-all-possible="true"/>
+                <ignore-form-read-only-state value="false"/>
+                <collection-viewer>
+                    <collection-ref name="comments_collection"/>
+                    <collection-view-ref name="comments_collection_view"/>
+                    <collection-extra-filters>
+                        <extra-filter name="byTask"  null-value-filter-name="byTaskProject">
+                            <param name="0" set-base-object="true"/>
+                        </extra-filter>
+                    </collection-extra-filters>
+                    <act:tool-bar useDefault="true"/>
+                    <rows-selection default-state="empty"/>
+                </collection-viewer>
+                <linked-form-mapping>
+                    <linked-form name="comments_form" inline="true" domain-object-type="task_comments" modal-width="550px" modal-height="300px"/>
+                </linked-form-mapping>
+                <created-objects>
+                    <created-object domain-object-type="task_comments" text="Комментарий"/>
+                </created-objects>
+            </table-viewer>
+
+            <label id="tagsLabel">
+                <text>Метки</text>
+            </label>
+            <suggest-box id="tagsValue">
+                <create-new-button display="true" text="Добавить"/>
+                <created-objects>
+                    <created-object domain-object-type="task_tag" text="Метка"/>
+                </created-objects>
+                <field-path value="task_tags^task.tag"/>
+                <collection-ref name="task_tag_collection"/>
+                <drop-down-pattern value="{tag}"/>
+                <selection-pattern value="{tag}"/>
+                <input-text-filter name="byTag"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="false"/>
+            </suggest-box>
+
+            <label id="attachmentsLabel">
+                <text>Вложения</text>
+            </label>
+            <attachment-box id="attachmentsValue">
+                <field-path value="task_attachments^task"/>
+                <attachment-type-ref name="task_attachments"/>
+                <scanner enabled="true"/>
+                <selection-style name="inline"/>
+                <single-choice value="false"/>
+                <choice-style name="popup"/>
+                <delete-button display="true"/>
+            </attachment-box>
+
+            <linked-domain-objects-table id="linkedTasksValue">
+                <field-path value="task_links^task_from"/>
+                <linked-form name="task_links_form" inline="true" modal-width="400px" modal-height="300px"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="task_links" name="task_links_form"
+                                 modal-width="400px" modal-height="300px"/>
+                </linked-form-mapping>
+                <created-objects>
+                    <created-object domain-object-type="task_links" text="Связи"/>
+                </created-objects>
+                <summary-table>
+                    <summary-table-column header="Связь с задачей" widget-id="linkFromValue">
+                        <action type="view_or_edit"/>
+                        <pattern value="{task_to.name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Тип связи" widget-id="linkTypeValue">
+                        <action type="view_or_edit"/>
+                        <pattern value="{link_type}"/>
+                    </summary-table-column>
+                </summary-table>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+            <table-viewer id="executionsValue">
+                <collection-table-buttons display-all-possible="true"/>
+                <ignore-form-read-only-state value="false"/>
+                <collection-viewer>
+                    <collection-ref name="executions_collection"/>
+                    <collection-view-ref name="executions_collection_view"/>
+                    <collection-extra-filters>
+                        <extra-filter name="byTask"  null-value-filter-name="byNewTask">
+                            <param name="0" set-base-object="true"/>
+                        </extra-filter>
+                    </collection-extra-filters>
+                    <act:tool-bar useDefault="true"/>
+                    <rows-selection default-state="empty"/>
+                </collection-viewer>
+                <linked-form-mapping>
+                    <linked-form name="execution_form" inline="true" domain-object-type="execution" modal-width="750px" modal-height="400px"/>
+                </linked-form-mapping>
+                <created-objects>
+                    <created-object domain-object-type="execution" text="Исполнение"/>
+                </created-objects>
+            </table-viewer>
+        </widget-config>
+    </form>
+</configuration>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+    <form name="execution_form" domain-object-type="execution" is-default="true">
+        <default-value-setter component="execution.value.setter">
+            <widget-states>
+                <all/>
+            </widget-states>
+        </default-value-setter>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="headerLabel"/>
+                        </td>
+                        <td h-align="left">
+                            <widget id="taskValue"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Регистрация исполнения">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="dateLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="dateValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="uomLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="uomValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="commentLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="commentValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="participantLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="participantValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+                <tab name="Подтверждения">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="confirmationValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+
+            <label id="headerLabel">
+                <text>Карточка исполнения задачи:</text>
+            </label>
+
+            <suggest-box id="taskValue" read-only="true">
+                <field-path value="task"/>
+                <collection-ref name="task_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byTaskName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <label id="dateLabel">
+                <text>Дата</text>
+            </label>
+            <date-box id="dateValue" read-only="true">
+                <field-path value="created_date"/>
+            </date-box>
+
+
+            <label id="uomLabel">
+                <text>Количество затраченого времени (минут)</text>
+            </label>
+            <integer-box id="uomValue">
+                <field-path value="work_units"/>
+            </integer-box>
+
+            <label id="commentLabel">
+                <text>Комментарий</text>
+            </label>
+            <text-box id="commentValue">
+                <field-path value="comment"/>
+            </text-box>
+
+            <label id="participantLabel">
+                <text>Исполнитель</text>
+            </label>
+            <suggest-box id="participantValue" read-only="true">
+                <field-path value="participant"/>
+                <collection-ref name="participant_collection"/>
+                <drop-down-pattern value="{firstname} {lastname} {role}"/>
+                <selection-pattern value="{firstname} {lastname}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+
+            <linked-domain-objects-table id="confirmationValue">
+                <field-path value="ex_confirmation^execution"/>
+                <linked-form name="confirmation_form" inline="true" modal-width="600px" modal-height="470px"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="ex_confirmation" name="confirmation_form"
+                                 modal-width="400px" modal-height="300px"/>
+                </linked-form-mapping>
+                <created-objects>
+                    <created-object domain-object-type="ex_confirmation" text="Подтверждение"/>
+                </created-objects>
+                <summary-table>
+                    <summary-table-column header="Дата" widget-id="dateValue">
+                        <action type="view_or_edit"/>
+                        <pattern value="{created_date}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Подтвержденные минуты" widget-id="uomValue">
+                        <action type="view_or_edit"/>
+                        <pattern value="{work_units}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Комментарии" widget-id="commentValue">
+                        <action type="view_or_edit"/>
+                        <pattern value="{comment}"/>
+                    </summary-table-column>
+                </summary-table>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+        </widget-config>
+    </form>
+</configuration>

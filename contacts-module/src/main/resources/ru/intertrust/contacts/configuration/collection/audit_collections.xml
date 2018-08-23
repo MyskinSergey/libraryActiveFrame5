@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <collection name="col_persons_audit" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                    PersonAL.id,
+                    PersonAL.updated_date,
+                    CASE
+	                    WHEN PersonAL.operation=1 THEN 'Создание'
+	                    WHEN PersonAL.operation=2 THEN 'Изменение'
+	                    WHEN PersonAL.operation=3 THEN 'Удаление'
+                    END as operation_name,
+                person.firstname as author,
+                PersonAL.title as title,
+                PersonAL.surname as surname,
+                PersonAL.name as name,
+                PersonAL.birth_date as birth_date,
+                cont_rank.title as rank,
+                status.description as status,
+                PersonAL.domain_object_id
+
+        FROM cont_contact_person_al PersonAL
+        JOIN status on status.id=PersonAL.status
+        JOIN cont_rank ON cont_rank.id=PersonAL.rank
+        JOIN person ON person.id=PersonAL.updated_by
+        ::from-clause
+
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+        <counting-prototype>
+            SELECT
+            COUNT(1)
+            FROM cont_contact_person_al PersonAL
+            JOIN status on status.id=PersonAL.status
+            JOIN cont_rank ON cont_rank.id=PersonAL.rank
+            JOIN person ON person.id=PersonAL.updated_by
+            ::from-clause
+
+            WHERE
+            1=1 ::where-clause
+
+        </counting-prototype>
+
+        <filter name="byActionDate">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    PersonAL.updated_date between {0} and {1}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byAuthor">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(person.firstname) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byState">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(status.description) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="col_persons_audit_default_view" collection="col_persons_audit" is-default="true">
+        <display>
+            <column field="domain_object_id" name="#" type="long"  sortable="true"
+                    min-width="40px" max-width="70px" resizable="true"/>
+            <column field="updated_date" name="Дата действия" type="timelessDate" sortable="true"
+                    date-pattern="dd.MM.yyyy HH:mm:ss" min-width="70px" max-width="120px" resizable="true"
+                    search-filter="byActionDate" date-range="true"/>
+            <column field="operation_name" name="Действие" type="string" sortable="true" editable="false"
+                    min-width="50px" max-width="120px" text-break-style="cut"/>
+            <column field="author" name="Автор" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut" search-filter="byAuthor"/>
+            <column field="title" name="Заголовок" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut"/>
+            <column field="surname" name="Фамилия" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut"/>
+            <column field="name" name="Имя" type="string" sortable="true" editable="false" max-width="80px"
+                    text-break-style="cut"/>
+            <column field="birth_date" name="Дата рождения" type="timelessDate" sortable="true"
+                    date-pattern="dd.MM.yyyy" min-width="70px" max-width="120px" resizable="true" date-range="true"/>
+            <column field="rank" name="Ранг" type="string" sortable="true" editable="false" max-width="80px"
+                    text-break-style="cut"/>
+            <column field="status" name="Состояние" type="string" sortable="true" editable="false" max-width="80px"
+                    text-break-style="cut"/>
+        </display>
+    </collection-view>
+
+    <!-- Коллекция для аудита организаций -->
+    <collection name="col_org_audit" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                    OrganizationAL.id,
+                    OrganizationAL.updated_date,
+                    CASE
+	                    WHEN OrganizationAL.operation=1 THEN 'Создание'
+	                    WHEN OrganizationAL.operation=2 THEN 'Изменение'
+	                    WHEN OrganizationAL.operation=3 THEN 'Удаление'
+                    END as operation_name,
+                person.firstname as author,
+                OrganizationAL.name as org_name,
+                OrganizationAL.fullname as fullname,
+                cont_rank.title as rank,
+                cont_organization.name as parent_name,
+                OrganizationAL.domain_object_id
+
+        FROM cont_organization_al OrganizationAL
+        JOIN status on status.id=OrganizationAL.status
+        JOIN cont_rank ON cont_rank.id=OrganizationAL.rank
+        JOIN person ON person.id=OrganizationAL.updated_by
+        LEFT JOIN cont_organization ON cont_organization.id=OrganizationAL.parent
+        ::from-clause
+
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+        <counting-prototype>
+            SELECT
+            COUNT(*)
+            FROM cont_organization_al OrganizationAL
+            JOIN status on status.id=OrganizationAL.status
+            JOIN cont_rank ON cont_rank.id=OrganizationAL.rank
+            JOIN person ON person.id=OrganizationAL.updated_by
+            LEFT JOIN cont_organization ON cont_organization.id=OrganizationAL.parent
+            ::from-clause
+
+            WHERE
+            1=1 ::where-clause
+
+        </counting-prototype>
+
+        <filter name="byActionDate">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    OrganizationAL.updated_date between {0} and {1}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byAuthor">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(person.firstname) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(OrganizationAL.name) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+
+    </collection>
+
+    <collection-view name="col_org_audit_default_view" collection="col_org_audit" is-default="true">
+        <display>
+            <column field="domain_object_id" name="#" type="long" sortable="true"
+                    min-width="40px" max-width="70px" resizable="true"/>
+            <column field="updated_date" name="Дата действия" type="timelessDate" sortable="true"
+                    date-pattern="dd.MM.yyyy HH:mm:ss" min-width="70px" max-width="120px" resizable="true"
+                    search-filter="byActionDate" date-range="true"/>
+            <column field="operation_name" name="Действие" type="string" sortable="true" editable="false"
+                    min-width="50px" max-width="120px" text-break-style="cut"/>
+            <column field="author" name="Автор" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut" search-filter="byAuthor"/>
+            <column field="org_name" name="Название" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut" search-filter="byName"/>
+            <column field="fullname" name="Полное название" type="string" sortable="true" editable="false"
+                    max-width="100px" text-break-style="cut"/>
+            <column field="rank" name="Ранг" type="string" sortable="true" editable="false" max-width="80px"
+                    text-break-style="cut"/>
+            <column field="parent_name" name="Вышестоящая организация" type="string" sortable="true" editable="false"
+                    max-width="80px" text-break-style="cut"/>
+        </display>
+    </collection-view>
+
+    <!-- Коллекция для аудита почтового адреса -->
+    <collection name="col_post_addr_audit" idField="id">
+        <prototype>
+            <![CDATA[
+           SELECT
+                    MailingAddressAL.id,
+                    MailingAddressAL.updated_date,
+                    CASE
+	                    WHEN MailingAddressAL.operation=1 THEN 'Создание'
+	                    WHEN MailingAddressAL.operation=2 THEN 'Изменение'
+	                    WHEN MailingAddressAL.operation=3 THEN 'Удаление'
+                    END as operation_name,
+                    person.firstname as author,
+		            addr_settlement.name as settlement_name,
+		            addr_street_type.title as street_type_title,
+		            MailingAddressAL.street as street,
+		            MailingAddressAL.house as house,
+		            MailingAddressAL.housing as housing,
+		            MailingAddressAL.building as building,
+		            MailingAddressAL.room as room,
+		            MailingAddressAL.description as description,
+		            MailingAddressAL.postcode as postcode,
+                    Addr_Addresses_Assigning.title as addr_assigning_title,
+                    MailingAddressAL.domain_object_id
+
+        FROM Addr_Mailing_Address_al MailingAddressAL
+        JOIN person ON person.id=MailingAddressAL.updated_by
+        LEFT JOIN addr_settlement ON addr_settlement.id=MailingAddressAL.Settlement
+        LEFT JOIN addr_street_type ON addr_street_type.id=MailingAddressAL.Street_Type
+        JOIN Addr_Addresses_Assigning ON Addr_Addresses_Assigning.id=MailingAddressAL.Addresses_Assigning
+        ::from-clause
+
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+        <counting-prototype>
+            SELECT
+            COUNT(*)
+            FROM Addr_Mailing_Address_al MailingAddressAL
+            JOIN person ON person.id=MailingAddressAL.updated_by
+            LEFT JOIN addr_settlement ON addr_settlement.id=MailingAddressAL.Settlement
+            LEFT JOIN addr_street_type ON addr_street_type.id=MailingAddressAL.Street_Type
+            JOIN Addr_Addresses_Assigning ON Addr_Addresses_Assigning.id=MailingAddressAL.Addresses_Assigning
+            ::from-clause
+
+            WHERE
+            1=1 ::where-clause
+
+        </counting-prototype>
+
+        <filter name="byActionDate">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    MailingAddressAL.updated_date between {0} and {1}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byAuthor">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(person.firstname) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="bySettlementName">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(addr_settlement.name) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+
+    </collection>
+
+    <collection-view name="col_post_addr_audit_default_view" collection="col_post_addr_audit" is-default="true">
+        <display>
+            <column field="domain_object_id" name="#" type="long" sortable="true"
+                    min-width="40px" max-width="70px" resizable="true"/>
+            <column field="updated_date" name="Дата действия" type="timelessDate" sortable="true"
+                    date-pattern="dd.MM.yyyy HH:mm:ss" min-width="70px" max-width="120px" resizable="true"
+                    search-filter="byActionDate" date-range="true"/>
+            <column field="operation_name" name="Действие" type="string" sortable="true" editable="false"
+                    min-width="50px" max-width="120px" text-break-style="cut"/>
+            <column field="author" name="Автор" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut" search-filter="byAuthor"/>
+
+            <column field="settlement_name" name="Населенный пункт" type="string" sortable="true" editable="false"
+                    max-width="100px" text-break-style="cut" search-filter="bySettlementName"/>
+            <column field="street_type_title" name="Тип улицы" type="string" sortable="true" editable="false"
+                    max-width="100px" text-break-style="cut"/>
+            <column field="street" name="Улица" type="string" sortable="true" editable="false" max-width="80px"
+                    text-break-style="cut"/>
+            <column field="house" name="Дом" type="string" sortable="true" editable="false" max-width="40px"
+                    text-break-style="cut"/>
+            <column field="housing" name="Корпус" type="string" sortable="true" editable="false" max-width="40px"
+                    text-break-style="cut"/>
+            <column field="building" name="Строение" type="string" sortable="true" editable="false" max-width="40px"
+                    text-break-style="cut"/>
+            <column field="room" name="№ Квартиры" type="string" sortable="true" editable="false" max-width="40px"
+                    text-break-style="cut"/>
+            <column field="description" name="Описание" type="string" sortable="true" editable="false" max-width="80px"
+                    text-break-style="cut"/>
+            <column field="postcode" name="Индекс" type="string" sortable="true" editable="false" max-width="50px"
+                    text-break-style="cut"/>
+            <column field="addr_assigning_title" name="Назначение адреса" type="string" sortable="true" editable="false"
+                    max-width="90px" text-break-style="cut"/>
+        </display>
+    </collection-view>
+
+    <!-- Коллекция для аудита других адресов -->
+    <collection name="col_other_addr_audit" idField="id">
+        <prototype>
+            <![CDATA[
+           SELECT
+                    OtherAddressAL.id,
+                    OtherAddressAL.updated_date,
+                    CASE
+	                    WHEN OtherAddressAL.operation=1 THEN 'Создание'
+	                    WHEN OtherAddressAL.operation=2 THEN 'Изменение'
+	                    WHEN OtherAddressAL.operation=3 THEN 'Удаление'
+                    END as operation_name,
+                    person.firstname as author,
+                    Cont_Contact_Person.title as contact_person_name,
+                    OtherAddressAL."Value" as oth_addr,
+                    OtherAddressAL.Type_Value as val_type,
+                    OtherAddressAL.domain_object_id,
+                    CASE
+	                    WHEN OtherAddressAL.Type_Value=1 THEN 'Телефон'
+	                    WHEN OtherAddressAL.Type_Value=2 THEN 'Эл. почта'
+                    END as addr_type_name
+
+
+
+        FROM Addr_Other_Address_al OtherAddressAL
+        JOIN person ON person.id=OtherAddressAL.updated_by
+        LEFT JOIN Cont_Contact_Person ON Cont_Contact_Person.id=OtherAddressAL.Contact_Person
+        ::from-clause
+
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+        <counting-prototype>
+            SELECT
+            COUNT(*)
+            FROM Addr_Other_Address_al OtherAddressAL
+            JOIN person ON person.id=OtherAddressAL.updated_by
+            LEFT JOIN Cont_Contact_Person ON Cont_Contact_Person.id=OtherAddressAL.Contact_Person
+            ::from-clause
+
+            WHERE
+            1=1 ::where-clause
+
+        </counting-prototype>
+
+        <filter name="byActionDate">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    OtherAddressAL.updated_date between {0} and {1}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byAuthor">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(person.firstname) like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byAddress">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    UPPER(OtherAddressAL."Value") like UPPER({0})
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+
+    <collection-view name="col_other_addr_audit_default_view" collection="col_other_addr_audit" is-default="true">
+        <display>
+            <column field="domain_object_id" name="#" type="long" sortable="true"
+                    min-width="40px" max-width="70px" resizable="true"/>
+            <column field="updated_date" name="Дата действия" type="timelessDate" sortable="true"
+                    date-pattern="dd.MM.yyyy HH:mm:ss" min-width="70px" max-width="120px" resizable="true"
+                    search-filter="byActionDate" date-range="true"/>
+            <column field="operation_name" name="Действие" type="string" sortable="true" editable="false"
+                    min-width="50px" max-width="120px" text-break-style="cut"/>
+            <column field="author" name="Автор" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut" search-filter="byAuthor"/>
+
+            <column field="contact_person_name" name="КЛ" type="string" sortable="true" editable="false"
+                    max-width="100px" text-break-style="cut"/>
+            <column field="addr_type_name" name="Тип" type="string" sortable="true" editable="false" max-width="100px"
+                    text-break-style="cut"/>
+            <column field="oth_addr" name="Значение" type="string" sortable="true" editable="false" max-width="150px"
+                    text-break-style="cut" search-filter="byAddress"/>
+        </display>
+    </collection-view>
+
+</configuration>

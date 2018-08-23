@@ -1,0 +1,35 @@
+TYPE_NAME=Status; KEYS=Name
+"Name";"Description"
+"Active";"Автивный";
+"Draft	";"Черновик";
+"Active4	";
+"Active3	";
+"Negotiation	";
+"Agree	";
+"Sign	";
+"Registration	";
+"Registred	";
+"AdditionalNegotiation	";
+"OnRevision	";
+"Send	";
+"Acquired	";
+"Complete	";
+"Pretermit	";
+"Sleep	";
+"Ready	";
+"Wait	";
+"Run	";
+"Подготовлен";
+"Распечатан";
+"Отложен";
+"TaskPlanned";"Планируется"
+"TaskInProgress";"В работе"
+"TaskDone";"Сделана"
+"TaskReturned";"Возвращена"
+"TaskCancelled";"Отменена"
+"TaskClosed";"Закрыта"
+"ProjectPlanned";"Планируется"
+"ProjectInProgress";"В работе"
+"ProjectStopped";"Приостановлен"
+"ProjectClosed";"Закрыт"
+

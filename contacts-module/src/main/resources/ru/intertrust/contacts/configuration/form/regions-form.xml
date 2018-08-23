@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="regions_form" domain-object-type="regions" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Справочник регионов">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="regionCodeLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="regionCodeValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="regionNameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="regionNameValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Регион</text>
+            </label>
+
+            <label id="regionCodeLabel">
+                <text>Код региона</text>
+            </label>
+            <integer-box id="regionCodeValue">
+                <field-path value="region_id"/>
+            </integer-box>
+
+            <label id="regionNameLabel">
+                <text>Название региона</text>
+            </label>
+            <text-box id="regionNameValue">
+                <field-path value="name"/>
+            </text-box>
+        </widget-config>
+    </form>
+</configuration>

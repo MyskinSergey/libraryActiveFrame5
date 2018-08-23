@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="language_skills_form" domain-object-type="language_skills" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Владение языком">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="langLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="langValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="levelLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="levelValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Уровень владения</text>
+            </label>
+
+            <label id="levelLabel">
+                <text>Уровень владения</text>
+            </label>
+            <enumeration-box id="levelValue">
+                <field-path value="skill_level"/>
+                <mapping>
+                    <map value="5" display-text="Отлично"/>
+                    <map value="4" display-text="Хорошо"/>
+                    <map value="3" display-text="Приемлемо"/>
+                    <map value="2" display-text="Плохо"/>
+                    <map value="1" display-text="Не владею"/>
+                </mapping>
+            </enumeration-box>
+
+            <label id="langLabel">
+                <text>Язык</text>
+            </label>
+            <suggest-box id="langValue" read-only="false">
+                <create-new-button display="true" text="Добавить"/>
+                <created-objects>
+                    <created-object domain-object-type="languages" text="Язык"/>
+                </created-objects>
+                <field-path value="language"/>
+                <collection-ref name="languages_collection"/>
+                <drop-down-pattern value="{lang_name}"/>
+                <selection-pattern value="{lang_name}"/>
+                <input-text-filter name="byLanguage"/>
+                <page-size>10</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+        </widget-config>
+    </form>
+</configuration>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="task" initial-status="Active">
+        <fields>
+            <string name="name" length="256"/>
+            <string name="description" length="2048"/>
+            <string name="url" length="512"/>
+            <string name="trek_code" length="128"/>
+            <date-time name="complete_planned_date"/>
+            <date-time name="complete_actual_date"/>
+            <reference name="project" type="project"/>
+            <reference name="author" type="person"/>
+            <reference name="executor" type="participant"/>
+        </fields>
+        <attachment-types>
+            <attachment-type name="task_attachments"/>
+        </attachment-types>
+
+    </domain-object-type>
+</configuration>

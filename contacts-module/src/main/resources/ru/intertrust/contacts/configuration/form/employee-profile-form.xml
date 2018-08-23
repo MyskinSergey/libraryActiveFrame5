@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <!-- Форма вакансии -->
+    <form name="employee_profile_form" domain-object-type="employee_profile" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Профиль">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="regionLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="regionValue"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="nameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="nameValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="descriptionLabel"/>
+                                    </td>
+                                    <td h-align="left" colspan="3">
+                                        <widget id="descriptionValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="availabilityLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="availabilityValue" width="100%"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="expLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="expValue" width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="empTypeLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="empTypeValue" width="100%"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="empPeriodLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="empPeriodValue" width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="compLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="compValue" width="100%"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="terrLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="terrValue" width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="pubDateLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="pubDateValue" width="100%"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="cancDateLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="cancDateValue" width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="personLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="personValue" width="100%"/>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+                <tab name="Дополнительные параметры">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="langLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="langValue" width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="keywordsLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="keywordsValue" width="100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="profQualifierLabel" width="100%"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="profQualifierValue" width="100%"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+                <tab name="Отобраные вакансии">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="profPosValue" width="100%"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Параметры профиля</text>
+            </label>
+
+            <label id="regionLabel">
+                <text>Регион</text>
+            </label>
+
+            <suggest-box id="regionValue">
+                <field-path value="region"/>
+                <collection-ref name="regions_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <label id="nameLabel">
+                <text>Наименование</text>
+            </label>
+            <text-box id="nameValue">
+                <field-path value="name"/>
+            </text-box>
+
+            <label id="descriptionLabel">
+                <text>Описание</text>
+            </label>
+            <text-box id="descriptionValue">
+                <field-path value="description"/>
+            </text-box>
+
+            <label id="availabilityLabel">
+                <text>Доступность</text>
+            </label>
+            <enumeration-box id="availabilityValue">
+                <field-path value="availability"/>
+                <map-provider component="availability.provider"/>
+            </enumeration-box>
+
+            <label id="expLabel">
+                <text>Уровень экспертизы</text>
+            </label>
+            <enumeration-box id="expValue">
+                <field-path value="expertise_level"/>
+                <map-provider component="expert.level.provider"/>
+            </enumeration-box>
+
+
+            <label id="empTypeLabel">
+                <text>Тип занятости</text>
+            </label>
+            <enumeration-box id="empTypeValue">
+                <field-path value="employment_type"/>
+                <map-provider component="employment.type.provider"/>
+            </enumeration-box>
+
+            <label id="empPeriodLabel">
+                <text>Сроки занятости</text>
+            </label>
+            <enumeration-box id="empPeriodValue">
+                <field-path value="employment_period"/>
+                <map-provider component="employment.period.provider"/>
+            </enumeration-box>
+
+            <label id="compLabel">
+                <text>Состав</text>
+            </label>
+            <enumeration-box id="compValue">
+                <field-path value="composition"/>
+                <map-provider component="composition.provider"/>
+            </enumeration-box>
+
+            <label id="terrLabel">
+                <text>Территориально</text>
+            </label>
+            <enumeration-box id="terrValue">
+                <field-path value="territory"/>
+                <map-provider component="territory.provider"/>
+            </enumeration-box>
+
+            <label id="pubDateLabel">
+                <text>Дата публикации</text>
+            </label>
+            <date-box id="pubDateValue">
+                <field-path value="publication_date"/>
+            </date-box>
+
+            <label id="cancDateLabel">
+                <text>Дата снятия</text>
+            </label>
+            <date-box id="cancDateValue">
+                <field-path value="cancellation_date"/>
+            </date-box>
+
+            <label id="personLabel">
+                <text>Персона</text>
+            </label>
+            <suggest-box id="personValue">
+                <field-path value="person"/>
+                <collection-ref name="col_sys_person"/>
+                <drop-down-pattern value="{firstname} {lastname}"/>
+                <selection-pattern value="{firstname} {lastname}"/>
+                <input-text-filter name="byFirstname"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+
+            <label id="langLabel">
+                <text>Владение языками</text>
+            </label>
+            <linked-domain-objects-table id="langValue">
+                <field-path value="language_skills^profile"/>
+                <linked-form name="language_skills_form" inline="true" modal-width="500px" modal-height="300px"/>
+                <created-objects>
+                    <created-object domain-object-type="language_skills" text="Владение языком"/>
+                </created-objects>
+                <summary-table>
+                    <summary-table-column header="Язык" widget-id="langValue">
+                        <pattern value="{language.lang_name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Уровень" widget-id="levelValue">
+                        <pattern value="{skill_level}"/>
+                    </summary-table-column>
+                </summary-table>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+
+            <linked-domain-objects-table id="profPosValue" read-only="true">
+                <field-path value="profiles_positions^position"/>
+                <linked-form name="language_skills_form" inline="true" modal-width="500px" modal-height="300px"/>
+                <created-objects>
+                    <created-object domain-object-type="profiles_positions" text="Связь"/>
+                </created-objects>
+                <summary-table>
+                    <summary-table-column header="Название профиля">
+                        <pattern value="{employee_profile.name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Описание профиля">
+                        <pattern value="{employee_profile.description}"/>
+                    </summary-table-column>
+                </summary-table>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+
+            <label id="keywordsLabel">
+                <text>Ключевые слова</text>
+            </label>
+            <suggest-box id="keywordsValue">
+                <create-new-button display="true" text="Добавить"/>
+                <created-objects>
+                    <created-object domain-object-type="keywords" text="Ключевое слово"/>
+                </created-objects>
+                <field-path value="profile_keywords^profile.keyword"/>
+                <collection-ref name="keywords_collection"/>
+                <drop-down-pattern value="{word}"/>
+                <selection-pattern value="{word}"/>
+                <input-text-filter name="byWord"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="false"/>
+            </suggest-box>
+
+            <label id="profQualifierLabel">
+                <text>Профобласть и компетенция для профиля</text>
+            </label>
+            <suggest-box id="profQualifierValue">
+                <field-path value="profile_qualifier^profile.qualifier"/>
+                <collection-ref name="prof_profile_qual_common_col"/>
+                <drop-down-pattern value="{common_name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="false"/>
+            </suggest-box>
+        </widget-config>
+    </form>
+</configuration>

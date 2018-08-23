@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Коллекция для шблонов конвертов -->
+    <collection name="template_envelope_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  te.id,
+                  te.title,
+                  te.param1,
+                  te.param2,
+                  te.param3,
+                  te.param4,
+                  te.param5,
+                  te.param6,
+                  te.param7,
+                  te.param8,
+                  te.param9
+                FROM
+                  cont_templates_envelopes te
+                  ::from-clause
+                where
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+        <counting-prototype>
+            select count(*) from cont_templates_envelopes te ::from-clause WHERE 1=1 ::where-clause
+        </counting-prototype>
+    </collection>
+</configuration>

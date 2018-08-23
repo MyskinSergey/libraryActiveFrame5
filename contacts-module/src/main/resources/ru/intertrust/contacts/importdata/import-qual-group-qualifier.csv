@@ -1,0 +1,7 @@
+TYPE_NAME=qual_group_qualifier;KEYS=name
+name;One_OfThe_Groups;uid
+"Тип организации";true;101
+"Сфера деятельности";false;
+"Пол";true;
+"Компетенция";true;102
+"Профессиональная область";true;103

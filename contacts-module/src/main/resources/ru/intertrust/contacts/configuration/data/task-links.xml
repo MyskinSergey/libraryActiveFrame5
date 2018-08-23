@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <!-- Связь между задачами -->
+    <domain-object-type name="task_links">
+        <fields>
+            <!-- От задачи -->
+            <reference name="task_from" type="task"/>
+            <!-- К задаче -->
+            <reference name="task_to" type="task"/>
+            <!-- Тип связи -->
+            <long name="link_type"/>
+        </fields>
+    </domain-object-type>
+</configuration>

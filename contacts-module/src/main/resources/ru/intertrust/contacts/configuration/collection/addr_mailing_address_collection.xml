@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Коллекция адресов для Почтовых Адресов -->
+    <collection name="mailing_address_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  ma.id,
+                  ma.Postcode,
+                  settlement.Name as settlement,
+                  str_type.Title as strType,
+                  ma.Street,
+                  ma.House,
+                  ma.Room,
+                  region.Name as reg
+                FROM
+                  Addr_Mailing_Address ma
+                  left join Addr_Settlement settlement on settlement.id = ma.Settlement
+                  left join Addr_Street_Type str_type on str_type.id = ma.Street_Type
+                  left join Addr_Region region on region.id = settlement.Region
+                where
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+        <filter name="byAddress">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(ma.Postcode) like upper({0}) || '%'
+                    OR
+                    upper(settlement.Name) like upper({0})|| '%'
+                    OR
+                    upper(ma.Street) like upper({0})|| '%'
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+    <collection-view name="mailing_address_collection_view" collection="mailing_address_collection" is-default="true">
+        <display>
+            <column field="Postcode" name="Индекс" type="string" sortable="true" resizable="true"/>
+            <column field="settlement" name="Населенный пункт" type="string" sortable="true" resizable="true"/>
+            <column field="strType" name="Тип улицы" type="string" sortable="true" resizable="true"/>
+            <column field="Street" name="Улица" type="string" sortable="true" resizable="true"/>
+            <column field="House" name="Дом" type="string" sortable="true" resizable="true"/>
+            <column field="Room" name="№ Квартиры" type="string" sortable="true" resizable="true"/>
+            <column field="reg" name="Страна\Регион" type="string" sortable="true" resizable="true"/>
+        </display>
+    </collection-view>
+
+    <!--person_address_collection-->
+    <collection name="person_address_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT
+                  pa.id,
+                  pa.mailing_address,
+                  pa.contact_person
+                FROM
+                  cont_address_cperson pa
+                where
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+    </collection>
+
+    <!-- Коллекция адресов для Почтовых Адресов -->
+    <collection name="mailing_address_col_for_print" idField="id">
+        <prototype>
+            <![CDATA[
+                SELECT * FROM
+                    (SELECT
+                       ma.id,
+                       ma.Postcode,
+                       settlement.Name AS settlement,
+                       str_type.Title  AS strType,
+                       ma.Street,
+                       ma.House,
+                       ma.Room,
+                       region.Name     AS reg
+                     FROM
+                       Addr_Mailing_Address ma
+                       LEFT JOIN Addr_Settlement settlement ON settlement.id = ma.Settlement
+                       LEFT JOIN Addr_Street_Type str_type ON str_type.id = ma.Street_Type
+                       LEFT JOIN Addr_Region region ON region.id = settlement.Region
+                       LEFT JOIN cont_address_cperson pa ON pa.mailing_address = ma.id
+                       LEFT JOIN cont_contact_person ccp ON ccp.id = pa.contact_person
+                      WHERE
+                        1=1 ::where-clause
+
+                    UNION
+
+                      SELECT
+                        ma.id,
+                        ma.Postcode,
+                        settlement.Name AS settlement,
+                        str_type.Title  AS strType,
+                        ma.Street,
+                        ma.House,
+                        ma.Room,
+                        region.Name     AS reg
+                      FROM
+                        Addr_Mailing_Address ma
+                        LEFT JOIN Addr_Settlement settlement ON settlement.id = ma.Settlement
+                        LEFT JOIN Addr_Street_Type str_type ON str_type.id = ma.Street_Type
+                        LEFT JOIN Addr_Region region ON region.id = settlement.Region
+                        LEFT JOIN Cont_Address_Org cao ON cao.mailing_address = ma.id
+                        LEFT JOIN cont_cperson_org cco ON cco.organization = cao.organization
+                        LEFT JOIN cont_contact_person ccp ON ccp.id = cco.contact_person
+                      WHERE
+                        1=1 ::where-clause
+                    ) all_data
+            ]]>
+        </prototype>
+        <filter name="byContactPerson">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    ccp.id = {0}
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byContactPersonIsNull">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    1 <> 1
+                ]]>
+            </criteria>
+        </filter>
+        <filter name="byStreet">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     lower(street) LIKE lower('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+    <collection-view name="mailing_address_col_for_print_view" collection="mailing_address_col_for_print" is-default="true">
+        <display>
+            <column field="Postcode" name="Индекс" type="string" sortable="true" resizable="true"/>
+            <column field="settlement" name="Населенный пункт" type="string" sortable="true" resizable="true"/>
+            <column field="strType" name="Тип улицы" type="string" sortable="true" resizable="true"/>
+            <column field="Street" name="Улица" type="string" sortable="true" resizable="true"/>
+            <column field="House" name="Дом" type="string" sortable="true" resizable="true"/>
+            <column field="Room" name="№ Квартиры" type="string" sortable="true" resizable="true"/>
+            <column field="reg" name="Страна\Регион" type="string" sortable="true" resizable="true"/>
+        </display>
+    </collection-view>
+</configuration>

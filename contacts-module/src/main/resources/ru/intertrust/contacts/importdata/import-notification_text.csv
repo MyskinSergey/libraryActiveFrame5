@@ -1,0 +1,6 @@
+TYPE_NAME=notification_text;KEYS=notification_type,notification_part,locale,channel;;;
+notification_type;notification_part;locale;channel;notification_text
+TaskChangedNotificationType;subject;"name=""RU""";InboxNotificationChannel;Изменение задачи
+TaskChangedNotificationType;body;"name=""RU""";InboxNotificationChannel;"Новый статус задачи: ${document.get(""title"")} - ${document.get(""status.description"")}. Результат:<#switch document.get(""result"")><#case 1>Одобрено<#break><#case 2>На доработку<#break><#case 3>Отказано<#break><#case 4>Выполнено<#break><#case 5>Не выполнено<#break><#default>Неизвестно</#switch>"
+TaskChangedNotificationType;subject;"name=""RU""";MailNotificationChannel;Изменение задачи
+TaskChangedNotificationType;body;"name=""RU""";MailNotificationChannel;"Новый статус задачи: ${document.get(""title"")} - ${document.get(""status.description"")}. Результат:<#switch document.get(""result"")><#case 1>Одобрено<#break><#case 2>На доработку<#break><#case 3>Отказано<#break><#case 4>Выполнено<#break><#case 5>Не выполнено<#break><#default>Неизвестно</#switch>"

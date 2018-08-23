@@ -1,0 +1,7 @@
+<?xml version="1.1" encoding="UTF-8" standalone="yes"?>
+<ReportMetadataConfig name="event_list"
+                      description="Список событий" mainTemplate="event_list">
+    <formats>
+        <format>DOCX</format>
+    </formats>
+</ReportMetadataConfig>

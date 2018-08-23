@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <context-role name="reg_info_author">
+        <context>
+            <domain-object type="reg_info"/>
+        </context>
+        <groups>
+            <track-domain-objects type="reg_info">
+                <get-group name="PersonAndSubstitutions">
+                    <doel>person</doel>
+                </get-group>
+            </track-domain-objects>
+        </groups>
+    </context-role>
+
+</configuration>

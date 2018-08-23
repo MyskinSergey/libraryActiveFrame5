@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="rank_form" domain-object-type="cont_rank" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="  ">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td width="80px">
+                                        <widget id="title-label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="title-value"/>
+                                    </td>
+
+                                    <td width="80px">
+                                        <widget id="index-label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="index-value"/>
+                                    </td>
+
+                                    <td width="80px">
+                                        <widget id="date-label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="date-value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <field-path/>
+                <text>Ранг</text>
+            </label>
+
+            <label id="title-label">
+                <text>Заголовок:</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="title-value"/>
+            </label>
+            <text-box id="title-value">
+                <field-path value="title"/>
+            </text-box>
+
+            <label id="index-label">
+                <text>Порядковый номер:</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="index-value"/>
+            </label>
+            <integer-box id="index-value">
+                <field-path value="index_number"/>
+            </integer-box>
+
+            <label id="date-label">
+                <text>Дата:</text>
+            </label>
+            <date-box id="date-value">
+                <field-path value="date_notes"/>
+                <display-time-box>false</display-time-box>
+                <display-time-zone-choice>false</display-time-zone-choice>
+                <pattern>dd.MM.yyyy</pattern>
+            </date-box>
+        </widget-config>
+    </form>
+</configuration>

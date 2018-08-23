@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="languages">
+        <fields>
+            <long name="lang_id" not-null="true"/>
+            <string name="lang_name" length="100"/>
+        </fields>
+        <uniqueKey>
+            <field name="lang_id"/>
+        </uniqueKey>
+    </domain-object-type>
+</configuration>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="confirmation_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select
+                    id,
+                    created_date,
+                    work_units,
+                    comment,
+                    execution,
+                    participant
+
+        FROM ex_confirmation
+        ::from-clause
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+
+
+        <filter name="byDate">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    created_date = {0}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byUnit">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    work_units = {0}
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+</configuration>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+    <form name="comments_form" domain-object-type="task_comments" is-default="true">
+        <default-value-setter component="comment.value.setter">
+            <widget-states>
+                <all/>
+            </widget-states>
+        </default-value-setter>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left" width="100px">
+                            <widget id="headerLabel"/>
+                        </td>
+                        <td h-align="left">
+                            <widget id="taskValue"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab>
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right" >
+                                        <widget id="commentValue" width="400px"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+
+            <label id="headerLabel">
+                <text>Комментарий к задаче</text>
+            </label>
+
+            <text-area id="commentValue" max-tooltip-height="50px" max-tooltip-width="400px">
+                <field-path value="content"/>
+            </text-area>
+
+            <suggest-box id="taskValue" read-only="true">
+                <field-path value="task"/>
+                <collection-ref name="task_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+        </widget-config>
+    </form>
+</configuration>

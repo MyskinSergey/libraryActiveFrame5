@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+    <form name="participant_form" domain-object-type="participant" is-default="true">
+        <default-value-setter component="participant.value.setter">
+            <widget-states>
+                <all/>
+            </widget-states>
+        </default-value-setter>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="headerLabel"/>
+                        </td>
+                        <td h-align="left">
+                            <widget id="projectValue"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Участник проекта">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="roleLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="roleValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="personLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="personValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="rateLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="rateValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+
+            <label id="headerLabel">
+                <text>Карточка участника проекта:</text>
+            </label>
+
+
+            <label id="roleLabel">
+                <text>Роль</text>
+            </label>
+            <enumeration-box id="roleValue">
+                <field-path value="role"/>
+                <map-provider component="role.provider"/>
+            </enumeration-box>
+
+
+            <label id="personLabel">
+                <text>Персона</text>
+            </label>
+            <suggest-box id="personValue">
+                <field-path value="person"/>
+                <collection-ref name="col_sys_person"/>
+                <drop-down-pattern value="{firstname} {lastname}"/>
+                <selection-pattern value="{firstname} {lastname}"/>
+                <input-text-filter name="byFirstname"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <label id="rateLabel">
+                <text>Почасовая ставка</text>
+            </label>
+            <decimal-box id="rateValue">
+                <field-path value="rate"/>
+            </decimal-box>
+
+
+            <suggest-box id="projectValue" read-only="true">
+                <field-path value="project"/>
+                <collection-ref name="project_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+        </widget-config>
+    </form>
+</configuration>

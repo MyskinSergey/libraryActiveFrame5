@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Настройки приложения -->
+    <form name="ssetting_form" domain-object-type="ssetting" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="  ">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <widget id="default_printer_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="default_printer_value"/>
+                                    </td>
+
+                                    <td>
+                                        <widget id="default_format_envelope_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="default_format_envelope_value"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="print_sender_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="print_sender_value"/>
+                                    </td>
+
+                                    <td>
+                                        <widget id="default_sender_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="default_sender_value"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="print_on_clear_envelope_label"/>
+                                    </td>
+                                    <td colspan="3">
+                                        <widget id="print_on_clear_envelope_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <!--Шапка формы-->
+            <label id="headerLabel">
+                <text>Параметры</text>
+            </label>
+
+            <label id="default_printer_label">
+                <text>Принтер для печати конвертов</text>
+            </label>
+            <text-box id="default_printer_value">
+                <field-path value="default_printer"/>
+            </text-box>
+
+            <label id="default_format_envelope_label">
+                <text>Формат конверта по-умолчанию</text>
+            </label>
+            <enumeration-box id="default_format_envelope_value">
+                <field-path value="default_format_envelope" />
+                <mapping>
+                    <map value="c5" display-text="C5"/>
+                    <map value="c6" display-text="C6"/>
+                    <map value="dl" display-text="DL"/>
+                </mapping>
+            </enumeration-box>
+
+            <label id="print_sender_label">
+                <text>Печатать отправителя по-умолчанию</text>
+            </label>
+            <check-box id="print_sender_value">
+                <field-path value="print_sender"/>
+            </check-box>
+
+            <label id="default_sender_label">
+                <text>Отправитель по-умолчанию</text>
+            </label>
+            <suggest-box id="default_sender_value">
+                <field-path value="default_sender"/>
+                <collection-ref name="organization_address_collection"/>
+                <drop-down-pattern value="{senderName}, {receiveAddress}"/>
+                <selection-pattern value="{senderName}, {receiveAddress}"/>
+                <input-text-filter name="bySender"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <display-values-as-links value="true"/>
+                <single-choice value="true"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="Organization_Address" name="organization_address_form" inline="true" modal-width="550px" modal-height="300px"/>
+                </linked-form-mapping>
+                <create-new-button text="Создать"/>
+                <created-objects>
+                    <created-object domain-object-type="Organization_Address" text="Адрес организации отправителя"/>
+                </created-objects>
+            </suggest-box>
+
+            <label id="print_on_clear_envelope_label">
+                <text>Печать на чистом конверте</text>
+            </label>
+            <check-box id="print_on_clear_envelope_value">
+                <field-path value="print_on_clear_envelope"/>
+            </check-box>
+
+        </widget-config>
+    </form>
+</configuration>

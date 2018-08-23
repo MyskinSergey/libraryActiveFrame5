@@ -9,14 +9,50 @@
         <!-- minutes -->
     </session-config>
 
+    <servlet>
+        <description>Apache CXF Endpoint</description>
+        <servlet-name>cxf</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>config-location</param-name>
+            <param-value>classpath:META-INF/ws-rest-dispatcher-context.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cxf</servlet-name>
+        <url-pattern>/ws/*</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <display-name>RestLoginFilter</display-name>
+        <filter-name>RestLoginFilter</filter-name>
+        <filter-class>ru.intertrust.workfinder.rest.filter.RestAuthFilter</filter-class>
+
+    </filter>
+
+    <filter-mapping>
+        <filter-name>RestLoginFilter</filter-name>
+        <url-pattern>/ws/restAdapter/*</url-pattern>
+    </filter-mapping>
     <context-param>
         <param-name>parentContextKey</param-name>
         <param-value>ear.context</param-value>
     </context-param>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:beans.xml</param-value>
+    </context-param>
+
+<!--
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:META-INF/applicationContext.xml</param-value>
     </context-param>
+-->
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

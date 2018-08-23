@@ -32,6 +32,11 @@
             <artifactId>custom-web-business-universe</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ru.intertrust.application-template</groupId>
+            <artifactId>work-finder-rest</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>ru.intertrust.cm-sochi</groupId>

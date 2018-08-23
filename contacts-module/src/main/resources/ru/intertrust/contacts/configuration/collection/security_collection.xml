@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
+    <collection name="security_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                    SELECT
+                    id,
+                     title,
+                     uid
+                    FROM Docm_SecurityGrif
+                    WHERE 1=1 ::where-clause
+                    ]]>
+        </prototype>
+        <counting-prototype>
+            SELECT
+            count(*)
+            FROM Docm_SecurityGrif
+            WHERE 1=1 ::where-clause
+        </counting-prototype>
+        <filter name="byTitle">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                     lower(title) LIKE lower('%' || {0} || '%')
+                ]]>
+            </criteria>
+        </filter>
+    </collection>
+</configuration>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <form name="cont_organization_form" domain-object-type="cont_organization" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td width="100px">
+                            <widget id="header"/>
+                        </td>
+                        <td>
+                            <widget id="header1"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Информация"> <!-- закладка состоит из групп с разметкой -->
+                    <single-entry-group> <!-- наследник от TabGroupsConfig -->
+                        <tab-group> <!-- вхождение в группу уже может содержать разметку -->
+                            <table>
+                                <!--Название-->
+                                <tr>
+                                    <td width="100px" h-align="left">
+                                        <widget id="name_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="name_value"/>
+                                    </td>
+                                </tr>
+
+                                <!--Полное Название-->
+                                <tr>
+                                    <td width="100px" h-align="left">
+                                        <widget id="fullname_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="fullname_value"/>
+                                    </td>
+                                </tr>
+
+                                <!--Ранг-->
+                                <!--tr>
+                                    <td width="100px" h-align="left">
+                                        <widget id="rank_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="rank_value"/>
+                                    </td>
+                                </tr-->
+
+                                <!--Вышестоящая организация-->
+                                <tr>
+                                    <td width="100px" h-align="left">
+                                        <widget id="parent_org_label"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="parent_org_value"/>
+                                    </td>
+                                </tr>
+
+                                <!--Классификации-->
+                                <tr>
+                                    <td width="100px" h-align="left">
+                                        <widget id="classifiers_label"/>
+                                    </td>
+                                    <td h-align="left" colspan="2">
+                                        <widget id="classifiers_value"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="Контактные Лица"> <!-- закладка состоит из групп с разметкой -->
+                    <single-entry-group> <!-- наследник от TabGroupsConfig -->
+                        <tab-group> <!-- вхождение в группу уже может содержать разметку -->
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="contact_names_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="Почт. Адреса"> <!-- закладка состоит из групп с разметкой -->
+                    <single-entry-group> <!-- наследник от TabGroupsConfig -->
+                        <tab-group> <!-- вхождение в группу уже может содержать разметку -->
+                            <table>
+                                <tr>
+                                    <td width="15%" h-align="left">
+                                        <widget id="post_addresses_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="События">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="org_occasions_ldot"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="Вакансии">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left" colspan="2">
+                                        <widget id="vacancies_table_viewer" width="1000px"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+                <tab name="История изменений">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="left">
+                                        <widget id="stubLabel"/> <!-- TODO: Заменить на logging_ldot после фикса баги CMFIVE-3918 -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+
+            </body>
+        </markup>
+        <widget-config>
+            <label id="stubLabel">
+                <field-path/>
+                <text>Заглушка</text>
+            </label>
+
+            <label id="header">
+                <field-path/>
+                <text>Организация</text>
+            </label>
+
+            <label id="header1">
+                <field-path value="name"/>
+            </label>
+
+            <label id="name_label">
+                <field-path/>
+                <text>Название</text>
+            </label>
+            <text-box id="name_value">
+                <field-path value="name"/>
+            </text-box>
+
+            <label id="fullname_label">
+                <field-path/>
+                <text>Полное Название</text>
+            </label>
+            <text-box id="fullname_value">
+                <field-path value="fullname"/>
+            </text-box>
+
+            <label id="rank_label">
+                <field-path/>
+                <text>Ранг</text>
+            </label>
+
+            <suggest-box id="rank_value">
+                <field-path value="rank"/>
+                <collection-ref name="rank_collection"/>
+                <drop-down-pattern value="{title}"/>
+                <selection-pattern value="{title}"/>
+                <input-text-filter name="byTitle"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <label id="parent_org_label">
+                <field-path/>
+                <text>Вышестоящая организация</text>
+            </label>
+
+            <suggest-box id="parent_org_value">
+                <field-path value="parent"/>
+                <collection-ref name="cont_organization_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <!--<hierarchy-browser id="contact_names_value">-->
+                <!--<field-path value="cont_cperson_org^organization.contact_person" on-root-delete="unlink"/>-->
+
+                <!--<node-collection-def collection="col_contact_person"-->
+                                     <!--domain-object-type="cont_contact_person" title="Создать">-->
+                    <!--<root-node-link title="Контактные лица -> "/>-->
+                    <!--<selection-pattern value="{title}"/>-->
+                    <!--<fill-parent-on-add field-to-fill="contact_person"/>-->
+                <!--</node-collection-def>-->
+                <!--<page-size>20</page-size>-->
+                <!--<selection-style name="inline"/>-->
+                <!--<single-choice value="false"/>-->
+                <!--<clear-all-button text="Очистить"/>-->
+                <!--<add-button image="..." text="Выбрать"/>-->
+                <!--<display-values-as-links value="true"/>-->
+            <!--</hierarchy-browser>-->
+
+            <linked-domain-objects-table id="contact_names_value">
+                <field-path value="cont_cperson_org^organization"/>
+                <linked-form name="cont_org_person_form" inline="true"/>
+                <linked-form-mapping>
+                    <linked-form name="cont_org_person_form" domain-object-type="cont_cperson_org" modal-height="350px" modal-width="600px"/>
+                </linked-form-mapping>
+                <created-objects>
+                    <created-object text="КЛ организации" domain-object-type="cont_cperson_org"/>
+                </created-objects>
+
+                <summary-table>
+                    <!--<summary-table-column header="Организация" widget-id="organization_value">-->
+                        <!--<pattern value="{organization.name}"/>-->
+                    <!--</summary-table-column>-->
+                    <summary-table-column header="Контактное Лицо" widget-id="contact_person_value">
+                        <action type="view_or_edit"/>
+                        <pattern value="{contact_person.title}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Должность" widget-id="position_value">
+                        <action type="view_or_edit"/>
+                        <pattern value="{position}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Должность (дат. падеж)" widget-id="position1_value">
+                        <action type="view_or_edit"/>
+                        <pattern value="{position1}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Описание" widget-id="desc_value">
+                        <action type="view_or_edit"/>
+                        <pattern value="{description}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Тип принадлежности" widget-id="type_accessory_value">
+                        <action type="view_or_edit"/>
+                        <pattern value="{type_accessory.title}"/>
+                    </summary-table-column>
+                </summary-table>
+                <selection-sort-criteria>
+                    <sort-criterion field="contact_person.name" order="asc"/>
+                </selection-sort-criteria>
+                <single-choice value="false"/>
+
+            </linked-domain-objects-table>
+
+            <label id="classifiers_label">
+                <field-path/>
+                <text>Классификации:</text>
+            </label>
+
+
+            <hierarchy-browser id="classifiers_value">
+                <field-path
+                        value="Cont_Qualifier_Org^organization.classifier"/>
+                <node-collection-def collection="col_org_qualifier_groups"
+                                     title="Группы классификаторов" display-create-button="false" selective="false">
+                    <root-node-link title="Классификаторы"/>
+                    <!-- название фильтра по тексту, введённому пользователем -->
+                    <input-text-filter name="byName"/>
+                    <!-- паттерн отображения уже выбранных значений -->
+                    <selection-pattern value="{name}"/>
+                    <default-sort-criteria column-field="name" order="asc"/>
+                    <selection-sort-criteria>
+                        <sort-criterion field="name" order="asc"/>
+                    </selection-sort-criteria>
+
+                    <node-collection-def collection="all_org_qualifiers_collection" parent-filter="byQualifierGroup"
+                                         title="Классификатор" display-create-button="false" >
+                        <fill-parent-on-add field-to-fill="classifier_group"/>
+                        <single-choice>
+                            <parent-object-field name="One_OfThe_Groups" value="true"/>
+                        </single-choice>
+                        <display-values-as-links value="false"/>
+                        <default-sort-criteria column-field="corder,name" order="asc"/>
+                        <selection-pattern value="{qualifierName}"/>
+                    </node-collection-def>
+
+                    <single-choice value="false"/>
+                    <display-values-as-links value="false"/>
+                </node-collection-def>
+                <page-size>10</page-size>
+                <single-choice value="false"/>
+                <clear-all-button text="Очистить"/>
+                <add-button image="..." text="Добавить"/>
+                <display-values-as-links value="false"/>
+            </hierarchy-browser>
+
+            <suggest-box id="post_addresses_value">
+                <field-path value="Cont_Address_Org^Organization.Mailing_Address"/>
+                <collection-ref name="mailing_address_collection"/>
+                <drop-down-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <selection-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <input-text-filter name="byAddress"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="false"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="Addr_Mailing_Address" name="add_addr_from_org_form" inline="true" modal-width="430px" modal-height="680px"/>
+                </linked-form-mapping>
+                <create-new-button text="Создать"/>
+                <created-objects>
+                    <created-object domain-object-type="Addr_Mailing_Address" text="Почтовый адрес"/>
+                </created-objects>
+            </suggest-box>
+
+            <linked-domain-objects-table id="org_occasions_ldot" modal-width="500px" modal-height="400px"
+                                         max-tooltip-width="300px">
+                <field-path value="Occa_Occasion_Org^cont_organization"/>
+                <linked-form name="org_occasions_form" inline="true"/>
+                <linked-form-mapping>
+                    <linked-form name="org_occasions_form" domain-object-type="Occa_Occasion_Org" modal-width="450px" modal-height="150px"/>
+                </linked-form-mapping>
+                <summary-table>
+                    <summary-table-column header="Событие" widget-id="eventSelectionBox">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Occasion.name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Дата" widget-id="f1">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Occasion.date_occasion}"/>
+                    </summary-table-column>
+                </summary-table>
+                <selection-sort-criteria>
+                    <sort-criterion field="Occasion.date_occasion" order="asc"/>
+                </selection-sort-criteria>
+                <single-choice value="false"/>
+            </linked-domain-objects-table>
+
+            <table-viewer id="vacancies_table_viewer">
+                <collection-table-buttons display-all-possible="true"/>
+                <ignore-form-read-only-state value="true"/>
+                <collection-viewer>
+                    <collection-ref name="position_collection"/>
+                    <collection-view-ref name="position_collection_view"/>
+                    <collection-extra-filters>
+                        <extra-filter name="byOrganization"  null-value-filter-name="byNewOrganization">
+                            <param name="0" set-base-object="true"/>
+                        </extra-filter>
+                    </collection-extra-filters>
+                    <!--default-sort-criteria column-field="item_number" order="asc"/-->
+                    <!--act:tool-bar useDefault="true">
+                        <act:simple-action name="case-activity-up" componentName="simple.action"
+                                           action-handler="case.activity.up.action"
+                                           text="Выше" merged="true"
+                                           permissions="Write, Create">
+                        </act:simple-action>
+                        <act:simple-action name="case-activity-down" componentName="simple.action"
+                                           action-handler="case.activity.down.action"
+                                           text="Ниже" merged="true"
+                                           permissions="Write, Create">
+                        </act:simple-action>
+                    </act:tool-bar-->
+                    <rows-selection default-state="empty"/>
+                </collection-viewer>
+
+
+                <linked-form-mapping>
+                    <linked-form name="position_form" inline="true" domain-object-type="vacancy" modal-width="850px" modal-height="510px"/>
+                </linked-form-mapping>
+                <created-objects>
+                    <created-object domain-object-type="vacancy" text="Вакансия"/>
+                </created-objects>
+
+
+            </table-viewer>
+
+        </widget-config>
+    </form>
+</configuration>

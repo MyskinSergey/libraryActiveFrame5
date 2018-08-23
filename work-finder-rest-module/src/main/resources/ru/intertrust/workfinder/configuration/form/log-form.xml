@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:action="https://cm5.intertrust.ru/config/action">
+
+    <form name="system_log_form" domain-object-type="system_log" is-default="true">
+        <action:tool-bar useDefault="false"/>
+
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="header"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <widget id="typeLabel"/>
+                                    </td>
+                                    <td>
+                                        <widget id="typeValue"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <widget id="contentLabel"/>
+                                    </td>
+                                    <td colspan="3" rowspan="3">
+                                        <widget id="contentValue"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Системное событие</text>
+            </label>
+
+
+            <label id="typeLabel">
+                <text>Тип события</text>
+            </label>
+
+            <text-box id="typeValue">
+                <field-path value="event_type"/>
+            </text-box>
+
+            <label id="contentLabel">
+                <text>Описание</text>
+            </label>
+
+            <text-area id="contentValue">
+                <field-path value="event"/>
+            </text-area>
+
+        </widget-config>
+
+    </form>
+</configuration>

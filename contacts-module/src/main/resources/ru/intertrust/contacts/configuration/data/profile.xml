@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="profile_base">
+        <fields>
+            <string name="name" length="512"/>
+            <string name="description" length="1024"/>
+            <!-- Доступность -->
+            <long name="availability"/>
+            <!-- Уровень экспертизы -->
+            <long name="expertise_level"/>
+            <!-- Тип занятости -->
+            <long name="employment_type"/>
+            <!-- Сроки занятости -->
+            <long name="employment_period"/>
+            <!-- Состав -->
+            <long name="composition"/>
+            <!-- Территориально -->
+            <long name="territory"/>
+            <date-time name="publication_date"/>
+            <date-time name="cancellation_date"/>
+            <reference name="region" type="regions"/>
+        </fields>
+    </domain-object-type>
+
+    <!-- Профиль исполнтеля -->
+    <domain-object-type name="employee_profile" extends="profile_base">
+        <fields>
+            <!-- Пресона исполнитель -->
+            <reference name="person" type="person"/>
+        </fields>
+    </domain-object-type>
+
+    <!-- Профиль вакансии -->
+    <domain-object-type name="vacancy" extends="profile_base">
+        <fields>
+            <!-- Пресона работодатель -->
+            <reference name="person" type="person"/>
+            <!-- Организация работодатель -->
+            <reference name="organization" type="cont_organization"/>
+        </fields>
+    </domain-object-type>
+
+</configuration>

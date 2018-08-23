@@ -1,0 +1,6 @@
+TYPE_NAME=cont_rank;KEYS=title
+title;index_number
+"1-ый ранг";1
+"2-ой ранг";2
+"3-ий ранг";3
+"4-ый ранг";4

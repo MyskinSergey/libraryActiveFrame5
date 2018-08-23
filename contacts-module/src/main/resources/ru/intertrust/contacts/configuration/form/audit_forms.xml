@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
+    <!-- Форма аудита КЛ -->
+    <form name="person_audit_form" domain-object-type="cont_contact_person_al" is-default="true" debug="false"
+          min-width="1200px">
+        <act:tool-bar useDefault="false"/>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel" width="300px"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Информация">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="actionDateLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="actionDateBox"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="actionLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="actionBox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="authorLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="authorText"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="titleLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="titleText"/>
+                                    </td>
+                                </tr>
+                               <tr>
+                                   <td h-align="right">
+                                       <widget id="surnameLabel"/>
+                                   </td>
+                                   <td h-align="left">
+                                       <widget id="surnameText"/>
+                                   </td>
+                                   <td h-align="right">
+                                       <widget id="nameLabel"/>
+                                   </td>
+                                   <td h-align="left">
+                                       <widget id="nameText"/>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td h-align="right">
+                                       <widget id="birthDateLabel"/>
+                                   </td>
+                                   <td h-align="left">
+                                       <widget id="birthDateBox"/>
+                                   </td>
+                                   <td h-align="right">
+                                       <widget id="rankLabel"/>
+                                   </td>
+                                   <td h-align="left">
+                                       <widget id="rankText"/>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td h-align="right">
+                                       <widget id="statusLabel"/>
+                                   </td>
+                                   <td h-align="left">
+                                       <widget id="statusText"/>
+                                   </td>
+                               </tr>
+
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <!-- Заголовок формы-->
+            <label id="headerLabel">
+                <field-path/>
+                <text>Запись журнала аудита КЛ</text>
+            </label>
+
+            <!-- Дата действия-->
+            <label id="actionDateLabel">
+                <field-path/>
+                <text>Дата действия:</text>
+            </label>
+            <date-box read-only="true" id="actionDateBox">
+                <field-path value="updated_date"/>
+            </date-box>
+
+            <!-- Действие -->
+            <label id="actionLabel">
+                <field-path/>
+                <text>Действие:</text>
+            </label>
+            <enumeration-box id="actionBox" read-only="true">
+                <field-path value="operation"/>
+                <mapping>
+                    <map display-text="Создание" value="1"/>
+                    <map display-text="Изменение" value="2"/>
+                    <map display-text="Удаление" value="3"/>
+                </mapping>
+            </enumeration-box>
+
+            <!-- Автор -->
+            <label id="authorLabel">
+                <field-path/>
+                <text>Автор:</text>
+            </label>
+            <text-box id="authorText" read-only="true">
+                <field-path value="created_by.firstname"/>
+            </text-box>
+
+            <!-- Заголовок -->
+            <label id="titleLabel">
+                <field-path/>
+                <text>Заголовок:</text>
+            </label>
+            <text-box id="titleText" read-only="true">
+                <field-path value="title"/>
+            </text-box>
+
+            <!-- Фамилия -->
+            <label id="surnameLabel">
+                <field-path/>
+                <text>Фамилия:</text>
+            </label>
+            <text-box id="surnameText" read-only="true">
+                <field-path value="surname"/>
+            </text-box>
+
+            <!-- Имя -->
+            <label id="nameLabel">
+                <field-path/>
+                <text>Имя:</text>
+            </label>
+            <text-box id="nameText" read-only="true">
+                <field-path value="name"/>
+            </text-box>
+
+            <!--  Дата рождения -->
+            <label id="birthDateLabel">
+                <field-path/>
+                <text>Дата рождения:</text>
+            </label>
+            <date-box read-only="true" id="birthDateBox">
+                <field-path value="birth_date"/>
+            </date-box>
+
+            <!-- Ранг -->
+            <label id="rankLabel">
+                <field-path/>
+                <text>Ранг:</text>
+            </label>
+            <text-box id="rankText" read-only="true">
+                <field-path value="rank.title"/>
+            </text-box>
+
+            <!-- Состояние -->
+            <label id="statusLabel">
+                <field-path/>
+                <text>Состояние:</text>
+            </label>
+            <text-box id="statusText" read-only="true">
+                <field-path value="status.description"/>
+            </text-box>
+
+        </widget-config>
+    </form>
+
+    <!-- Форма аудита организаций -->
+    <form name="org_audit_form" domain-object-type="cont_organization_al" is-default="true" debug="false"
+          min-width="1200px">
+        <act:tool-bar useDefault="false"/>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel" width="300px"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Информация">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="actionDateLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="actionDateBox"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="actionLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="actionBox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="authorLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="authorText"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="nameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="nameText"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="fullnameLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="fullnameText"/>
+                                    </td>
+                                    <td h-align="right">
+                                        <widget id="rankLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="rankText"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <field-path/>
+                <text>Запись журнала аудита Организаций</text>
+            </label>
+
+            <!-- Дата действия-->
+            <label id="actionDateLabel">
+                <field-path/>
+                <text>Дата действия:</text>
+            </label>
+            <date-box read-only="true" id="actionDateBox">
+                <field-path value="updated_date"/>
+            </date-box>
+
+            <!-- Действие -->
+            <label id="actionLabel">
+                <field-path/>
+                <text>Действие:</text>
+            </label>
+            <enumeration-box id="actionBox" read-only="true">
+                <field-path value="operation"/>
+                <mapping>
+                    <map display-text="Создание" value="1"/>
+                    <map display-text="Изменение" value="2"/>
+                    <map display-text="Удаление" value="3"/>
+                </mapping>
+            </enumeration-box>
+
+            <!-- Автор -->
+            <label id="authorLabel">
+                <field-path/>
+                <text>Автор:</text>
+            </label>
+            <text-box id="authorText" read-only="true">
+                <field-path value="created_by.firstname"/>
+            </text-box>
+
+            <!-- Название -->
+            <label id="nameLabel">
+                <field-path/>
+                <text>Название:</text>
+            </label>
+            <text-box id="nameText" read-only="true">
+                <field-path value="name"/>
+            </text-box>
+
+            <!-- Полное название -->
+            <label id="fullnameLabel">
+                <field-path/>
+                <text>Полное название:</text>
+            </label>
+            <text-box id="fullnameText" read-only="true">
+                <field-path value="fullname"/>
+            </text-box>
+
+            <!-- Ранг -->
+            <label id="rankLabel">
+                <field-path/>
+                <text>Ранг:</text>
+            </label>
+            <text-box id="rankText" read-only="true">
+                <field-path value="rank.title"/>
+            </text-box>
+
+            <!-- Вышестоящая организация -->
+            <label id="parentLabel">
+                <field-path/>
+                <text>Вышестоящая организация:</text>
+            </label>
+            <text-box id="parentText" read-only="true">
+                <field-path value="parent.name"/>
+            </text-box>
+        </widget-config>
+    </form>
+
+    <!--&lt;!&ndash; Форма аудита почтового адреса &ndash;&gt;-->
+    <!--<form name="post_addr_audit_form" domain-object-type="Addr_Mailing_Address_al" is-default="true" debug="false"-->
+          <!--min-width="1200px">-->
+        <!--<act:tool-bar useDefault="false"/>-->
+        <!--<markup>-->
+            <!--<header>-->
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<widget id="headerLabel" width="300px"/>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</header>-->
+            <!--<body display-single-tab="true">-->
+                <!--<tab name="Информация">-->
+                    <!--<single-entry-group>-->
+                        <!--<tab-group>-->
+                            <!--<table>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="actionDateLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="actionDateBox"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="actionLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="actionBox"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="authorLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="authorText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="settlementLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="settlementText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="streetTypeLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="streetTypeText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="streetLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="streetText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="houseLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="houseText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="housingLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="housingText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="buildingLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="buildingText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="roomLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="roomText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="descriptionLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="descriptionText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="postcodeLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="postcodeText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="assignLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="assignText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+                        <!--</tab-group>-->
+                    <!--</single-entry-group>-->
+                <!--</tab>-->
+            <!--</body>-->
+        <!--</markup>-->
+        <!--<widget-config>-->
+            <!--<label id="headerLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Запись журнала аудита почтового адреса</text>-->
+            <!--</label>-->
+
+            <!--&lt;!&ndash; Дата действия&ndash;&gt;-->
+            <!--<label id="actionDateLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Дата действия:</text>-->
+            <!--</label>-->
+            <!--<date-box read-only="true" id="actionDateBox">-->
+                <!--<field-path value="updated_date"/>-->
+            <!--</date-box>-->
+
+            <!--&lt;!&ndash; Действие &ndash;&gt;-->
+            <!--<label id="actionLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Действие:</text>-->
+            <!--</label>-->
+            <!--<enumeration-box id="actionBox" read-only="true">-->
+                <!--<field-path value="operation"/>-->
+                <!--<mapping>-->
+                    <!--<map display-text="Создание" value="1"/>-->
+                    <!--<map display-text="Изменение" value="2"/>-->
+                    <!--<map display-text="Удаление" value="3"/>-->
+                <!--</mapping>-->
+            <!--</enumeration-box>-->
+
+            <!--&lt;!&ndash; Автор &ndash;&gt;-->
+            <!--<label id="authorLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Автор:</text>-->
+            <!--</label>-->
+            <!--<text-box id="authorText" read-only="true">-->
+                <!--<field-path value="created_by.firstname"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Населенный пункт &ndash;&gt;-->
+            <!--<label id="settlementLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Населенный пункт:</text>-->
+            <!--</label>-->
+            <!--<text-box id="settlementText" read-only="true">-->
+                <!--<field-path value="settlement.name"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Тип улицы &ndash;&gt;-->
+            <!--<label id="streetTypeLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Тип улицы:</text>-->
+            <!--</label>-->
+            <!--<text-box id="streetTypeText" read-only="true">-->
+                <!--<field-path value="street_type.title"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Улица &ndash;&gt;-->
+            <!--<label id="streetLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Улица:</text>-->
+            <!--</label>-->
+            <!--<text-box id="streetText" read-only="true">-->
+                <!--<field-path value="street"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Дом &ndash;&gt;-->
+            <!--<label id="houseLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Дом:</text>-->
+            <!--</label>-->
+            <!--<text-box id="houseText" read-only="true">-->
+                <!--<field-path value="house"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Корпус &ndash;&gt;-->
+            <!--<label id="housingLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Корпус:</text>-->
+            <!--</label>-->
+            <!--<text-box id="housingText" read-only="true">-->
+                <!--<field-path value="housing"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Строение &ndash;&gt;-->
+            <!--<label id="buildingLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Строение:</text>-->
+            <!--</label>-->
+            <!--<text-box id="buildingText" read-only="true">-->
+                <!--<field-path value="building"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; № Квартиры &ndash;&gt;-->
+            <!--<label id="roomLabel">-->
+                <!--<field-path/>-->
+                <!--<text>№ Квартиры:</text>-->
+            <!--</label>-->
+            <!--<text-box id="roomText" read-only="true">-->
+                <!--<field-path value="room"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Описание &ndash;&gt;-->
+            <!--<label id="descriptionLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Описание:</text>-->
+            <!--</label>-->
+            <!--<text-box id="descriptionText" read-only="true">-->
+                <!--<field-path value="description"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Индекс &ndash;&gt;-->
+            <!--<label id="postcodeLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Индекс:</text>-->
+            <!--</label>-->
+            <!--<text-box id="postcodeText" read-only="true">-->
+                <!--<field-path value="postcode"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Назначение адреса &ndash;&gt;-->
+            <!--<label id="assignLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Назначение адреса:</text>-->
+            <!--</label>-->
+            <!--<text-box id="assignText" read-only="true">-->
+                <!--<field-path value="Addresses_Assigning.title"/>-->
+            <!--</text-box>-->
+        <!--</widget-config>-->
+    <!--</form>-->
+
+    <!--&lt;!&ndash; Форма аудита другого адреса &ndash;&gt;-->
+    <!--<form name="other_addr_audit_form" domain-object-type="Addr_Other_Address_al" is-default="true" debug="false"-->
+          <!--min-width="1200px">-->
+        <!--<act:tool-bar useDefault="false"/>-->
+        <!--<markup>-->
+            <!--<header>-->
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<widget id="headerLabel" width="300px"/>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</header>-->
+            <!--<body display-single-tab="true">-->
+                <!--<tab name="Информация">-->
+                    <!--<single-entry-group>-->
+                        <!--<tab-group>-->
+                            <!--<table>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="actionDateLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="actionDateBox"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="actionLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="actionBox"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="authorLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="authorText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="personLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="personText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="typeLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="typeText"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="right">-->
+                                        <!--<widget id="addrLabel"/>-->
+                                    <!--</td>-->
+                                    <!--<td h-align="left">-->
+                                        <!--<widget id="addrText"/>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+                        <!--</tab-group>-->
+                    <!--</single-entry-group>-->
+                <!--</tab>-->
+            <!--</body>-->
+        <!--</markup>-->
+        <!--<widget-config>-->
+            <!--<label id="headerLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Запись журнала аудита другого адреса</text>-->
+            <!--</label>-->
+
+            <!--&lt;!&ndash; Дата действия&ndash;&gt;-->
+            <!--<label id="actionDateLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Дата действия:</text>-->
+            <!--</label>-->
+            <!--<date-box read-only="true" id="actionDateBox">-->
+                <!--<field-path value="updated_date"/>-->
+            <!--</date-box>-->
+
+            <!--&lt;!&ndash; Действие &ndash;&gt;-->
+            <!--<label id="actionLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Действие:</text>-->
+            <!--</label>-->
+            <!--<enumeration-box id="actionBox" read-only="true">-->
+                <!--<field-path value="operation"/>-->
+                <!--<mapping>-->
+                    <!--<map display-text="Создание" value="1"/>-->
+                    <!--<map display-text="Изменение" value="2"/>-->
+                    <!--<map display-text="Удаление" value="3"/>-->
+                <!--</mapping>-->
+            <!--</enumeration-box>-->
+
+            <!--&lt;!&ndash; Автор &ndash;&gt;-->
+            <!--<label id="authorLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Автор:</text>-->
+            <!--</label>-->
+            <!--<text-box id="authorText" read-only="true">-->
+                <!--<field-path value="created_by.firstname"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; КЛ &ndash;&gt;-->
+            <!--<label id="personLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Контактное лицо:</text>-->
+            <!--</label>-->
+            <!--<text-box id="personText" read-only="true">-->
+                <!--<field-path value="Contact_Person.title"/>-->
+            <!--</text-box>-->
+
+            <!--&lt;!&ndash; Тип &ndash;&gt;-->
+            <!--<label id="typeLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Тип:</text>-->
+            <!--</label>-->
+<!--&lt;!&ndash;-->
+            <!--<integer-box id="typeText" read-only="true">-->
+                <!--<field-path value="Type_Value"/>-->
+            <!--</integer-box> &ndash;&gt;-->
+            <!--<enumeration-box id="typeText" read-only="true">-->
+                <!--<field-path value="Type_Value"/>-->
+                <!--<mapping>-->
+                    <!--<map display-text="Телефон" value="1"/>-->
+                    <!--<map display-text="Эл. почта" value="2"/>-->
+                <!--</mapping>-->
+            <!--</enumeration-box>-->
+
+            <!--&lt;!&ndash; Адрес &ndash;&gt;-->
+            <!--<label id="addrLabel">-->
+                <!--<field-path/>-->
+                <!--<text>Адрес:</text>-->
+            <!--</label>-->
+            <!--<text-box id="addrText" read-only="true">-->
+                <!--<field-path value="Value"/>-->
+            <!--</text-box>-->
+        <!--</widget-config>-->
+    <!--</form>-->
+</configuration>

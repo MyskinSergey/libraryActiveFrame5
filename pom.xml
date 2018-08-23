@@ -12,10 +12,21 @@
     <description>Корневой POM для шаблона проекта на платформе ActiveFrame 5</description>
 
     <modules>
+
         <module>ear</module>
         <module>web-app</module>
+
         <module>custom-web-business-universe</module>
         <module>custom-module</module>
+        <module>dao-module</module>
+        <module>contacts-module</module>
+        <module>work-finder-rest-module</module>
+
+<!--
+        <module>web-app</module>
+        <module>ear</module>
+-->
+
     </modules>
 
     <properties>
@@ -23,10 +34,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+
+        <spring.version>4.1.5.RELEASE</spring.version>
         <gwt.version>2.7.0</gwt.version>
+        <slf4j.version>1.7.2</slf4j.version>
 
         <cmj.server.version>4.2.0.RC14</cmj.server.version>
         <af.platform.version>0.6.4-2</af.platform.version>
+        <cm6.module.version>5.1.2.202-6.0-157-SEV</cm6.module.version>
 
         <sonar.jdbc.url>jdbc:postgresql://169.254.0.55:5432/sonar</sonar.jdbc.url>
         <sonar.host.url>http://sonar.inttrust.ru</sonar.host.url>

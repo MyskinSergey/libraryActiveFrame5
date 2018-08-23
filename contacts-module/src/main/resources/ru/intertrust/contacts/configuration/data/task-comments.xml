@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="task_comments">
+        <fields>
+            <reference name="task" type="task"/>
+            <reference name="author" type="participant"/>
+            <string name="content" length="2048"/>
+        </fields>
+    </domain-object-type>
+</configuration>

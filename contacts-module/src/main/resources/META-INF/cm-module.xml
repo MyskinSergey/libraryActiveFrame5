@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="https://cm5.intertrust.ru/config/module" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>contacts-module</name>
+    <description>Модуль справочника внешний организаций и персон</description>
+    <depends>
+        <depend>core</depend>
+    </depends>
+    <extension-points-packages>
+        <extension-points-package>ru/intertrust/cm/contacts/extension</extension-points-package>
+        <extension-points-package>ru/intertrust/cm/contacts/schedule</extension-points-package>
+    </extension-points-packages>
+    <server-components-packages>
+        <server-components-package>ru/intertrust/cm/contacts/gui/server</server-components-package>
+        <server-components-package>ru/intertrust/cm/contacts/renderer</server-components-package>
+    </server-components-packages>
+
+    <configuration-paths>
+        <configuration-path>ru/intertrust/contacts/configuration/actions.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/person.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/search.xml</configuration-path>
+
+        <!-- Доменные объекты -->
+        <configuration-path>ru/intertrust/contacts/configuration/data/contact_domain_objects.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/address_domain_objects.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/occasions_domain_objects.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/envelope_domain_objects.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/setting.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/regions.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/keywords.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/task-tag.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/languages.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/profile.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/language-skills.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/profile-keywords.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/profile-qualifier.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/profiles-positions.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/project.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/participant.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/execution-confirmation.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/task.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/task-comments.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/execution.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/task-tags.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/data/task-links.xml</configuration-path>
+
+        <!--Коллекции-->
+        <configuration-path>ru/intertrust/contacts/configuration/collection/contacts_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/rank_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/type_attachments_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/attachments_person_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/cont_notes_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/cont_organization_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/type_accessory_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/cont_cperson_org_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/regions-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/keywords-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/languages-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/position-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/employee-profile-collection.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/collection/person_qualifiers_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/person_group_qualifiers_collection.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/collection/addr_mailing_address_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/addr_region_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/addr_settlement_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/event_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/all_qualifiers_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/qualifier_groups_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/audit_collections.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/collection/event_persons_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/role_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/print_envelope_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/setting_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/security_collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/profile-qualifier-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/task-tag-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/project-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/participant-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/task-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/comments-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/execution-collection.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/collection/confirmation-collection.xml</configuration-path>
+
+
+        <!--Формы-->
+        <configuration-path>ru/intertrust/contacts/configuration/form/contact_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/cont_attachments_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/cont_notes_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/cont_organization_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/cont_cperson_org_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/cont_address_org_form.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/form/cont_qualifier_cperson_form.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/form/addr_region_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/addr_settlement_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/addr_mailing_address_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/addr_other_address_form.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_fixed_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_calculated_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_floated_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_contact_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_qualifier_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_organization_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/occasion_calendar_form.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/form/audit_forms.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/person_occasions_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/org_occasions_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/person_role_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/print_envelope_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/setting_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/rank_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/notifications.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/regions-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/keywords-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/languages-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/language-skills-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/position-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/employee-profile-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/task-tag-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/project-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/participant-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/task-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/comments-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/task-links-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/execution-form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/form/confirmation-form.xml</configuration-path>
+
+        <!--Формы для отчетов-->
+        <configuration-path>ru/intertrust/contacts/configuration/reports/congratulation_newsletter_report/congratulation_newsletter_input_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/reports/event_list_report/event_list_input_form.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/reports/ContactsByOccasion_report/contacts_by_occasion_input_form.xml</configuration-path>
+
+        <configuration-path>ru/intertrust/contacts/configuration/access/context-role.xml</configuration-path>
+        <configuration-path>ru/intertrust/contacts/configuration/access/access-matrix.xml</configuration-path>
+
+    </configuration-paths>
+
+    <import-files rewrite="false">
+        <!-- Статусы для данного проекта -->
+        <import-file>ru/intertrust/contacts/importdata/status.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-rank.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-type_attachments.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-type_accessory.csv</import-file>
+
+        <import-file>ru/intertrust/contacts/importdata/import-system-profile.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-person-profile.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-string-value.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-region-code.csv</import-file>
+
+
+        <!-- Исходные данные для классификатора -->
+        <import-file>ru/intertrust/contacts/importdata/import-qual-group-qualifier.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-qualifier.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-classifiers-objects.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-qual-group-qualifier-do.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-contact-person.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-organization.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-cperson-org.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-qualifier-cperson.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-qualifier-org.csv</import-file>
+
+        <!-- Справочники из ФИАС для адресов контактов -->
+        <import-file>ru/intertrust/contacts/importdata/import-addr-settlement-type.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/imp-addr-street-type.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/imp-addr-addresses-assigning.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-occasion.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-occasion-fixed.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-occasion-calculated.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-calendar-occasion.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-occasion-qualifier.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-occasion-cperson.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-occa-occasion-org.csv</import-file>
+
+        <import-file>ru/intertrust/contacts/importdata/import-addr-region.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-addr-autonomy.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-addr-settlement-main.csv</import-file>
+
+        <import-file>ru/intertrust/contacts/importdata/import-mailing-address.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-address-cperson.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-cont-address-org.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-organization.csv</import-file>
+
+        <import-file>ru/intertrust/contacts/importdata/import-roles.csv</import-file>
+
+        <import-file rewrite="true">ru/intertrust/contacts/importdata/import-person.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-person-role.csv</import-file>
+        <import-file>ru/intertrust/contacts/importdata/import-authentication-info.csv</import-file>
+
+        <import-file>ru/intertrust/contacts/importdata/import-locale.csv</import-file>
+        <import-file rewrite="true">ru/intertrust/contacts/importdata/import-notification_text.csv</import-file>
+    </import-files>
+
+    <import-reports>        
+
+        <report-template>
+            <template-file>ru/intertrust/contacts/configuration/reports/congratulation_newsletter_report/template.xml</template-file>
+            <template-file>ru/intertrust/contacts/configuration/reports/congratulation_newsletter_report/congratulation_newsletter.jrxml</template-file>
+        </report-template>
+
+        <report-template>
+            <template-file>ru/intertrust/contacts/configuration/reports/event_list_report/template.xml</template-file>
+            <template-file>ru/intertrust/contacts/configuration/reports/event_list_report/event_list.jrxml</template-file>
+            <template-file>ru/intertrust/contacts/configuration/reports/event_list_report/event_list_subreport.jrxml</template-file>
+        </report-template>
+
+        <report-template>
+            <template-file>ru/intertrust/contacts/configuration/reports/ContactsByOccasion_report/template.xml</template-file>
+            <template-file>ru/intertrust/contacts/configuration/reports/ContactsByOccasion_report/contacts_by_occasion.jrxml</template-file>
+        </report-template>
+        
+        <font-dir>ru/intertrust/contacts/configuration/reports/fonts</font-dir>
+    </import-reports>
+
+    <deploy-processes>
+        <process-definition>ru/intertrust/contacts/workflow/PlannedTaskLifecycle.bpmn</process-definition>
+    </deploy-processes>
+
+</module>

@@ -1,0 +1,3 @@
+TYPE_NAME=organization_address;KEYS=name
+name;address
+"ООО 'Интертраст'";"uid=""1"""

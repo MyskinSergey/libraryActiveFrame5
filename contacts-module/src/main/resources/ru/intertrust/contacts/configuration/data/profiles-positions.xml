@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="profiles_positions">
+        <fields>
+            <!-- Тип отбора 1 - для вакансии 2 - для исполнителя -->
+            <long name="selection_type"/>
+            <reference name="employee_profile" type="employee_profile"/>
+            <reference name="position" type="vacancy"/>
+            <!-- Дата отбора -->
+            <date-time name="selection_date"/>
+        </fields>
+        <uniqueKey>
+            <field name="employee_profile"/>
+            <field name="position"/>
+        </uniqueKey>
+    </domain-object-type>
+</configuration>

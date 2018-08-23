@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:act="https://cm5.intertrust.ru/config/action">
+
+    <form name="organization_address_form" domain-object-type="Organization_Address" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td><widget id="header"/></td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" " >
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- Имя организации -->
+                                <tr>
+                                    <td>
+                                        <widget id="name_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="name_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Адрес отправителя -->
+                                <tr>
+                                    <td>
+                                        <widget id="sender_address_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="sender_address_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Адрес Организации отправителя</text>
+            </label>
+
+            <label id="name_label">
+                <text>Имя организации или Контактного Лица</text>
+            </label>
+            <text-box id="name_value">
+                <field-path value="name"/>
+            </text-box>
+
+            <label id="sender_address_label">
+                <text>Адрес организации</text>
+            </label>
+            <suggest-box id="sender_address_value">
+                <field-path value="address"/>
+                <collection-ref name="mailing_address_collection"/>
+                <drop-down-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <selection-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <input-text-filter name="byAddress"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="false"/>
+                <display-values-as-links value="true"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="Addr_Mailing_Address" name="add_addr_from_org_form" inline="true" modal-width="400px" modal-height="650px"/>
+                </linked-form-mapping>
+                <create-new-button text="Создать"/>
+                <created-objects>
+                    <created-object domain-object-type="Addr_Mailing_Address" text="Почтовый адрес"/>
+                </created-objects>
+            </suggest-box>
+        </widget-config>
+    </form>
+
+    <form name="print_envelope_form" domain-object-type="cont_print_envelope_obj" is-default="true">
+        <act:tool-bar useDefault="true">
+            <act:simple-action name="printeSingleEnvelope" componentName="simple.action" action-handler="print.envelope.action"
+                               merged="false" weight="10"
+                               text="Распечатать" tooltip="Распечатать"
+                               imageClass="actionBar-sign" order="500"
+                               dirtySensitivity="true"/>
+
+            <act:simple-action name="setAsideEnvelope" componentName="simple.action" action-handler="set.aside.envelope.action"
+                               merged="true" weight="10" visibility-checker="set.aside.envelope.visibility.checker"
+                               text="Отложить" tooltip="Отложить"
+                               imageClass="actionBar-sign" order="501"
+                               dirtySensitivity="true"/>
+
+            <act:simple-action name="prepareEnvelope" componentName="simple.action" action-handler="prepare.envelope.action"
+                               merged="true" weight="10" visibility-checker="prepare.envelope.visibility.checker"
+                               text="Подготовить" tooltip="Подготовить"
+                               imageClass="actionBar-sign" order="502"
+                               dirtySensitivity="true"/>
+
+            <act:action name="printPreviewEnvelope" componentName="print.preview.action" display="button"
+                               text="Предварительный просмотр" imageClass="actionBar-edit" tooltip="Предварительный просмотр в PDF"
+                               order="510" merged="false" dirtySensitivity="true" permissions="Read"/>
+        </act:tool-bar>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td><widget id="header"/></td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" " >
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- Шаблон конверта -->
+                                <tr>
+                                    <td>
+                                        <widget id="template_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="template_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Индикатор - печатать ли отправителя? -->
+                                <tr>
+                                    <td>
+                                        <widget id="print_sender_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="print_sender_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Адрес отправителя -->
+                                <tr>
+                                    <td>
+                                        <widget id="sender_address_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="sender_address_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Получатель -->
+                                <tr>
+                                    <td>
+                                        <widget id="receiver_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="receiver_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Организация получателя -->
+                                <tr>
+                                    <td>
+                                        <widget id="receiver_org_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="receiver_org_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Адрес получателя -->
+                                <tr>
+                                    <td>
+                                        <widget id="receive_address_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="receive_address_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Состояние -->
+                                <tr>
+                                    <td>
+                                        <widget id="status_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="status_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Запрос печати конверта</text>
+            </label>
+
+            <label id="template_label">
+                <text>Шаблон конверта</text>
+            </label>
+            <enumeration-box id="template_value">
+                <field-path value="template" />
+                <mapping>
+                    <map value="russian-c5-complete.xml" display-text="C5"/>
+                    <map value="russian-c6-complete.xml" display-text="C6"/>
+                    <map value="russian-dl-complete.xml" display-text="DL"/>
+                </mapping>
+            </enumeration-box>
+
+            <label id="print_sender_label">
+                <text>Печатать отправителя?</text>
+            </label>
+            <check-box id="print_sender_value">
+                <field-path value="print_sender"/>
+            </check-box>
+
+            <label id="sender_address_label">
+                <text>Адрес отправителя</text>
+            </label>
+            <suggest-box id="sender_address_value">
+                <field-path value="sender"/>
+                <collection-ref name="organization_address_collection"/>
+                <drop-down-pattern value="{senderName}, {receiveAddress}"/>
+                <selection-pattern value="{senderName}, {receiveAddress}"/>
+                <input-text-filter name="bySender"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <display-values-as-links value="true"/>
+                <single-choice value="true"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="Organization_Address" name="organization_address_form" inline="true"/>
+                </linked-form-mapping>
+                <create-new-button text="Создать"/>
+                <created-objects>
+                    <created-object domain-object-type="Organization_Address" text="Адрес организации отправителя"/>
+                </created-objects>
+            </suggest-box>
+
+            <label id="receiver_label">
+                <text>Получатель</text>
+            </label>
+            <suggest-box id="receiver_value">
+                <field-path value="receiver"/>
+                <collection-ref name="col_contact_person"/>
+                <drop-down-pattern value="{title1}"/>
+                <selection-pattern value="{title1}"/>
+                <input-text-filter name="byTitle"/>
+                <display-values-as-links value="true"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="cont_contact_person" name="contact_person_form" inline="true" modal-height="500px" modal-width="950px"/>
+                </linked-form-mapping>
+            </suggest-box>
+
+            <label id="receiver_org_label">
+                <text>Организация получателя</text>
+            </label>
+            <suggest-box id="receiver_org_value">
+                <field-path value="receiver_org"/>
+                <collection-ref name="cont_cperson_org_collection"/>
+                <drop-down-pattern value="{organization}, {position}"/>
+                <selection-pattern value="{organization}, {position}"/>
+                <input-text-filter name="byOrg"/>
+                <display-values-as-links value="true"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+
+                <collection-extra-filters>
+                    <extra-filter name="byPersonId" null-value-filter-name="byPersonIdIsNull">
+                        <param name="0" widget-id="receiver_value" type="reference"/>
+                    </extra-filter>
+                </collection-extra-filters>
+            </suggest-box>
+
+            <label id="receive_address_label">
+                <text>Адрес получателя</text>
+            </label>
+            <suggest-box id="receive_address_value">
+                <field-path value="receiveAddress"/>
+                <collection-ref name="mailing_address_col_for_print"/>
+                <drop-down-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <selection-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <input-text-filter name="byStreet"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <display-values-as-links value="true"/>
+                <single-choice value="false"/>
+                <linked-form-mapping>
+                    <linked-form domain-object-type="Addr_Mailing_Address" name="add_addr_from_org_form" inline="true" modal-height="650px" modal-width="430px"/>
+                </linked-form-mapping>
+                <create-new-button text="Создать"/>
+                <created-objects>
+                    <created-object domain-object-type="Addr_Mailing_Address" text="Почтовый адрес"/>
+                </created-objects>
+
+                <collection-extra-filters>
+                    <extra-filter name="byContactPerson" null-value-filter-name="byContactPersonIsNull">
+                        <param name="0" widget-id="receiver_value" type="reference"/>
+                    </extra-filter>
+                </collection-extra-filters>
+            </suggest-box>
+            <label id="status_label">
+                <text>Состояние</text>
+            </label>
+            <label id="status_value">
+                <field-path value="status.description"/>
+            </label>
+        </widget-config>
+    </form>
+</configuration>

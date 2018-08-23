@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="keywords_form" domain-object-type="keywords" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Справочник ключевых слов">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="wordLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="wordValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Ключевое слово</text>
+            </label>
+
+            <label id="wordLabel">
+                <text>Ключевое слово</text>
+            </label>
+            <text-box id="wordValue">
+                <field-path value="word"/>
+            </text-box>
+        </widget-config>
+    </form>
+</configuration>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+<!-- [UI01.3.2.4] Работать с карточкой Населенного пункта -->
+    <form name="addr_settlement_form" domain-object-type="Addr_Settlement" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td width="100px"><widget id="header"/></td>
+                        <td><widget id="header1"/></td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name="Основная информация" >
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- [UI1.3.2.4.a1] Наименование   -->
+                                <tr>
+                                    <td>
+                                        <widget id="lbName"/>
+                                    </td>
+                                    <td>
+                                        <widget id="tbName"/>
+                                    </td>
+                                </tr>
+                                <!-- [UI1.3.2.4.a2] Тип НП  -->
+                                <tr>
+                                    <td>
+                                        <widget id="lbSettlement_Type"/>
+                                    </td>
+                                    <td>
+                                        <widget id="cbSettlement_Type"/>
+                                    </td>
+                                </tr>
+                                <!-- [UI1.3.2.4.a3] Страна\Регион -->
+                                <tr>
+                                    <td>
+                                        <widget id="lbRegion"/>
+                                    </td>
+                                    <td>
+                                        <widget id="cbRegion"/>
+                                    </td>
+                                </tr>
+                                <!-- [UI1.3.2.4.a4] Индекс с  -->
+                                <tr>
+                                    <td>
+                                        <widget id="lbFrom_Index"/>
+                                    </td>
+                                    <td>
+                                        <widget id="ibFrom_Index"/>
+                                    </td>
+                                </tr>
+                                <!-- [UI1.3.2.4.a5] Индекс по  -->
+                                <tr>
+                                    <td>
+                                        <widget id="lbTo_Index"/>
+                                    </td>
+                                    <td>
+                                        <widget id="ibTo_Index"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+                <tab name="Адреса">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- [UI1.3.2.4.a6] Адреса -->
+                                <tr>
+                                    <td>
+                                        <widget id="ldotMailing_Address"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Населенный пункт</text>
+            </label>
+            <label id="header1">
+                <field-path value="Name"/>
+            </label>
+            <label id="lbName">
+                <text>Наименование</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="tbName"/>
+            </label>
+            <text-box id="tbName">
+                <field-path value="Name"/>
+            </text-box>
+            <label id="lbSettlement_Type">
+                <text>Тип НП</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="cbSettlement_Type"/>
+            </label>
+            <combo-box id="cbSettlement_Type">
+                <field-path value="Settlement_Type"/>
+                <pattern value="{Description}"/>
+            </combo-box>
+            <label id="lbRegion">
+                <text>Страна\Регион</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="cbRegion"/>
+            </label>
+
+            <suggest-box id="cbRegion">
+                <field-path value="Region"/>
+                <collection-ref name="col_addr_region_simple"/>
+                <drop-down-pattern value="{Title}"/>
+                <selection-pattern value="{Title}"/>
+                <input-text-filter name="byTitle"/>
+                <default-sort-criteria column-field="title"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+                <display-values-as-links value="true"/>
+            </suggest-box>
+
+            <!--<combo-box id="cbRegion">-->
+                <!--<field-path value="Region"/>-->
+                <!--<pattern value="{Title}"/>-->
+            <!--</combo-box>-->
+
+            <label id="lbFrom_Index">
+                <text>Индекс с</text>
+            </label>
+            <integer-box id="ibFrom_Index">
+                <field-path value="From_Index"/>
+            </integer-box>
+            <label id="lbTo_Index">
+                <text>Индекс по</text>
+            </label>
+            <integer-box id="ibTo_Index">
+                <field-path value="To_Index"/>
+            </integer-box>
+            <linked-domain-objects-table id="ldotMailing_Address">
+                <field-path value="Addr_Mailing_Address^Settlement" />
+                <linked-form name="addr_mailing_address_form" inline="true" modal-width="420px" modal-height="650px"/>
+                <summary-table>
+                    <summary-table-column header="Индекс" widget-id="tbPostcode">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Postcode}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Населенный пункт" widget-id="cbSettlement">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Settlement.Name}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Тип улицы" widget-id="cbStreet_Type">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Street_Type.Title}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Улица" widget-id="tbStreet">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Street}"/>
+                    </summary-table-column>
+                    <summary-table-column header="Дом" widget-id="tbHouse">
+                        <action type="view_or_edit"/>
+                        <pattern value="{House}"/>
+                    </summary-table-column>
+                    <summary-table-column header="№ Квартиры" widget-id="tbRoom">
+                        <action type="view_or_edit"/>
+                        <pattern value="{Room}"/>
+                    </summary-table-column>
+                </summary-table>
+            </linked-domain-objects-table>
+
+        </widget-config>
+    </form>
+
+    <!-- Работать с карточкой Типа Населенного пункта -->
+    <form name="addr_settlement_type_form" domain-object-type="Addr_Settlement_Type" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td><widget id="header"/></td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" " >
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- Заголовок -->
+                                <tr>
+                                    <td>
+                                        <widget id="title_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="title_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Описание -->
+                                <tr>
+                                    <td>
+                                        <widget id="desc_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="desc_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Тип населенного пункта</text>
+            </label>
+            <label id="title_label">
+                <text>Заголовок</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="title_value"/>
+            </label>
+            <text-box id="title_value">
+                <field-path value="Title"/>
+            </text-box>
+            <label id="desc_label">
+                <text>Описание</text>
+            </label>
+            <text-box id="desc_value">
+                <field-path value="Description"/>
+            </text-box>
+        </widget-config>
+    </form>
+
+    <!-- Работать с карточкой Типа улицы -->
+    <form name="addr_street_type_form" domain-object-type="Addr_Street_Type" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td><widget id="header"/></td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" " >
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- Заголовок -->
+                                <tr>
+                                    <td>
+                                        <widget id="title_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="title_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Описание -->
+                                <tr>
+                                    <td>
+                                        <widget id="desc_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="desc_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Тип улицы</text>
+            </label>
+            <label id="title_label">
+                <text>Заголовок</text>
+                <force-required-asterisk value="true"/>
+                <relates-to widget-id="title_value"/>
+            </label>
+            <text-box id="title_value">
+                <field-path value="Title"/>
+            </text-box>
+            <label id="desc_label">
+                <text>Описание</text>
+            </label>
+            <text-box id="desc_value">
+                <field-path value="Description"/>
+            </text-box>
+        </widget-config>
+    </form>
+
+</configuration>

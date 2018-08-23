@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="task_tag_form" domain-object-type="task_tag" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Меток задач">
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="tagLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="tagValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Метка</text>
+            </label>
+
+            <label id="tagLabel">
+                <text>Метка</text>
+            </label>
+            <text-box id="tagValue">
+                <field-path value="tag"/>
+            </text-box>
+        </widget-config>
+    </form>
+</configuration>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+  <access-matrix type="role" read-everybody="true"/>
+
+  <!-- Meeting -->
+  <access-matrix type="reg_info">
+    <create>
+      <permit-group name="AllPersons"/>
+    </create>
+    <status name="*">
+      <read>
+        <permit-role name="reg_info_author"/>
+      </read>
+      <write>
+        <permit-role name="reg_info_author"/>
+      </write>
+    </status>
+  </access-matrix>
+
+
+</configuration>

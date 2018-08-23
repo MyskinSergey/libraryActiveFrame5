@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="task_links_form" domain-object-type="task_links" is-default="true">
+        <default-value-setter component="tasklinks.value.setter">
+            <widget-states>
+                <all/>
+            </widget-states>
+        </default-value-setter>
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="headerLabel"/>
+                        </td>
+                        <td>
+                            <widget id="linkFromValue"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab>
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="linkTypeLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="linkTypeValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td h-align="right">
+                                        <widget id="linkToLabel"/>
+                                    </td>
+                                    <td h-align="left">
+                                        <widget id="linkToValue"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="headerLabel">
+                <text>Связать задачу</text>
+            </label>
+
+            <label id="linkTypeLabel">
+                <text>Тип связи</text>
+            </label>
+            <enumeration-box id="linkTypeValue">
+                <field-path value="link_type"/>
+                <map-provider component="link.type.provider"/>
+            </enumeration-box>
+
+
+            <suggest-box id="linkFromValue" read-only="true">
+                <field-path value="task_from"/>
+                <collection-ref name="task_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byTaskName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+            <label id="linkToLabel">
+                <text>Связь с задачей</text>
+            </label>
+            <suggest-box id="linkToValue">
+                <field-path value="task_to"/>
+                <collection-ref name="task_collection"/>
+                <drop-down-pattern value="{name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byTaskName"/>
+                <collection-extra-filters>
+                    <extra-filter name="bySameProject">
+                        <param name="0" widget-id="linkFromValue"/>
+                    </extra-filter>
+                </collection-extra-filters>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+        </widget-config>
+    </form>
+</configuration>

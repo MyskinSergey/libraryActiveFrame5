@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+<!-- Работать с карточкой Прочего Адреса -->
+    <form name="addr_other_address_form" domain-object-type="Addr_Other_Address" is-default="true">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td><widget id="header"/></td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" " >
+                    <single-entry-group>
+                        <tab-group>
+                            <table>
+                                <!-- Адрес -->
+                                <tr>
+                                    <td>
+                                        <widget id="address_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="address_value"/>
+                                    </td>
+                                </tr>
+                                <!-- Тип -->
+                                <tr>
+                                    <td>
+                                        <widget id="type_label"/>
+                                    </td>
+                                    <td>
+                                        <widget id="type_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <text>Адрес</text>
+            </label>
+
+            <label id="address_label">
+                <text>Значение</text>
+            </label>
+            <text-box id="address_value">
+                <field-path value="Value"/>
+            </text-box>
+
+            <label id="type_label">
+                <text>Тип</text>
+            </label>
+            <enumeration-box id="type_value">
+                <field-path value="Type_Value"/>
+                <mapping>
+                    <map display-text="Телефон" value="1"/>
+                    <map display-text="email" value="2"/>
+                </mapping>
+            </enumeration-box>
+            <label id="title_widget">
+                <field-path value="title"/>
+            </label>
+            <label id="type_widget">
+                <field-path value="type"/>
+            </label>
+        </widget-config>
+    </form>
+</configuration>

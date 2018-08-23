@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!-- Параметры приложения -->
+    <collection name="col_ssettings" idField="id">
+        <prototype>
+            <![CDATA[
+                select
+                    s.id,
+                    s.default_printer,
+                    s.default_format_envelope,
+                    s.print_sender,
+                    s.print_on_clear_envelope,
+                    o.name as sender_name
+                from
+                    ssetting s
+                    LEFT JOIN Organization_Address oa ON oa.id = s.default_sender
+                    LEFT JOIN Organization o ON o.id = oa.id
+                where
+                    1=1 ::where-clause
+            ]]>
+        </prototype>
+    </collection>
+    <collection-view name="col_ssettings_view" collection="col_ssettings" is-default="true">
+        <display>
+            <column field="default_printer" name="Принтер для печати конвертов" type="string" sortable="true" resizable="true"/>
+            <column field="default_format_envelope" name="Формат конверта по-умолчанию" type="string" sortable="true" resizable="true"/>
+            <column field="print_sender" name="Печатать отправителя по-умолчанию" type="boolean" sortable="true" resizable="true"/>
+            <column field="sender_name" name="Отправитель по-умолчанию" type="string" sortable="true" resizable="true"/>
+            <column field="print_on_clear_envelope" name="Печать на чистом конверте" type="boolean" sortable="true" resizable="true"/>
+        </display>
+    </collection-view>
+</configuration>

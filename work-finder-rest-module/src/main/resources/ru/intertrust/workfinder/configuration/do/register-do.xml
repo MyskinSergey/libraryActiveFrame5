@@ -1,0 +1,37 @@
+<?xml version="1.1" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="https://cm5.intertrust.ru/config configuration.xsd">
+
+    <domain-object-type name="reg_info" initial-status="reg_status_init">
+        <fields>
+            <string name="token" length="100"/>
+            <string name="name" length="100"/>
+            <string name="fullName" length="512"/>
+            <string name="INN" length="100"/>
+            <string name="OGRN" length="100"/>
+            <string name="person_first_name" length="100"/>
+            <string name="person_last_name" length="100"/>
+            <string name="person_middle_name" length="100"/>
+            <string name="person_position" length="100"/>
+            <string name="add_info" length="512"/>
+            <string name="phone" length="100"/>
+            <string name="email" length="100"/>
+            <string name="address" length="512"/>
+            <long name="account_type"/>
+            <string name = "resultObjectId" length="50"/>
+            <reference name="account_inf" type="authentication_info"/>
+            <reference name="person" type="person"/>
+            <string name="password" length="128" encrypted="true" />
+        </fields>
+        <uniqueKey>
+            <field name="phone"></field>
+            <field name="email"></field>
+            <field name="token"></field>
+        </uniqueKey>
+    </domain-object-type>
+
+
+
+
+</configuration>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!--ДО Адрес Предприятия-->
+    <domain-object-type name="Organization_Address" extends="Organization" initial-status="Active">
+        <fields>
+            <!-- Адрес -->
+            <reference name="address" type="Addr_Mailing_Address" not-null="true">
+                <constraints>
+                    <simple-constraint value="not-empty"/>
+                </constraints>
+            </reference>
+        </fields>
+    </domain-object-type>
+
+    <!-- ДО Экземпляр печати конвертов -->
+    <domain-object-type name="cont_print_envelope_obj" initial-status="Prepared">
+        <fields>
+            <!--Шаблон конверта-->
+            <string name="template" length="100" not-null="true"/>
+
+            <!-- Индикатор - печатать ли отправителя? -->
+            <boolean name="print_sender"/>
+
+            <!--Адрес отправителя-->
+            <reference name="sender" type="Organization_Address"/>
+
+            <!-- Получатель -->
+            <reference name="receiver" type="cont_contact_person" not-null="true"/>
+
+            <!--Организация отправителя-->
+            <reference name="receiver_org" type="cont_cperson_org"/>
+
+            <!--Адрес получателя-->
+            <reference name="receiveAddress" type="Addr_Mailing_Address" not-null="true"/>
+        </fields>
+    </domain-object-type>
+
+</configuration>

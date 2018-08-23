@@ -1,0 +1,9 @@
+TYPE_NAME=authentication_info;KEYS=user_uid
+user_uid;password
+"dpro";"dpro"
+"sysadm";"sysadm"
+"executor";"executor"
+"recensent";"recensent"
+"orgmanager";"orgmanager"
+"responser";"responser"
+"printmanager";"printmanager"

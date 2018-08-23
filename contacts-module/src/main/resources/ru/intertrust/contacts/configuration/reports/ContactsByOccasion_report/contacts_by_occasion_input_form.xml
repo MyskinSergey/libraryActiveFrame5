@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <form name="contacts_by_occasion_input_form" type="report"  report-template="contacts_by_occasion">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td h-align="left">
+                            <widget id="reportDescriptionLabel" />
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="true">
+                <tab name="Параметры отчета">
+                    <single-entry-group>
+                        <tab-group>
+                            <table width="800px" height="100px">
+                                <tr  height="45px">
+                                    <td h-align="left">
+                                        <widget id="occasionLabel" />
+                                    </td>
+                                    <td>
+                                        <widget id="eventSelectionBox"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="reportDescriptionLabel">
+                <field-path/>
+                <text>Список контактов по выбраному событию</text>
+            </label>
+            <label id="occasionLabel">
+                <field-path/>
+                <text>Выбор события:</text>
+            </label>
+            <suggest-box id="eventSelectionBox">
+                <field-path value="EVENT_NAME"/>
+                <collection-ref name="col_events"/>
+                <drop-down-pattern value="{event_date} {name}"/>
+                <selection-pattern value="{name}"/>
+                <input-text-filter name="byName"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+                <default-sort-criteria order="asc" column-field="event_date"/>
+            </suggest-box>
+        </widget-config>
+    </form>
+</configuration>

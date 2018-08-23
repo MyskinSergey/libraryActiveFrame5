@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+    <domain-object-type name="language_skills">
+        <fields>
+            <long name="skill_level"/>
+            <reference name="language" type="languages"/>
+            <reference name="profile" type="profile_base"/>
+        </fields>
+    </domain-object-type>
+</configuration>

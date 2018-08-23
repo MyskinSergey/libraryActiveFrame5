@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!--Приложение для Связи организации и Почтового адреса -->
+    <form name="cont_address_org_form" domain-object-type="cont_address_org" is-default="false">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="header"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" "> <!-- закладка состоит из групп с разметкой -->
+                    <single-entry-group> <!-- наследник от TabGroupsConfig -->
+                        <tab-group> <!-- вхождение в группу уже может содержать разметку -->
+                            <table>
+                                <!--Адрес-->
+                                <tr>
+                                    <td width="15%" h-align="left">
+                                        <widget id="address_label"/>
+                                    </td>
+                                    <td width="150px" h-align="left">
+                                        <widget id="address_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <field-path/>
+                <text>Укажите адрес Организации</text>
+            </label>
+
+            <label id="address_label">
+                <field-path/>
+                <text>Адрес</text>
+            </label>
+            <suggest-box id="address_value">
+                <field-path value="Mailing_Address"/>
+                <collection-ref name="mailing_address_collection"/>
+                <drop-down-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <selection-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <input-text-filter name="byAddress"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+        </widget-config>
+    </form>
+
+    <!--Приложение для Связи Контактного Лица и Почтового адреса -->
+    <form name="cont_address_cperson_form" domain-object-type="cont_address_cperson" is-default="false">
+        <markup>
+            <header>
+                <table>
+                    <tr>
+                        <td>
+                            <widget id="header"/>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <body display-single-tab="false">
+                <tab name=" "> <!-- закладка состоит из групп с разметкой -->
+                    <single-entry-group> <!-- наследник от TabGroupsConfig -->
+                        <tab-group> <!-- вхождение в группу уже может содержать разметку -->
+                            <table>
+                                <!--Адрес-->
+                                <tr>
+                                    <td width="15%" h-align="left">
+                                        <widget id="address_label"/>
+                                    </td>
+                                    <td width="150px" h-align="left">
+                                        <widget id="address_value"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab-group>
+                    </single-entry-group>
+                </tab>
+            </body>
+        </markup>
+        <widget-config>
+            <label id="header">
+                <field-path/>
+                <text>Укажите адрес Контактного лица</text>
+            </label>
+
+            <label id="address_label">
+                <field-path/>
+                <text>Адрес</text>
+            </label>
+            <suggest-box id="address_value">
+                <field-path value="Mailing_Address"/>
+                <collection-ref name="mailing_address_collection"/>
+                <drop-down-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <selection-pattern value="{Postcode}, {settlement}, {strType} {Street}, {House}, {Room}, {reg}"/>
+                <input-text-filter name="byAddress"/>
+                <page-size>30</page-size>
+                <selection-style name="inline"/>
+                <single-choice value="true"/>
+            </suggest-box>
+
+        </widget-config>
+    </form>
+</configuration>

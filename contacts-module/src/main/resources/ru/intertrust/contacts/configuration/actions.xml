@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config" xmlns:act="https://cm5.intertrust.ru/config/action">
+    <act:action name="addCountry" componentName="create.new.region.action" merged="true"
+                weight="10"
+                text="Добавить группу" tooltip="Создать страну"
+                imageClass="actionBar-create" order="300"
+                dirtySensitivity="true">
+    </act:action>
+    <act:action name="addDistrict" componentName="create.new.region.action"
+                merged="true" weight="10"
+                text="Добавить элемент" tooltip="Создать регион"
+                imageClass="actionBar-create" order="500"
+                dirtySensitivity="true">
+    </act:action>
+</configuration>

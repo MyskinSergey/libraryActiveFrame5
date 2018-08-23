@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <!--Параметры приложения-->
+    <domain-object-type name="ssetting">
+        <fields>
+            <string name="default_printer" length="128"/>
+
+            <string name="default_format_envelope" length="128"/>
+
+            <boolean name="print_sender"/>
+
+            <reference name="default_sender" type="Organization_Address"/>
+
+            <boolean name="print_on_clear_envelope"/>
+        </fields>
+    </domain-object-type>
+
+</configuration>

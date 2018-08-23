@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="https://cm5.intertrust.ru/config">
+
+    <collection name="comments_collection" idField="id">
+        <prototype>
+            <![CDATA[
+                select
+                    tk.id,
+                    prs.firstname||' '||prs.lastname as author,
+                    tk.content,
+                    tk.created_date
+                    from task_comments tk
+                    join person prs on prs.id=tk.created_by
+
+        ::from-clause
+        WHERE
+        1=1 ::where-clause
+
+
+        ]]>
+        </prototype>
+
+
+        <filter name="byTask">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    tk.task = {0}
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byNewTask">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    tk.task = null
+                ]]>
+            </criteria>
+        </filter>
+
+        <filter name="byContent">
+            <criteria placeholder="where-clause">
+                <![CDATA[
+                    upper(tk.content) like upper({0})
+                ]]>
+            </criteria>
+        </filter>
+
+    </collection>
+
+    <collection-view name="comments_collection_view" collection="comments_collection" is-default="true">
+        <display>
+            <column field="created_date" name="Создан" type="datetime" date-pattern="dd-MM-yyyy" time-pattern="HH:mm" sortable="true" min-width="150px"
+                    resizable="true"/>
+            <column field="author" name="Автор" type="string" sortable="true" min-width="150px"
+                    resizable="true"/>
+            <column field="content" name="Комментарий" type="string" sortable="true" min-width="180px"  search-filter="byContent"
+                    resizable="true"/>
+        </display>
+    </collection-view>
+
+</configuration>

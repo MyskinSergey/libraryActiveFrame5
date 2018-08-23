@@ -1,0 +1,8 @@
+TYPE_NAME=cont_qualifier_org;KEYS=organization
+organization;classifier
+"name=""ЗАО ИнтерТраст""";"name=""Бизнес"""
+"name=""Союз Кинемотографистов""";"name=""Гос.органы"""
+"name=""Корпункт 1""";"name=""Гос.органы"""
+"name=""Корпункт 2""";"name=""Гос.органы"""
+"name=""Корпункт 3""";"name=""Гос.органы"""
+

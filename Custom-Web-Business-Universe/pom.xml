@@ -24,6 +24,12 @@
         </dependency>
 
         <dependency>
+            <groupId>ru.intertrust.application-template</groupId>
+            <artifactId>work-finder-rest</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
             <artifactId>jboss-ejb-api_3.1_spec</artifactId>
             <version>1.0.0.Final</version>
@@ -80,6 +86,7 @@
                         <artifact>ru.intertrust.application-template:custom-gui-model</artifact>
                         <artifact>ru.intertrust.application-template:custom-model</artifact>
                         <artifact>ru.intertrust.application-template:custom-gui-client</artifact>
+                        <artifact>ru.intertrust.application-template:work-finder-rest</artifact>
                     </compileSourcesArtifacts>
                 </configuration>
             </plugin>
